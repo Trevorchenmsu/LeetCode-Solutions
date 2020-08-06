@@ -1,7 +1,7 @@
 class Solution{
 public:
 	int findCelebrity(int n) {
-		 if (n < 2) 
+		if (n < 2) 
 		 	return -1;
 		int cele = 0;
 		for(int i = 1; i < n; ++i){
