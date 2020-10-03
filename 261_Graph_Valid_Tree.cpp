@@ -48,7 +48,7 @@ public:
 };
 
 /*
-Solution 1: Union Find
+Solution 2: Union Find
 time: O(m*alpha(n)), Alpah is a certain inverse function of Ackerman. it can be seen as smaller than 4 
 space: O(n)
 */
