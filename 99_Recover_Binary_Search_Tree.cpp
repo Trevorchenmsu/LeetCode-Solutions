@@ -1,7 +1,7 @@
 /*
 solution: inorder traverse
-time: O(n)
-space: O(1)
+time: O(n), traverse all the nodes
+space: O(n), since we keep inorder traversal nums with N elements.
 */
 
 class Solution {
