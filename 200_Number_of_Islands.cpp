@@ -1,8 +1,8 @@
 /* solution 1: DFS 
 
-Time : O(n); n is the number of 1
-Space: O(1);
-
+Time : O(M×N), where M is the number of rows and N is the number of columns.
+Space: worst case O(M×N) in case that the grid map is filled with lands 
+	   where DFS goes by M×N depth.
 */
 
 class Solution {   
@@ -44,9 +44,9 @@ public:
 
 /* solution 1: BFS 
 
-Time : O(n); n is the number of 1
-Space: O(1);
-
+Time : O(M×N), where M is the number of rows and N is the number of columns.
+Space: O(min(M,N)), because in worst case where the grid is filled with lands, 
+		the size of queue can grow up to min(M,N).
 */
 
 
