@@ -47,6 +47,7 @@ public:
 };
 
 /*
-time: O(n)
-space: O(n)
+Time: O(N), where N is number of nodes, since we visit each node not more than 2 times.
+Space: O(H), where H is a tree height, to keep the recursion stack. 
+		In the average case of balanced tree, the tree height H = logN, in the worst case of skewed tree, H = N.
 */
