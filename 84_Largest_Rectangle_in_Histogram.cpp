@@ -1,0 +1,29 @@
+/*
+solution: monotonic stack
+time: O(n), traverse the height array
+space: O(n), the worst case is all the heights monotonicall increase.
+*/
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        if(heights.empty() || heights.size() == 0){
+            return 0;
+        }
+        
+        int res = INT_MIN;
+        stack<int> s;
+        for(int i = 0; i <= heights.size(); ++i){
+            int curHeight = i == heights.size() ? -1 : heights[i];
+            while(!s.empty() && curHeight < heights[s.top()]){
+                cout << s.top() <<" "<< i<<" "<<endl;
+                int height = heights[s.top()]; s.pop();
+                int start = s.empty() ? -1 : s.top();
+                int width = i - 1 - start;
+                res = max(res, height * width);
+            }
+            s.push(i);
+        }
+        
+        return res;
+    }
+};
