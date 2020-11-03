@@ -1,5 +1,5 @@
 /*
-solution 1 : DFS
+solution 1 : backtracking/DFS, recursion
 time: O(n*2^n)
 space: O(n*2^n)
 */
@@ -29,3 +29,29 @@ solution 1 : BFS
 time: O(n*2^n)
 space: O(n*2^n)
 */
+
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> q;
+        if (nums.empty() || nums.size() == 0)
+            return q;
+        
+        int index = 0;
+        vector<int> newSubset;
+        q.push_back(newSubset);
+        
+        for (int num : nums) {
+            int size = q.size();
+            for (int i = 0; i < size; ++i) {
+                vector<int> subset = q[i];
+                subset.push_back(num);
+                q.push_back(subset);
+            }
+        }
+        
+        return q;
+    }
+};
+
+
