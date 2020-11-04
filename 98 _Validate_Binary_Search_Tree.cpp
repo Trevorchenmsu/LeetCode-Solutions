@@ -4,38 +4,39 @@ time: O(n), traverse all the nodes
 space: O(n), since we keep inorder traversal nums with N elements.
 */
 class Solution {
+private:
+    bool firstNode = true;
+    int lastVal = INT_MIN;
 public:
     bool isValidBST(TreeNode* root) {
-        if (!root) {
+        if(!root){
             return true;
         }
-        // left tree node
-        if(!isValidBST(root->left)) {
+        
+        // traverse left tree
+        if(!isValidBST(root->left)){
             return false;
         }
         
-        // root tree node
-        if (!firstNode && lastVal >= root->val) {
+        // lastval represents previous node value. it should be smaller than current node value
+        if(!firstNode && lastVal >= root->val){
             return false;
         }
         firstNode = false;
         lastVal = root->val;
         
-        // right tree node
-        if (!isValidBST(root->right)) {
+        // traverse right tree
+        if(!isValidBST(root->right)){
             return false;
         }
         return true;
     }
-private:
-    bool firstNode = true;
-    int lastVal = INT_MIN;
 };
 
 /*
-solution 2: divide and conquer
+solution 2: divide and conquer/dfs
 time: O(n), traverse all the nodes
-space: O(1)
+space: O(n) since we keep up to the entire tree.
 */
 class Solution {
 public:
@@ -49,9 +50,12 @@ private:
             return true;
         }
         
+        // execuation for right tree
         if (min >= root->val) {
             return false;
         }
+        
+        // execuation for left tree
         if (max <= root->val) {
             return false;
         }
@@ -59,5 +63,33 @@ private:
         bool left = divideConquer(root->left, min, root->val);
         bool right = divideConquer(root->right, root->val, max);
         return left && right;
+    }
+};
+
+/*
+solution 3: inorder iterative/bfs
+time: O(n), traverse all the nodes
+space: O(1)
+*/
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        long pre = LONG_MIN;
+        stack<TreeNode*> s;
+        
+        while (root || !s.empty()) {
+            //  traverse the left tree
+            while (root) {
+                s.push(root);
+                root = root->left;
+            }
+            root = s.top();
+            s.pop();
+            if (root->val <= pre) return false;
+            // traverse the right tree
+            pre = root->val;
+            root = root->right;
+        }
+        return true;
     }
 };

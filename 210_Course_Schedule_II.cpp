@@ -38,8 +38,7 @@ public:
                 }
             }
         }
-        vector<int> k{};
-        return res.size() == numCourses ? res : k;
+        return res.size() == numCourses ? res : vector<int> {};
     }
 };
 
@@ -51,44 +50,37 @@ space: O(m), m is the number of vertices
 class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        vector<int> degrees(numCourses, 0);
-        unordered_map<int, vector<int>> m;
+        vector<int> res;
+        vector<int> inDegree(numCourses);
+        // define a hashmap to store the neighbors
+        unordered_map<int, vector<int>> edgeMap;
         
-        for (vector<int> &pq: prerequisites)
-        {
-            degrees[pq[0]]++;
-            m[pq[1]].push_back(pq[0]);
+        // get the indegree
+        for (auto &edge : prerequisites) {
+            inDegree[edge[0]]++;
+            edgeMap[edge[1]].push_back(edge[0]);
         }
         
-        vector<int> result;
         queue<int> q;
-        for (int i = 0; i < degrees.size(); i++)
-        {
-            if (!degrees[i])
+        
+        // get the nodes with indegree=0
+        for (int i = 0; i < inDegree.size(); ++i) {
+            if (!inDegree[i]) 
                 q.push(i);
         }
         
+        // BFS
         while (!q.empty())
         {
-            int lo = q.front();
-            q.pop();
-            result.push_back(lo);
-            auto &lst = m[lo];
-            for (int &hi: lst)
+            int node = q.front(); q.pop();
+            res.push_back(node);
+            
+            for (auto& neighbor: edgeMap[node])
             {
-                if (!--degrees[hi])
-                {
-                    q.push(hi);
-                }
+                if(--inDegree[neighbor] == 0) q.push(neighbor);
             }
         }
-        for (int n: degrees)
-        {
-            if (n)
-            {
-                return {};
-            }
-        }
-        return result;
+
+        return res.size() == numCourses ? res : vector<int> {};
     }
 };

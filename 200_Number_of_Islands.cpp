@@ -57,6 +57,7 @@ private:
        pair<int, int> current(i, j);
        queue<pair<int, int>> q;
        q.push(current);
+       visited[i][j] = true;
        int direction[4][2] = {-1, 0, 1, 0, 0, -1, 0, 1};  
        
        while (!q.empty()) {
@@ -76,20 +77,21 @@ private:
     
 public:
     int numIslands(vector<vector<char>>& grid) {
-
         // edge case
-        if (grid.empty() || grid.size() == 0 || grid[0].empty() || grid[0].size() == 0) {
+        if (grid.empty() || grid.size() == 0 || grid[0].size() == 0) {
             return 0;
         }
         
         int m = grid.size(), n = grid[0].size();
         int res = 0;
+
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
-                if (grid[i][j] == '1') {
-                    bfs(i, j, grid);
-                    ++res;
+                if (grid[i][j] == '0') {
+                    continue
                 }
+                bfs(i, j, grid);
+                ++res;
             }
         }
         
