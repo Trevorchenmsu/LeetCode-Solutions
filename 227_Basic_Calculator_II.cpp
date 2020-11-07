@@ -3,7 +3,6 @@ solution 1: stack
 time: O(n)
 space: O(n)
 */
-
 class Solution {
 public:
     int calculate(string s) {
@@ -54,50 +53,43 @@ solution 2: non-stack
 time: O(n)
 space: O(1)
 */
-
-
 class Solution {
 public:
-    /**
-     * @param s: the given expression
-     * @return: the result of expression
-     */
-    int calculate(string &s) {
-        // Write your code here
-        int val = 0, prev_val = 0, operand = 0;
-        char op = '+';
-        int n = s.size(); 
-        if (n == 0) return 0;
+    int calculate(string s) {
+        int res = 0, prev_val = 0;
+        if (s.empty() || s.size() == 0) {
+            return res;
+        }
         
-        int i = 0;
-        while (i < n) {
+        long long num = 0;
+        char sign = '+';
+      
+        for (int i = 0; i < s.size(); ++i) {
             if (isdigit(s[i])) {
-                while (isdigit(s[i])) {
-                    operand = operand * 10 + (s[i] - '0');
-                    i++;
+                num = num * 10 + s[i] - '0';
+            }
+            if (!isdigit(s[i]) && s[i] != ' ' || i == s.size() - 1) {
+                if (sign == '+') {
+                    res += num;
+                    prev_val = num;
                 }
-                if (op == '+') {
-                    val += operand;
-                    prev_val = operand;
-                } else if (op == '-') {
-                    val -= operand;
-                    prev_val = -operand;
-                } else if (op == '*') {
-                    val = val - prev_val + prev_val * operand;
-                    prev_val *= operand;
-                } else if (op == '/') {
-                    val = val - prev_val + prev_val / operand;
-                    prev_val /= operand;
+                if (sign == '-') {
+                    res -= num;
+                    prev_val = -num;
                 }
-            } else if (s[i] == ' ') {
-                i++;
-            } else {
-                operand = 0;
-                op = s[i];
-                i++;
+                if (sign == '*') {
+                    res = res - prev_val + prev_val * num;
+                    prev_val *= num;
+                }
+                if (sign == '/') {
+                    res = res - prev_val + prev_val / num;
+                    prev_val /= num;
+                }
+                sign = s[i];
+                num = 0;
             }
         }
         
-        return val;
+        return res;
     }
 };
