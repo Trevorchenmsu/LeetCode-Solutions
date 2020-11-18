@@ -1,7 +1,9 @@
 /*
 solution: system design
 time: O(1)
-space: O(P+S^2), P is the number of passengaers. it is counted in checkIn function. S^2?
+space: O(P+S^2), P is the number of passengaers. it is counted in checkIn function. 
+S^2? where S is the number of stations.for start station A, it may check out at any station B,
+so the possibility is S^2
 */
 
 
