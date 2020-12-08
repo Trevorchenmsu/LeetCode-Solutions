@@ -1,6 +1,6 @@
 /*
 solution: priority queue-min heap
-time: O（nlogn), we sort the array 
+time: O（nlogn), we sort the array and min-heap push/pop takes O(logn), when we traverse array,it will be O(n*logn)
 space: O(n), since we can only have n meetings in the min-heap at the same time.
 */
 class Solution {

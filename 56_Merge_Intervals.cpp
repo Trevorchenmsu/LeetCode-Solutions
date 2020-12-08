@@ -1,9 +1,7 @@
 /*
 solution: sweep line
 time: O(nlogn), because of sorting
-space: O(1) or O(n), 
-If we can sort intervals in place, we do not need more than constant additional space. 
-Otherwise, we must allocate linear space to store a copy of intervals and sort that.
+space: O(n), the worst case is we need to store all the non-overlap intervals.
 */
 
 class Solution {

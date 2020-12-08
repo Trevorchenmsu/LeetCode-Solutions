@@ -1,7 +1,7 @@
 /*
 solution: backtracking
-time: O(n), the worst case is a linked list graph
-space: O(n), stack space
+time: O(n*2^n), n is the number of nodes, each time we add a node, the number of path would double.
+space: O(n*2^n)
 */
 class Solution {
 public:

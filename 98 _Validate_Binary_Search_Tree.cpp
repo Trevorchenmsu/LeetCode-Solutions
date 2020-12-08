@@ -6,7 +6,7 @@ space: O(n), since we keep inorder traversal nums with N elements.
 class Solution {
 private:
     bool firstNode = true;
-    int lastVal = INT_MIN;
+    int preVal = INT_MIN;
 public:
     bool isValidBST(TreeNode* root) {
         if(!root){
@@ -19,11 +19,11 @@ public:
         }
         
         // lastval represents previous node value. it should be smaller than current node value
-        if(!firstNode && lastVal >= root->val){
+        if(!firstNode && preVal >= root->val){
             return false;
         }
         firstNode = false;
-        lastVal = root->val;
+        preVal = root->val;
         
         // traverse right tree
         if(!isValidBST(root->right)){
@@ -67,7 +67,7 @@ private:
 };
 
 /*
-solution 3: inorder iterative/bfs
+solution 3: inorder iterative
 time: O(n), traverse all the nodes
 space: O(1)
 */

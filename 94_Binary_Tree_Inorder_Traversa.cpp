@@ -55,9 +55,7 @@ public:
     		TreeNode* cur = s.top(); s.pop();
     		res.push_back(cur->val);
 
-    		if(!cur->right){
-    			continue;
-    		} else{
+    		if(cur->right){
     			cur = cur->right;
     			while(cur){
     				s.push(cur);

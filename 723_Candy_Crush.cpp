@@ -1,6 +1,6 @@
 /*
 solution: two pointers
-time: O(n*m*(m+n))
+time: O(n*m*(m+n)*k), n is row, m is column, k is the round
 space: O(1)
 */
 class Solution {

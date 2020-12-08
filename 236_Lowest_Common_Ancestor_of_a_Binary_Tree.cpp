@@ -1,12 +1,8 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+/*
+solution 1: iteration
+time: O(N)
+space: O(N)
+*/
 
 class Solution {
 public:
@@ -61,6 +57,11 @@ public:
     }
 };
 
+/*
+solution 2: recursion
+time: O(N)
+space: O(N)
+*/
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {

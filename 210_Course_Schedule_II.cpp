@@ -1,10 +1,8 @@
 /*
 Solution 1: without using hashmap, slower
-time: O(n), n is the number of edges
-space: O(m), m is the number of vertices
+time: O(v+e), e is the number of edges, v is the number of vertices
+space: O(v+e)
 */
-
-
 class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
@@ -44,8 +42,8 @@ public:
 
 /*
 Solution 2: using hashmap, faster
-time: O(n), n is the number of edges
-space: O(m), m is the number of vertices
+time: O(v+e), e is the number of edges, v is the number of vertices
+space: O(v+e)
 */
 class Solution {
 public:
