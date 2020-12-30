@@ -1,7 +1,7 @@
 /*
-solution: backtracking/dfs
-time: O(2^n)
-space: O(2^n)
+solution: backtracking
+time: O(n*2^n)
+space: O(n*2^n)
 */
 
 class Solution {

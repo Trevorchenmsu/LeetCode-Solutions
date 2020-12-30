@@ -1,7 +1,8 @@
 /*
 solution 1 : backtracking/DFS, recursion
 time: O(n*2^n)
-space: O(n*2^n)
+space: O(n*2^n) for the solution, O(n) for the stack space as each time we will 
+store maximum n element in the stack and pop out later. 
 */
 class Solution {
 public:
