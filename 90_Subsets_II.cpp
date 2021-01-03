@@ -21,7 +21,7 @@ private:
     void dfs(vector<vector<int>>& res, vector<int>& nums, vector<int>& subset, int index) {
         res.push_back(subset);
         for (int i = index; i < nums.size(); ++i) {
-            if (i != index && nums[i] == nums[i - 1]) continue;
+            if (i != index && nums[i] == nums[i - 1] && i != 0) continue;
             subset.push_back(nums[i]);
             dfs(res, nums, subset, i + 1);
             subset.pop_back();
