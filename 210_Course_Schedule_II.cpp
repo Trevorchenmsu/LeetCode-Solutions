@@ -1,6 +1,6 @@
 /*
 Solution 1: without using hashmap, slower
-time: O(v+e), e is the number of edges, v is the number of vertices
+time: O(v*e), e is the number of edges, v is the number of vertices
 space: O(v+e)
 */
 class Solution {

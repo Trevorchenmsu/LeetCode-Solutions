@@ -1,4 +1,8 @@
-// solution 1: binary search
+/*
+solution: binary search
+time: O(log(rc)), r is the number of the rows, c is the number of columns
+space: O(1)
+*/
 
 class Solution {
 public:

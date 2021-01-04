@@ -1,3 +1,9 @@
+/*
+Solution: quick select
+time: O(n) for average, O(n^2) in the worst case. n + n/2 + n/4  +… + 1 = O(n)
+space: O(1)
+*/
+
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
@@ -35,3 +41,4 @@ private:
         return nums[j + 1];
     }
 };
+
