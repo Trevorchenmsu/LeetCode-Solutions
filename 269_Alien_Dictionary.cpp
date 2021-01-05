@@ -3,12 +3,16 @@ solution: topological sorting
 time:O(V+E)=O(n*k + n*k)=O(n*k), n is the array length, k is the average length of thw word
 space: O(V+E)=O(n*k + n*k)=O(n*k)
 */
-
 class Solution {
-private:
-    unordered_map<char, string> buildGraph(vector<string> &words){
-        // initialization
+public:
+    string alienOrder(vector<string>& words) {
+        string res = "";
+        if (words.empty() || words.size() == 0) 
+            return res;
+        
+        // build the graph. key-value = node-edge
         unordered_map<char, string> graph;
+        
         for (int i = 0; i < words.size(); ++i) {
             for (int j = 0; j < words[i].size(); ++j) {
                 graph[words[i][j]] = "";
@@ -24,69 +28,36 @@ private:
                     break;
                 }
             }
-            
-            if(j == minLen && words[i].size() > words[i + 1].size()) {
-                return {};
+            if(j == minLen && words[i].size() > words[i + 1].size())
+                return "";
+        }
+        
+        // get the indegree
+        unordered_map<char, int> indegree;
+        for (auto& g : graph) {
+            if (!indegree.count(g.first)) indegree[g.first] = 0;
+            for (auto& e : g.second) {
+                ++indegree[e];
             }
         }
         
-        return graph;
-    }
-    
-    unordered_map<char, int> getIndegree(unordered_map<char, string> &graph){
-        unordered_map<char, int> inDegree;
-        
-        for (auto node : graph) {
-            inDegree[node.first] = 0;
+        // topological sort
+        queue<char> q;
+        for (auto& ind : indegree) {
+            if (ind.second == 0) q.push(ind.first);
         }
         
-        for (auto node : graph) {
-            for (auto edge : node.second) {
-                inDegree[edge]++;
-            }
-        }
-        
-        return inDegree;
-    }
-    
-    string topoSort(unordered_map<char, string> &graph){
-        unordered_map<char, int> inDegree = getIndegree(graph);
-        priority_queue<char, vector<char>, greater<char>> pq;
-        
-        for (auto node : inDegree) {
-            if (node.second == 0) {
-                pq.push(node.first);
-            }
-        }
-        
-        string res;
-        
-        while (!pq.empty()) {
-            char node = pq.top(); pq.pop();
+        while (!q.empty()) {
+            char node = q.front(); q.pop();
             res.push_back(node);
-            
-            for (auto edge : graph[node]) {
-                if (--inDegree[edge] == 0) {
-                    pq.push(edge);
-                }
+            for (auto& e : graph[node]) {
+              if (--indegree[e] != 0) 
+                continue;
+                q.push(e);
             }
         }
         
-        if (res.size() != inDegree.size()) {
-            return "";
-        }
-        
-        return res;
-        
-    }
-    
-    
-public:
-    string alienOrder(vector<string>& words) {
-        unordered_map<char, string> graph = buildGraph(words);
-        if (graph.empty()) {
-            return "";
-        }
-        return topoSort(graph);
+        return res.size() == indegree.size() ? res : "";
     }
 };
+
