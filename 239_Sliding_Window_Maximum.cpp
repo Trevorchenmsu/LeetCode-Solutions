@@ -1,7 +1,7 @@
 /*
 solution: sliding window with deque (monotonic queue)
-time: O(n), since each elelemt enter the deque one time
-space: O(n), maximum number in the deque will only be n. 
+time: O(n), each element is added and deleted to deque.
+space: O(n), O(n-k+1) to store the result, O(k) to store the deque. 
 */
 class Solution {
 public:
@@ -11,24 +11,25 @@ public:
             return res;
         
         deque<int> dq;
+        
         for (int i = 0; i < nums.size(); ++i) {
-            // maintain monotonic queue
-            while (!dq.empty() && nums[i] > nums[dq.back()]) {
+            // monotonous descreasing stack
+            while (!dq.empty() && nums[i] > dq.back()) {
                 dq.pop_back();
             }
+            dq.push_back(nums[i]);
             
-            // maintain the length of window
-            if (!dq.empty() && i - dq.front() >= k) {
+            // consider the first window
+            int win_size = i - k + 1;
+            if (win_size < 0) continue;
+            
+            // add the result
+            res.push_back(dq.front());
+            
+            // move to new window
+            if (nums[win_size] ==  dq.front()) 
                 dq.pop_front();
-            }
-            
-            dq.push_back(i);
-            
-            // get the maximum value
-            if (i >= k - 1) {
-                res.push_back(nums[dq.front()]);
-            }
         }
-        return res;                              
+        return res;
     }
 };
