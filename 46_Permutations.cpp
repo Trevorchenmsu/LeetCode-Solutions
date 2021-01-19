@@ -1,7 +1,7 @@
 /*
-solution 1: +backno memo
-time:
-space: O(n!), we need to store all the permutaions.
+solution 1: backtrack
+time: O(n*n!)
+space: O(n*n!)
 */
 
 class Solution {
@@ -35,9 +35,9 @@ public:
 };
 
 /*
-solution 2:  memo
-time:
-space: O(n!), we need to store all the permutaions.
+solution 2:  backtrack + memo
+time: O(n*n!)
+space: O(n*n!)
 */
 class Solution {
 private:
@@ -48,13 +48,12 @@ private:
         }
         
         for(int i = 0; i < nums.size(); ++i){
-            if(!visited[i]){
-                visited[i] = 1;
-                path.push_back(nums[i]);
-                dfs(res, path, visited, nums);
-                path.pop_back();
-                visited[i] = 0;
-            }
+            if (visited[i]) continue;
+            visited[i] = 1;
+            path.push_back(nums[i]);
+            dfs(res, path, visited, nums);
+            path.pop_back();
+            visited[i] = 0;
         }
     }
     
@@ -67,6 +66,42 @@ public:
         vector<int> path;
         vector<int> visited(nums.size());
         dfs(res, path, visited, nums);
+        return res;
+    }
+};
+
+/*
+solution 3:  poling board method （插板法）iterative
+time: O(n*n!)
+space: O(n*n!)
+*/
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        queue<vector<int>> q;
+        q.push({nums[0]});
+
+        for (int i = 1; i < nums.size(); ++i) {
+            int len = q.size();
+            while (len--) {
+                auto arr = q.front();
+                q.pop();
+
+                // insert the element to all the gaps
+                int M = arr.size();
+                for (int j = 0; j <= M; ++j) {
+                    auto temp = arr;
+                    temp.insert(temp.begin() + j, nums[i]);
+                    q.push(temp);
+                }
+            }
+        }
+
+        vector<vector<int>> res;
+        while (!q.empty()) {
+            res.push_back(q.front());
+            q.pop();
+        }
         return res;
     }
 };
