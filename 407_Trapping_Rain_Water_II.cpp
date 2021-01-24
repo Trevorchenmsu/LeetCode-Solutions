@@ -1,7 +1,7 @@
 /*
-solution: BFS
-time: 
-space:
+solution 1: BFS + set
+time: O(m*n*log(m*n)), m*n for set loop, log(m*n) for erase operation.
+space: O(m*n), worst case will include all the points into the set. 
 */
 class Solution {
 public:
@@ -53,15 +53,71 @@ public:
                     if (heightMap[nx][ny] <= h) {
                         res += h - heightMap[nx][ny];
                         q.push({nx, ny});
-                        heightMap[nx][ny] = -1;
                     }
-                    else {
-                        Set.insert({heightMap[nx][ny], nx, ny});
-                        heightMap[nx][ny] = -1;
-                    }
+                    else 
+                    	Set.insert({heightMap[nx][ny], nx, ny});                   
+                    heightMap[nx][ny] = -1;
                 }
             }
         }
+        return res;
+    }
+};
+
+/*
+
+solution 1: BFS + heap
+time: O(m*n*log(m*n)), m*n for set loop, log(m*n) for erase operation.
+space: O(m*n), worst case will include all the points into the set. 
+*/
+
+class Solution {
+public:
+    int trapRainWater(vector<vector<int>>& heightMap) {
+        typedef pair<int, pair<int, int>> PIII;
+        int n = heightMap.size(), m = heightMap[0].size();
+        
+        vector<vector<bool>> st(n, vector<bool>(m, false));
+        priority_queue<PIII, vector<PIII>, greater<PIII>> heap;
+        
+        for (int i = 0; i < n; i ++ )
+        {
+            heap.push({heightMap[i][0], {i, 0}});
+            heap.push({heightMap[i][m - 1], {i, m - 1}});
+            st[i][0] = st[i][m - 1] = true;
+        }
+
+        for (int j = 0; j < m; j ++ )
+        {
+            heap.push({heightMap[0][j], {0, j}});
+            heap.push({heightMap[n - 1][j], {n - 1, j}});
+            st[0][j] = st[n - 1][j] = true;
+        }
+        
+        int res = 0;
+        int dx[] = {-1, 0, 1, 0}, dy[] = {0, 1, 0, -1};
+        while (heap.size())
+        {
+            auto t = heap.top();
+            heap.pop();
+            int x = t.second.first, y = t.second.second, h = t.first;
+
+            for (int k = 0; k < 4; k ++ )
+            {
+                int nx = x + dx[k], ny = y + dy[k];
+                if (nx < 0 || nx >= n || ny < 0 || ny >= m)
+                    continue;
+                    
+                if (st[nx][ny])
+                    continue;
+                
+                st[nx][ny] = true;
+                if (h > heightMap[nx][ny]) 
+                    res += h - heightMap[nx][ny];
+                heap.push({max(heightMap[nx][ny], h), {nx, ny}});
+            }
+        }
+
         return res;
     }
 };
