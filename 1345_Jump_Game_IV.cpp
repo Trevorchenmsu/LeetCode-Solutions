@@ -55,3 +55,57 @@ public:
         return dp_visited[arr.size() - 1] - 1;
     }
 };
+
+/*
+solution: BFS
+time: O(n)
+space: O(n)
+*/
+
+class Solution {
+public:
+    int minJumps(vector<int>& arr) {
+        if (arr.size() <= 1) return 0;
+        int n = arr.size();
+        
+        unordered_map<int, vector<int>> edges;
+        for (int i = 0; i < n; i++) {
+            edges[arr[i]].push_back(i);
+        }
+        
+        vector<int> visited (n, 0);
+        visited[0] = 1;
+        queue<int> q;
+        q.push(0);
+        int step = 0;
+        
+        // bfs
+        while (!q.empty()) {
+            int size = q.size();
+            while (size--) {
+                int cur = q.front(); 
+                q.pop();
+                if (cur + 1 < n && visited[cur + 1] == 0) {
+                    q.push(cur + 1);
+                    visited[cur + 1] = 1;
+                }
+                if (cur - 1 >= 0 && visited[cur - 1] == 0) {
+                    q.push(cur - 1);
+                    visited[cur - 1] = 1;
+                }
+                for (auto next : edges[arr[cur]]) {
+                    if (visited[next] == 0) {
+                        q.push(next);
+                        visited[next] = 1;
+                    }
+                }
+                edges.erase(arr[cur]);
+            }
+            step++;
+            if (visited[n - 1] == 1)
+                return step;
+        }
+        
+        return -1;
+    }
+};
