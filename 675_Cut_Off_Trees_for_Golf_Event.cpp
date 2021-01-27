@@ -1,7 +1,7 @@
 /*
 solution 1: BFS + heap, TLE
-time:
-space: 
+time: O(mn*log(mn) + mn^2) ?
+space: O(mn)
 */
 class Solution {
 public:
@@ -11,7 +11,7 @@ public:
         m = forest.size();
         n = forest[0].size();
         
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < m; i++) { // O(mn)
             for (int j = 0; j < n; j++) {
                 if (forest[i][j] > 1)
                     minHeap.push({forest[i][j], i, j});
@@ -20,7 +20,7 @@ public:
                              
         vector<int> start = {0, 0};
         int res = 0;
-        while (!minHeap.empty()) {
+        while (!minHeap.empty()) { //O(mn*log(mn) + mn^2)
             vector<int> tree = minHeap.top();
             minHeap.pop();
             vector<int> target = {tree[1], tree[2]};
@@ -68,8 +68,8 @@ private:
 
 /*
 solution 2: BFS + treeMap, TLE
-time:
-space: 
+time: (O(mn^2)) ?
+space: O(mn)
 */
 class Solution {
 public:
@@ -78,7 +78,7 @@ public:
         n = forest[0].size();
         map<int, pair<int, int>> trees;
         
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < m; i++) { // O(mn)
             for (int j = 0; j < n; j++) {
                 if (forest[i][j] > 1)
                     trees[forest[i][j]] = {i, j};
@@ -87,7 +87,7 @@ public:
         
         int sx = 0, sy = 0;
         int res = 0;
-        for (auto& tree : trees) {
+        for (auto& tree : trees) { // (O(mn^2))
             int tx = tree.second.first;
             int ty = tree.second.second;
             int step = bfs(forest, sx, sy, tx, ty);
@@ -143,8 +143,8 @@ private:
 
 /*
 solution 3: BFS + treeMap, pass
-time:
-space: 
+time: (O(mn^2))
+space: O(mn)
 */
 class Solution {
 public:
@@ -171,6 +171,77 @@ public:
             x = m;
             y = n;
         }
+        return res;
+    }
+private:
+    int M, N;
+    int bfs(int x, int y, int m, int n, vector<vector<int>>& forest) {
+        int dirs[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        vector<vector<int>> visited(M, vector<int> (N, 0));
+        
+        if (x == m && y == n) return 0;
+        queue<pair<int, int>> q;
+        q.push({x, y});
+        visited[x][y] = 1;
+        int step = 0;
+        
+        while (!q.empty()) {
+            int len = q.size();
+            while (len--) {
+                int x = q.front().first;
+                int y = q.front().second;
+                q.pop();
+                
+                for (auto& dir : dirs) {
+                    int i = x + dir[0];
+                    int j = y + dir[1];
+                    
+                    if (i == m && j == n) return step + 1;
+                    if (i < 0 || i >= M || j < 0 || j >= N)
+                        continue;
+                    if (forest[i][j] == 0 || visited[i][j] == 1)
+                        continue;
+                    q.push({i, j});
+                    visited[i][j] = 1;
+                }
+            }
+            step++;
+        }
+        return -1;
+    }
+};
+
+/*
+solution 4: BFS + mini heap, pass
+time: O(mn*log(mn) + mn^2) ?
+space: O(mn)
+*/
+class Solution {
+public:
+    int cutOffTree(vector<vector<int>>& forest) {
+        M = forest.size();
+        N = forest[0].size();
+            
+        priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> minHeap;      
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                if (forest[i][j] > 1)
+                    minHeap.push({forest[i][j], i, j});
+            }
+        }
+        
+        int x = 0, y = 0;
+        int res = 0;
+        while (!minHeap.empty()) {
+            auto tree = minHeap.top();
+            minHeap.pop();
+            int m = tree[1], n = tree[2];
+            int step = bfs(x, y, m, n, forest);
+            if (step == -1) return -1;
+            else res += step;
+            x = m, y = n;
+        }
+
         return res;
     }
 private:
