@@ -46,8 +46,3 @@ public:
     }
 };
 
-/*
-solution 1: brute force + bismask + optimization
-time: (2^(m*n)*5*(m*n))
-space: O(1)
-*/
