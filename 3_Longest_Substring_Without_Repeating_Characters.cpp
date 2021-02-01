@@ -6,23 +6,22 @@ space: O(n), worst case: all the characters are different.
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        int res = 0;
-        if (s.empty() || s.size() == 0)
-            return res;
-        
-        unordered_set<int> set;
+        if (s.empty()) return 0;
+        int res = INT_MIN;
+        unordered_set<char> Set;
         int left = 0, right = 0;
+        
         while (right < s.size()) {
-            if (!set.count(s[right])) {
-                set.insert(s[right++]);
+            if (Set.find(s[right]) == Set.end()) {
+                Set.insert(s[right++]);
                 res = max(res, right - left);
-            } else {
-                auto iter = set.find(s[left++]);
-                set.erase(iter);
+            }
+            else {
+                auto left_boundary = Set.find(s[left++]);
+                Set.erase(left_boundary);
             }
         }
         
         return res;
     }
 };
-

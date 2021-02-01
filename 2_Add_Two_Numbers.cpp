@@ -1,4 +1,5 @@
 /*
+solution: Linked list operation
 time: O(max(m, n))
 space: O(max(m, n))
 */
