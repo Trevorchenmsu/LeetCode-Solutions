@@ -1,6 +1,6 @@
 /*
 solution 1: backtrack
-time: unknown
+time: O(9^(9*9))
 space: unknown
 */
 class Solution {
@@ -39,5 +39,53 @@ public:
             }
         }
         return true;
+    }
+};
+
+/*
+solution 2: backtrack + hashtable
+time: O(9^(9*9))
+space: unknown
+*/
+class Solution {
+public:
+    void solveSudoku(vector<vector<char>>& board) {
+        // update three hashtables
+        int m = board.size(), n = board[0].size();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == '.') 
+                    spaces.emplace_back(i, j);
+                else {
+                    int curNum = board[i][j] - '0';
+                    row[i][curNum] = col[j][curNum] = box[j/3 + (i/3)*3][curNum] = 1;
+                }
+            }
+        }
+        
+        backtrack(board, 0);
+    }
+    
+private:
+    int row[9][10] = {0};
+    int col[9][10] = {0};
+    int box[9][10] = {0};
+    vector<pair<int, int>> spaces;    
+    
+    bool backtrack(vector<vector<char>>& board, int pos) {
+        if (pos == spaces.size()) 
+            return true;
+
+        auto [i, j] = spaces[pos];
+        for (int curNum = 1; curNum <= 9; curNum++) {
+            if (row[i][curNum] || col[j][curNum] || box[j/3 + (i/3)*3][curNum])
+                continue;
+            row[i][curNum] = col[j][curNum] = box[j/3 + (i/3)*3][curNum] = 1;
+            board[i][j] = curNum + '0';
+            if(backtrack(board, pos + 1)) 
+                return true;
+            row[i][curNum] = col[j][curNum] = box[j/3 + (i/3)*3][curNum] = 0;
+        }
+        return false;
     }
 };
