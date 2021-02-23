@@ -1,7 +1,7 @@
 /*
-solution: trie
-time:
-space:
+solution: trie implement
+time: O(n)
+space: O(1)
 */
 struct TrieNode{
     bool isWord = false;
