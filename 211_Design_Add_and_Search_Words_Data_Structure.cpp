@@ -1,72 +1,64 @@
 /*
-solution 1: trie
-time:
-space:
+solution 1: trie + dfs
+time: addWord: O(n) 
+      search: O(N*26^M), M is the word length, N is the number of words in the trie
+      N is number of keys(keys = number of words we have in the Trie). 
+      each key could have 26 chars and for M length of searched word, we need to search 26^M. 
+      with all keys -> N*26^M
+space: addWord: O(n) ; 
+       search: O(logL)- stack space for dfs, L is the length of longest word
 */
-
-struct TrieNode{
-    bool isWord = false;
-    unordered_map<char, TrieNode*> leaves;
-};
-
 class WordDictionary {
 public:
+    struct TrieNode {
+        unordered_map<char, TrieNode*> leaves;
+        bool isWord = false;
+    };
+    
     /** Initialize your data structure here. */
     WordDictionary() {
         root = new TrieNode();
         root->isWord = true;
     }
     
-    /** Adds a word into the data structure. */
     void addWord(string word) {
-        auto* p = root;
+        TrieNode* cur = root;
         for (const auto& c : word) {
-            if (p->leaves.find(c) == p->leaves.end()) {
-                p->leaves[c] = new TrieNode;
-            }
-            p = p->leaves[c];
+            if (cur->leaves.find(c) == cur->leaves.end())
+                cur->leaves[c] = new TrieNode();
+            cur = cur->leaves[c];
         }
-        p->isWord = true;
+        cur->isWord = true;
     }
     
-    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     bool search(string word) {
-        return find(word, root, 0);
+       return dfs(word, root, 0);
     }
     
-    bool find(string word, TrieNode* node, int idx){
-        // recursion exit
-        if(idx == word.size()) 
-            return node->isWord;
-        
-        if(node->leaves.find(word[idx]) != node->leaves.end()){
-            return find(word, node->leaves[word[idx]], idx + 1);
-        } else if(word[idx] == '.'){
-            for(const auto& leave : node->leaves){
-                if(find(word, leave.second, idx + 1)){
-                    return true;
-                }
-            }
-        }
-        
-        return false;
-    }
-
 private:
     TrieNode* root;
+    bool dfs(string &s, TrieNode* node, int idx) {
+        if (idx == s.size())
+            return node->isWord;
+        
+        if (node->leaves.find(s[idx]) != node->leaves.end())
+            return dfs(s, node->leaves[s[idx]], idx + 1);
+        else if (s[idx] == '.') {
+            for (const auto& leave : node->leaves) {
+                if (dfs(s, leave.second, idx + 1))
+                    return true;
+            }
+        }
+            
+        return false;
+    }
+    
 };
 
-/**
- * Your WordDictionary object will be instantiated and called as such:
- * WordDictionary* obj = new WordDictionary();
- * obj->addWord(word);
- * bool param_2 = obj->search(word);
- */
-
 /*
-solution 2:vector
-time:
-space:
+solution 2:hashtable
+time: O(mn), m is the length of the word to find, n is the number of words
+space: O(mn)
 */
 
 class WordDictionary {
