@@ -1,6 +1,7 @@
 /*
 solution 1: divide and conquer + merge sort
-time: O(nklogk), k is the number of the lists, n is the length of each list ? might be more for this method
+time: O(nklogk), k is the number of the lists, n is the length of each list ? 
+might be more for this method
 space: O(logk), stack space  ? might be more for this method
 */
 class Solution {

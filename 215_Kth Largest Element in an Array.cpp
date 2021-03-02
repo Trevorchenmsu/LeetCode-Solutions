@@ -3,42 +3,33 @@ Solution: quick select
 time: O(n) for average, O(n^2) in the worst case. n + n/2 + n/4  +… + 1 = O(n)
 space: O(1)
 */
-
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        if (nums.empty()) return -1;
-        return quickSelect(nums, 0, nums.size() - 1, nums.size() - k + 1);
+        if (nums.empty()) return 0;
+        return quickSelect(nums, 0, nums.size() - 1, nums.size() - (k - 1));
     }
-private:
-    int quickSelect(vector<int>& nums, int start, int end, int k) {
+    
+    int quickSelect(vector<int> &nums, int start, int end, int k) {
         if (start == end) return nums[start];
-
-        int mid = start + (end - start) / 2;
-        int pivot = nums[mid];
-
+        
         // partition
-        int i = start, j = end;
-        while (i <= j) {
-            while (i <= j && nums[i] < pivot) {
-                i++;
-            }
-            while (i <= j && nums[j] > pivot) {
-                j--;
-            }
-            if (i <= j) {
-                swap(nums[i++], nums[j--]);
-            }
+        int left = start, right = end;
+        int pivot = nums[(start + end) / 2];
+        while (left <= right) {
+            while (left <= right && nums[left] < pivot) left++;
+            while (left <= right && nums[right] > pivot) right--;
+            if (left <= right) swap(nums[left++], nums[right--]);
         }
-
-        if (start + k - 1 <= j) {
-            return quickSelect(nums, start, j, k);
+        
+        if (start + k - 1 <= right) {
+            return quickSelect(nums, start, right, k);
         }
-        if (start + k - 1 >= i) {
-            return quickSelect(nums, i, end, k - (i - start));
+        
+        if (start + k - 1 >= left) {
+            return quickSelect(nums, left, end, k - (left- start));
         }
-
-        return nums[j + 1];
+        
+        return nums[right + 1];
     }
 };
-
