@@ -1,5 +1,5 @@
 /*
-solution: iteration
+solution 1: iteration
 time: O(n)
 space: O(1)
 */
@@ -17,5 +17,26 @@ public:
             head = next;  // update the head, use the backup linked list elements
         }
         return newHead;
+    }
+};
+
+/*
+solution 2: recursion
+time: O(n)
+space: O(n), stack space
+*/
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head == nullptr || head->next == nullptr)
+            return head;
+        
+        ListNode* node = reverseList(head->next);
+        head->next->next = head; // reverse the link
+        head->next = nullptr; // break the link
+        
+        return node;
+
     }
 };
