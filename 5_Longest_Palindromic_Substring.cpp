@@ -46,28 +46,27 @@ public:
         if (s.empty()) return res;
         
         int n = s.length();
-        int isPalindrome[n][n];
-        memset(isPalindrome, 0, sizeof(isPalindrome));
+        vector<vector<int>> dp(n, vector<int> (n));
         
-        // initialization
+        // initialize
         for (int i = 0; i < n; i++) {
-            isPalindrome[i][i] = 1;  // single character
-            if (i > 0)
-                isPalindrome[i][i - 1] = true; // empty string
+            dp[i][i] = 1; // single character
+            if (i > 0) dp[i][i - 1] = 1; // empty string is also palindrome
         }
         
-        int start = 0, longest = 1;
-        for (int length = 2; length <= n; length++) { // start from two character
+        int start = 0, len = 1; // at least one char
+        for (int length = 2; length <= n; length++) { // start from two char
             for (int i = 0; i + length <= n; i++) {
-                int j = i - 1 + length;
-                isPalindrome[i][j] = isPalindrome[i + 1][j - 1] && s[i] == s[j];
-                if (isPalindrome[i][j] && longest < length) {
+                int j = i + length - 1; // because j is index
+                dp[i][j] = dp[i + 1][j - 1] && s[i] == s[j];
+                if (dp[i][j] == 1 && len < length) {
+                    len = length;
                     start = i;
-                    longest = length;
                 }
-            }
+            }            
+            
         }
         
-        return s.substr(start, longest);
+        return s.substr(start, len);
     }
 };
