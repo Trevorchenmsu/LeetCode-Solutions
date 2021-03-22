@@ -71,7 +71,7 @@ public:
                 int top = Stack.top();
                 Stack.pop();
                 if (Stack.empty()) break; // this step is necessary since the last element is not counted as volume.
-                int width = i - Stack.top() - 1;
+                int width = i - Stack.top() - 1; // Stack.top() cannot be replaced by top
                 int height_trap = min(height[i], height[Stack.top()]) - height[top];
                 int area = width * height_trap;
                 res += area;
