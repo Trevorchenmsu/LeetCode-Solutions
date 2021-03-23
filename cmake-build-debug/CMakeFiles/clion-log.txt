@@ -1,0 +1,31 @@
+"F:\Clion\CLion 2020.3.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\刷题\LeetCode-Solutions
+-- The C compiler identification is GNU 6.3.0
+-- The CXX compiler identification is GNU 6.3.0
+-- Check for working C compiler: C:/MinGW/bin/gcc.exe
+-- Check for working C compiler: C:/MinGW/bin/gcc.exe - broken
+CMake Error at F:/Clion/CLion 2020.3.3/bin/cmake/win/share/cmake-3.17/Modules/CMakeTestCCompiler.cmake:60 (message):
+  The C compiler
+
+    "C:/MinGW/bin/gcc.exe"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: D:/åˆ·é¢˜/LeetCode-Solutions/cmake-build-debug/CMakeFiles/CMakeTmp
+    
+    Run Build Command(s):C:/MinGW/bin/mingw32-make.exe cmTC_e9998/fast && mingw32-make.exe: *** INTERNAL: readdir: Invalid argument
+    .  Stop.
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  CMakeLists.txt:2 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also "D:/åˆ·é¢˜/LeetCode-Solutions/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "D:/åˆ·é¢˜/LeetCode-Solutions/cmake-build-debug/CMakeFiles/CMakeError.log".
