@@ -27,6 +27,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1249]Minimum Remove to Make Valid Parentheses.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1249]Minimum Remove to Make Valid Parentheses.cpp" />
+              <option name="questionId" value="1371" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[13]Roman to Integer.cpp">
           <value>
             <LeetcodeEditor>
@@ -43,11 +51,27 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[391]Perfect Rectangle.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[391]Perfect Rectangle.cpp" />
+              <option name="questionId" value="391" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[850]Rectangle Area II.cpp">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[850]Rectangle Area II.cpp" />
               <option name="questionId" value="880" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[91]Decode Ways.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[91]Decode Ways.cpp" />
+              <option name="questionId" value="91" />
             </LeetcodeEditor>
           </value>
         </entry>
