@@ -43,30 +43,6 @@
             </LeetcodeEditor>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1480]Running Sum of 1d Array.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1480]Running Sum of 1d Array.cpp" />
-              <option name="questionId" value="1603" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[175]Combine Two Tables.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[175]Combine Two Tables.cpp" />
-              <option name="questionId" value="175" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[176]Second Highest Salary.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[176]Second Highest Salary.cpp" />
-              <option name="questionId" value="176" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1]Two Sum.cpp">
           <value>
             <LeetcodeEditor>
@@ -75,83 +51,11 @@
             </LeetcodeEditor>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[218]The Skyline Problem.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[218]The Skyline Problem.cpp" />
-              <option name="questionId" value="218" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[344]Reverse String.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[344]Reverse String.cpp" />
-              <option name="questionId" value="344" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[387]First Unique Character in a String.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[387]First Unique Character in a String.cpp" />
-              <option name="questionId" value="387" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[391]Perfect Rectangle.cpp">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[391]Perfect Rectangle.cpp" />
               <option name="questionId" value="391" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[412]Fizz Buzz.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[412]Fizz Buzz.cpp" />
-              <option name="questionId" value="412" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[453]Minimum Moves to Equal Array Elements.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[453]Minimum Moves to Equal Array Elements.cpp" />
-              <option name="questionId" value="453" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[543]Diameter of Binary Tree.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[543]Diameter of Binary Tree.cpp" />
-              <option name="questionId" value="543" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[572]Subtree of Another Tree.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[572]Subtree of Another Tree.cpp" />
-              <option name="questionId" value="572" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[716]Max Stack.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[716]Max Stack.cpp" />
-              <option name="questionId" value="716" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[811]Subdomain Visit Count.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[811]Subdomain Visit Count.cpp" />
-              <option name="questionId" value="829" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -168,14 +72,6 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[91]Decode Ways.cpp" />
               <option name="questionId" value="91" />
-            </LeetcodeEditor>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/leetcode/editor/en/[937]Reorder Data in Log Files.cpp">
-          <value>
-            <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[937]Reorder Data in Log Files.cpp" />
-              <option name="questionId" value="974" />
             </LeetcodeEditor>
           </value>
         </entry>
