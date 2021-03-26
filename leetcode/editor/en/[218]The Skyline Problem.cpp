@@ -61,6 +61,12 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+/*
+ * Solution: sweep line
+ * time: O(nlogn)
+ * space: O(n)
+ *
+ * */
 class Solution {
 public:
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
