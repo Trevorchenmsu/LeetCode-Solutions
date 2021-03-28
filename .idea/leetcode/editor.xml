@@ -27,6 +27,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1025]Divisor Game.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1025]Divisor Game.cpp" />
+              <option name="questionId" value="1086" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1052]Grumpy Bookstore Owner.cpp">
           <value>
             <LeetcodeEditor>
@@ -51,11 +59,27 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1574]Shortest Subarray to be Removed to Make Array Sorted.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1574]Shortest Subarray to be Removed to Make Array Sorted.cpp" />
+              <option name="questionId" value="1679" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1]Two Sum.cpp">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1]Two Sum.cpp" />
               <option name="questionId" value="1" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[346]Moving Average from Data Stream.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[346]Moving Average from Data Stream.cpp" />
+              <option name="questionId" value="346" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -72,6 +96,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[733]Flood Fill.cpp" />
               <option name="questionId" value="733" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[836]Rectangle Overlap.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[836]Rectangle Overlap.cpp" />
+              <option name="questionId" value="866" />
             </LeetcodeEditor>
           </value>
         </entry>
