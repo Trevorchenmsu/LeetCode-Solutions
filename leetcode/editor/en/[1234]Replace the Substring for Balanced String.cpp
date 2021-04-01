@@ -78,7 +78,7 @@ public:
         int res = len, left = 0, right = 0;
         while (right < len) {
             cnt_map[s[right]]--;
-            while (left <= right + 1 && cnt_map['Q'] <= n && cnt_map['W'] <= n &&
+            while (left <= right && cnt_map['Q'] <= n && cnt_map['W'] <= n &&
                     cnt_map['E'] <= n && cnt_map['R'] <= n ) {
                 res = min(res, right - left + 1);
                 cnt_map[s[left++]]++;

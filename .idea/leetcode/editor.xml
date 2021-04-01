@@ -35,11 +35,27 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1047]Remove All Adjacent Duplicates In String.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1047]Remove All Adjacent Duplicates In String.cpp" />
+              <option name="questionId" value="1128" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1052]Grumpy Bookstore Owner.cpp">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1052]Grumpy Bookstore Owner.cpp" />
               <option name="questionId" value="1138" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1086]High Five.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1086]High Five.cpp" />
+              <option name="questionId" value="1074" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -64,6 +80,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[13]Roman to Integer.cpp" />
               <option name="questionId" value="13" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1498]Number of Subsequences That Satisfy the Given Sum Condition.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1498]Number of Subsequences That Satisfy the Given Sum Condition.cpp" />
+              <option name="questionId" value="1621" />
             </LeetcodeEditor>
           </value>
         </entry>
