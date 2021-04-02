@@ -37,6 +37,11 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+/*
+ * solution： two pointers + sliding window
+ * time: O(n)
+ * space: O(1)
+ * */
 class Solution {
 public:
     int maximumScore(vector<int>& nums, int k) {
