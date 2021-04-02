@@ -115,11 +115,35 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[157]Read N Characters Given Read4.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[157]Read N Characters Given Read4.cpp" />
+              <option name="questionId" value="157" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[163]Missing Ranges.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[163]Missing Ranges.cpp" />
+              <option name="questionId" value="163" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1710]Maximum Units on a Truck.cpp">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1710]Maximum Units on a Truck.cpp" />
               <option name="questionId" value="1829" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1793]Maximum Score of a Good Subarray.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1793]Maximum Score of a Good Subarray.cpp" />
+              <option name="questionId" value="1918" />
             </LeetcodeEditor>
           </value>
         </entry>
