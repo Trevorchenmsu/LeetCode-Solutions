@@ -43,7 +43,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution: binary search
+ * solution 1: binary search
  * time: O(nlog(sum-maxN))
  * space: O(1)
  * */
@@ -64,6 +64,53 @@ public:
             else
                 start = mid + 1;
         }
+
+        return end;
+    }
+
+private:
+    bool canSplit(vector<int> &nums, int m, long sum) {
+        int cur_sum = 0, cnt = 1;
+
+        for (auto &num : nums) {
+            cur_sum += num;
+            if (cur_sum > sum) {
+                cur_sum = num;
+                cnt++;
+                if (cnt > m) return false;
+            }
+        }
+
+        return true;
+    }
+};
+
+
+
+/*
+ * solution 2 binary search
+ * time: O(nlog(sum-maxN))
+ * space: O(1)
+ * */
+class Solution {
+public:
+    int splitArray(vector<int>& nums, int m) {
+        // compute lower bound and upper bound
+        long start = 0, end = 0;
+        for (int i = 0; i < nums.size(); i++) { // O(n)
+            start = max(start, (long) nums[i]);
+            end += nums[i];
+        }
+
+        while (start + 1 < end) { // O(nlog(sum-maxN))
+            long mid = start + (end - start) / 2;
+            if (canSplit(nums, m, mid))
+                end = mid;
+            else
+                start = mid;
+        }
+
+        if (canSplit(nums, m, start)) return start;
 
         return end;
     }
