@@ -67,6 +67,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1231]Divide Chocolate.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1231]Divide Chocolate.cpp" />
+              <option name="questionId" value="1192" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1234]Replace the Substring for Balanced String.cpp">
           <value>
             <LeetcodeEditor>
@@ -256,6 +264,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[733]Flood Fill.cpp" />
               <option name="questionId" value="733" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[774]Minimize Max Distance to Gas Station.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[774]Minimize Max Distance to Gas Station.cpp" />
+              <option name="questionId" value="788" />
             </LeetcodeEditor>
           </value>
         </entry>
