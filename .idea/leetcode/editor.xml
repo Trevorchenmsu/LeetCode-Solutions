@@ -83,6 +83,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1095]Find in Mountain Array.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1095]Find in Mountain Array.cpp" />
+              <option name="questionId" value="1185" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1231]Divide Chocolate.cpp">
           <value>
             <LeetcodeEditor>
@@ -312,6 +320,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[628]Maximum Product of Three Numbers.cpp" />
               <option name="questionId" value="628" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[658]Find K Closest Elements.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[658]Find K Closest Elements.cpp" />
+              <option name="questionId" value="658" />
             </LeetcodeEditor>
           </value>
         </entry>
