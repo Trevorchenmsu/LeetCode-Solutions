@@ -31,6 +31,32 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
+ * solution 0: hash set
+ * time: O(min(m, n))
+ * space: O(max(m, n))
+ * */
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        if (nums1.size() > nums2.size())
+            return intersection(nums2, nums1);
+
+        unordered_set<int> res;
+
+        unordered_set<int> set2(nums2.begin(), nums2.end());
+
+        for (auto &num : nums1) {
+            if (set2.count(num))
+                res.insert(num);
+        }
+
+        return vector<int> (res.begin(), res.end());
+    }
+};
+
+
+/*
  * solution 1: two pointers + hash set + sort
  * time: O(max(mlogm, nlogn)
  * space: O(max(logm, logn), for stack space when sorting

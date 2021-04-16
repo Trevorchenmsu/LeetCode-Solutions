@@ -155,6 +155,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[153]Find Minimum in Rotated Sorted Array.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[153]Find Minimum in Rotated Sorted Array.cpp" />
+              <option name="questionId" value="153" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1574]Shortest Subarray to be Removed to Make Array Sorted.cpp">
           <value>
             <LeetcodeEditor>
@@ -176,6 +184,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[157]Read N Characters Given Read4.cpp" />
               <option name="questionId" value="157" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[162]Find Peak Element.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[162]Find Peak Element.cpp" />
+              <option name="questionId" value="162" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -224,6 +240,22 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[223]Rectangle Area.cpp" />
               <option name="questionId" value="223" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[331]Verify Preorder Serialization of a Binary Tree.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[331]Verify Preorder Serialization of a Binary Tree.cpp" />
+              <option name="questionId" value="331" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[33]Search in Rotated Sorted Array.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[33]Search in Rotated Sorted Array.cpp" />
+              <option name="questionId" value="33" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -352,6 +384,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[774]Minimize Max Distance to Gas Station.cpp" />
               <option name="questionId" value="788" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[81]Search in Rotated Sorted Array II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[81]Search in Rotated Sorted Array II.cpp" />
+              <option name="questionId" value="81" />
             </LeetcodeEditor>
           </value>
         </entry>

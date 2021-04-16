@@ -54,26 +54,26 @@
  * space: O(max(logm, logn), stack space for sorting
  *
  * */
-//class Solution {
-//public:
-//    int findRadius(vector<int>& houses, vector<int>& heaters) {
-//        int n = heaters.size(), j = 0, res = 0;
-//
-//        sort(houses.begin(), houses.end()); // O(mlogm)
-//        sort(heaters.begin(), heaters.end()); // O(nlogn)
-//
-//        for (int i = 0; i < houses.size(); ++i) { // O(mn)
-//            int cur_house = houses[i];
-//
-//            while(j < n - 1 && abs(heaters[j + 1] - cur_house) <= abs(heaters[j] - cur_house))
-//                ++j;
-//
-//            res = max(res, abs(heaters[j] - cur_house));
-//        }
-//
-//        return res;
-//    }
-//};
+class Solution {
+public:
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
+        int n = heaters.size(), j = 0, res = 0;
+
+        sort(houses.begin(), houses.end()); // O(mlogm)
+        sort(heaters.begin(), heaters.end()); // O(nlogn)
+
+        for (int i = 0; i < houses.size(); ++i) { // O(mn)
+            int cur_house = houses[i];
+
+            while(j < n - 1 && abs(heaters[j + 1] - cur_house) <= abs(heaters[j] - cur_house))
+                ++j;
+
+            res = max(res, abs(heaters[j] - cur_house));
+        }
+
+        return res;
+    }
+};
 
 /*
  * solution 2: binary search
@@ -81,44 +81,44 @@
  * space: O(logn), stack space for sorting
  *
  * */
-//class Solution {
-//public:
-//    int findRadius(vector<int>& houses, vector<int>& heaters) {
-//        sort(heaters.begin(), heaters.end()); // O(nlogn)
-//        int res = 0;
-//
-//        for (auto &house : houses) { //O(mlogn)
-//            int heater_idx = binarySearch(heaters, house);
-//
-//            int radius1 = (heater_idx == heaters.size()) ? INT_MAX : abs(heaters[heater_idx] - house);
-//            int radius2 = (heater_idx == 0) ? INT_MAX : abs(house - heaters[heater_idx - 1]);
-//
-//            res = max(res, min(radius1, radius2));
-//        }
-//
-//        return res;
-//    }
-//
-//private:
-//    int binarySearch(vector<int> &heaters, int target) { // O(logn)
-//        int start = 0, end = heaters.size() - 1;
-//
-//        // binary search for the first element larger and equal to current house
-//        while (start + 1 < end) {
-//            int mid = start + (end - start) / 2;
-//
-//            if (heaters[mid] >= target)
-//                end = mid;
-//            else
-//                start = mid;
-//        }
-//
-//        if (heaters[start] >= target)
-//            return start;
-//
-//        return end;
-//    }
-//};
+class Solution {
+public:
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
+        sort(heaters.begin(), heaters.end()); // O(nlogn)
+        int res = 0;
+
+        for (auto &house : houses) { //O(mlogn)
+            int heater_idx = binarySearch(heaters, house);
+
+            int radius1 = (heater_idx == heaters.size()) ? INT_MAX : abs(heaters[heater_idx] - house);
+            int radius2 = (heater_idx == 0) ? INT_MAX : abs(house - heaters[heater_idx - 1]);
+
+            res = max(res, min(radius1, radius2));
+        }
+
+        return res;
+    }
+
+private:
+    int binarySearch(vector<int> &heaters, int target) { // O(logn)
+        int start = 0, end = heaters.size() - 1;
+
+        // binary search for the first element larger and equal to current house
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+
+            if (heaters[mid] >= target)
+                end = mid;
+            else
+                start = mid;
+        }
+
+        if (heaters[start] >= target)
+            return start;
+
+        return end;
+    }
+};
 
 
 /*

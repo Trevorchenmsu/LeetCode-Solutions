@@ -30,41 +30,41 @@
  * time: O(k*C(n, k))
  * space: O(C(n, k))/O(k)
  * */
-//class Solution {
-//public:
-//    int triangleNumber(vector<int>& nums) {
-//        if (nums.empty()) return 0;
-//
-//        vector<int> path;
-//        backtrack(nums, path, 0);
-//
-//        return cnt;
-//    }
-//
-//private:
-//    int cnt;
-//    void backtrack(vector<int> &nums, vector<int> &path, int idx) {
-//        if (path.size() == 3) {
-//            if (validTriangle(path)) cnt++;
-//            return;
-//        }
-//
-//        for (int i = idx; i < nums.size(); i++) {
-//            path.push_back(nums[i]);
-//            backtrack(nums, path, i + 1);
-//            path.pop_back();
-//        }
-//    }
-//
-//    bool validTriangle(vector<int> &arr) {
-//        int a = arr[0], b = arr[1], c = arr[2];
-//
-//        if (a + b <= c || a + c <= b || b + c <= a)
-//            return false;
-//
-//        return true;
-//    }
-//};
+class Solution {
+public:
+    int triangleNumber(vector<int>& nums) {
+        if (nums.empty()) return 0;
+
+        vector<int> path;
+        backtrack(nums, path, 0);
+
+        return cnt;
+    }
+
+private:
+    int cnt;
+    void backtrack(vector<int> &nums, vector<int> &path, int idx) {
+        if (path.size() == 3) {
+            if (validTriangle(path)) cnt++;
+            return;
+        }
+
+        for (int i = idx; i < nums.size(); i++) {
+            path.push_back(nums[i]);
+            backtrack(nums, path, i + 1);
+            path.pop_back();
+        }
+    }
+
+    bool validTriangle(vector<int> &arr) {
+        int a = arr[0], b = arr[1], c = arr[2];
+
+        if (a + b <= c || a + c <= b || b + c <= a)
+            return false;
+
+        return true;
+    }
+};
 
 
 
@@ -73,39 +73,39 @@
  * time: O(n^2*logn)
  * space: O(logn)
  * */
-//class Solution {
-//public:
-//    int triangleNumber(vector<int>& nums) {
-//        if (nums.empty()) return 0;
-//
-//        int n = nums.size(), res = 0;
-//        sort(nums.begin(), nums.end()); // O(nlogn)
-//
-//        for (int i = 0; i < n; i++) { // O(n^2*logn)
-//            for (int j = i + 1; j < n; j++) {
-//                int sum = nums[i] + nums[j];
-//
-//                int start = j + 1, end = n - 1;
-//                while (start + 1 < end) {
-//                    int mid = start + (end - start) / 2;
-//
-//                    if (nums[mid] >= sum)
-//                        end = mid;
-//                    else
-//                        start = mid;
-//                }
-//
-//                if (nums[end] < sum)
-//                    res += end - j;
-//                else if (start < n && nums[start] < sum)
-//                    res += start - j;
-//            }
-//        }
-//
-//        return res;
-//    }
-//
-//};
+class Solution {
+public:
+    int triangleNumber(vector<int>& nums) {
+        if (nums.empty()) return 0;
+
+        int n = nums.size(), res = 0;
+        sort(nums.begin(), nums.end()); // O(nlogn)
+
+        for (int i = 0; i < n; i++) { // O(n^2*logn)
+            for (int j = i + 1; j < n; j++) {
+                int sum = nums[i] + nums[j];
+
+                int start = j + 1, end = n - 1;
+                while (start + 1 < end) {
+                    int mid = start + (end - start) / 2;
+
+                    if (nums[mid] >= sum)
+                        end = mid;
+                    else
+                        start = mid;
+                }
+
+                if (nums[end] < sum)
+                    res += end - j;
+                else if (start < n && nums[start] < sum)
+                    res += start - j;
+            }
+        }
+
+        return res;
+    }
+
+};
 
 
 
