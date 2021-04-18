@@ -243,6 +243,22 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[240]Search a 2D Matrix II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[240]Search a 2D Matrix II.cpp" />
+              <option name="questionId" value="240" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[302]Smallest Rectangle Enclosing Black Pixels.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[302]Smallest Rectangle Enclosing Black Pixels.cpp" />
+              <option name="questionId" value="302" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[331]Verify Preorder Serialization of a Binary Tree.cpp">
           <value>
             <LeetcodeEditor>
@@ -376,6 +392,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[733]Flood Fill.cpp" />
               <option name="questionId" value="733" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[74]Search a 2D Matrix.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[74]Search a 2D Matrix.cpp" />
+              <option name="questionId" value="74" />
             </LeetcodeEditor>
           </value>
         </entry>

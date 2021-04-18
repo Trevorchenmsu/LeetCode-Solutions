@@ -99,11 +99,14 @@ public:
             return true;
         }
 
+        // cross the digits
         while (pos < s.length() && isdigit(s[pos]))
             pos++;
 
+        // cross the comma
         pos++;
 
+        // build left tree and right tree
         return dfs(s, pos) && dfs(s, pos);
     }
 };
