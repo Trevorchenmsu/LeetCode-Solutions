@@ -43,6 +43,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1028]Recover a Tree From Preorder Traversal.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1028]Recover a Tree From Preorder Traversal.cpp" />
+              <option name="questionId" value="1093" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1047]Remove All Adjacent Duplicates In String.cpp">
           <value>
             <LeetcodeEditor>
@@ -216,6 +224,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1793]Maximum Score of a Good Subarray.cpp" />
               <option name="questionId" value="1918" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1834]Single-Threaded CPU.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1834]Single-Threaded CPU.cpp" />
+              <option name="questionId" value="1962" />
             </LeetcodeEditor>
           </value>
         </entry>
