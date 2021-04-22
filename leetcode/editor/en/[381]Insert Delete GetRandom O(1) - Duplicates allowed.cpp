@@ -73,6 +73,7 @@ public:
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     bool insert(int val) {
         val_index[val].push_back(nums.size());
+        // nums存的是pair:当前元素值，元素值对应的索引数组中最后一个索引的位置
         nums.push_back({val, val_index[val].size() - 1});
         return val_index[val].size() == 1;
     }
@@ -82,12 +83,21 @@ public:
         if (!val_index.count(val))
             return false;
 
+        // 获得元素数组的最后一个元素的pair
         auto last = nums.back();
+        // 把最后一个元素移动到被删除元素的位置。last.first表示最后一个元素，last.second表示最后一个元素索引数组的末端
+        // 目的就是更新这个末端索引值，即当前被删除元素的索引末端位置。
         val_index[last.first][last.second] = val_index[val].back();
+        // 更新最后一个元素在元素数组的位置
         nums[val_index[val].back()] = last;
+        // 弹出被删除元素对应索引数组的末端
         val_index[val].pop_back();
+
+        // 如果删除后索引数组为空，表示没有元素了，直接删除key
         if (val_index[val].empty())
             val_index.erase(val);
+
+        // 删除掉最后一个元素，因为已经被移动到被删除元素的位置，长度需要减一。
         nums.pop_back();
 
         return true;
