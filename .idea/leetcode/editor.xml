@@ -123,6 +123,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[125]Valid Palindrome.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[125]Valid Palindrome.cpp" />
+              <option name="questionId" value="125" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1283]Find the Smallest Divisor Given a Threshold.cpp">
           <value>
             <LeetcodeEditor>
@@ -440,6 +448,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[658]Find K Closest Elements.cpp" />
               <option name="questionId" value="658" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[680]Valid Palindrome II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[680]Valid Palindrome II.cpp" />
+              <option name="questionId" value="680" />
             </LeetcodeEditor>
           </value>
         </entry>
