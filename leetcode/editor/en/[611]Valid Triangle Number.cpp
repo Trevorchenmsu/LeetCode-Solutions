@@ -104,13 +104,55 @@ public:
 
         return res;
     }
-
 };
 
 
+/*
+ * solution 3: binary search
+ * time: O(n^2*logn)
+ * space: O(logn) for sorting
+ * */
+class Solution {
+public:
+    int triangleNumber(vector<int>& nums) {
+        if (nums.empty()) return 0;
+        sort(nums.begin(), nums.end());
+
+        int res = 0, n = nums.size();
+        for (int i = 0; i < n - 2; i++) {
+            for (int j = i + 1; j < n - 1; j++) {
+                int target = nums[i] + nums[j];
+                int idx = binarySearch(nums, target, j + 1, n - 1);
+                res += idx - j;
+            }
+        }
+
+        return res;
+    }
+
+private:
+    int binarySearch(vector<int>& nums, int target, int start, int end) {
+        while (start + 1 < end) {
+            int mid = start + (end -  start) / 2;
+            if (nums[mid] >= target)
+                end = mid;
+            else
+                start = mid;
+        }
+
+        if (nums[end] < target)
+            return end;
+
+        if (nums[start] < target)
+            return start;
+
+        return start - 1;
+    }
+};
+
 
 /*
- * solution 3: two pointers
+ * solution 4: two pointers
  * time: O(n^2)
  * space: O(logn)
  * */
@@ -138,7 +180,5 @@ public:
 
 };
 //leetcode submit region end(Prohibit modification and deletion)
-
-
 
 

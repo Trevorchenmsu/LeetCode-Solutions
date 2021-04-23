@@ -235,6 +235,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1611]Minimum One Bit Operations to Make Integers Zero.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1611]Minimum One Bit Operations to Make Integers Zero.cpp" />
+              <option name="questionId" value="1732" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[162]Find Peak Element.cpp">
           <value>
             <LeetcodeEditor>
@@ -280,6 +288,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1834]Single-Threaded CPU.cpp" />
               <option name="questionId" value="1962" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[18]4Sum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[18]4Sum.cpp" />
+              <option name="questionId" value="18" />
             </LeetcodeEditor>
           </value>
         </entry>
