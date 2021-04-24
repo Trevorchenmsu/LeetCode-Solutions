@@ -307,6 +307,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[215]Kth Largest Element in an Array.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[215]Kth Largest Element in an Array.cpp" />
+              <option name="questionId" value="215" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[219]Contains Duplicate II.cpp">
           <value>
             <LeetcodeEditor>
@@ -451,6 +459,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[454]4Sum II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[454]4Sum II.cpp" />
+              <option name="questionId" value="454" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[475]Heaters.cpp">
           <value>
             <LeetcodeEditor>
@@ -464,6 +480,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[4]Median of Two Sorted Arrays.cpp" />
               <option name="questionId" value="4" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[5]Longest Palindromic Substring.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[5]Longest Palindromic Substring.cpp" />
+              <option name="questionId" value="5" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -520,6 +544,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[74]Search a 2D Matrix.cpp" />
               <option name="questionId" value="74" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[75]Sort Colors.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[75]Sort Colors.cpp" />
+              <option name="questionId" value="75" />
             </LeetcodeEditor>
           </value>
         </entry>

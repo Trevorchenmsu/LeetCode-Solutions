@@ -79,7 +79,7 @@
  * time: O(n^2*logn)
  * space: O(n)
  *
- * */
+// * */
 class Solution {
 public:
     vector<int> getOrder(vector<vector<int>>& tasks) {
@@ -140,7 +140,7 @@ private:
 
 
 /*
- * solution 2: pq + sort
+ * solution 2: pq
  * time: O(n^2*logn)
  * space: O(n)
  *
@@ -189,6 +189,54 @@ private:
         int enq_time = new_task[0], idx = new_task[1], pro_time = new_task[2];
         available.push({pro_time, idx});
         return enq_time;
+    }
+};
+
+
+
+/*
+ * solution 3: pq
+ * time: O(n^2*logn)
+ * space: O(n)
+ *
+ * */
+
+class Solution {
+public:
+    vector<int> getOrder(vector<vector<int>>& tasks) {
+        int n = tasks.size();
+        vector<int> res;
+        priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> available;
+        priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> enqueue;
+
+        for (int i = 0; i < tasks.size(); i++) { // O(nlogn)
+            enqueue.push({tasks[i][0], tasks[i][1], i});
+        }
+
+        long time = 0;
+        while (res.size() < n) {
+            if (available.empty()) {
+                vector<int> task = enqueue.top();
+                enqueue.pop();
+                int enqTime = task[0], proTime = task[1], idx = task[2];
+                available.push({proTime, idx});
+                time = max(time, (long) enqTime);
+            }
+
+            while (!enqueue.empty() && enqueue.top()[0] <= time) {
+                vector<int> task = enqueue.top();
+                enqueue.pop();
+                int enqTime = task[0], proTime = task[1], idx = task[2];
+                available.push({proTime, idx});
+            }
+
+            vector<int> tmp = available.top();
+            available.pop();
+            res.push_back(tmp[1]);
+            time += tmp[0];
+        }
+
+        return res;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
