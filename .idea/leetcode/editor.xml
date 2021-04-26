@@ -179,6 +179,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1493]Longest Subarray of 1's After Deleting One Element.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1493]Longest Subarray of 1's After Deleting One Element.cpp" />
+              <option name="questionId" value="1586" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1498]Number of Subsequences That Satisfy the Given Sum Condition.cpp">
           <value>
             <LeetcodeEditor>
@@ -307,6 +315,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1838]Frequency of the Most Frequent Element.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1838]Frequency of the Most Frequent Element.cpp" />
+              <option name="questionId" value="1966" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[18]4Sum.cpp">
           <value>
             <LeetcodeEditor>
@@ -352,6 +368,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[240]Search a 2D Matrix II.cpp" />
               <option name="questionId" value="240" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[283]Move Zeroes.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[283]Move Zeroes.cpp" />
+              <option name="questionId" value="283" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -440,6 +464,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[391]Perfect Rectangle.cpp" />
               <option name="questionId" value="391" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[3]Longest Substring Without Repeating Characters.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[3]Longest Substring Without Repeating Characters.cpp" />
+              <option name="questionId" value="3" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -536,6 +568,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[680]Valid Palindrome II.cpp" />
               <option name="questionId" value="680" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[713]Subarray Product Less Than K.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[713]Subarray Product Less Than K.cpp" />
+              <option name="questionId" value="713" />
             </LeetcodeEditor>
           </value>
         </entry>
