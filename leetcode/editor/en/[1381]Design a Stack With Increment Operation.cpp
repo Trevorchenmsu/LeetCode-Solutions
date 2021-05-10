@@ -165,6 +165,49 @@ private:
     vector<int> nums;
 };
 
+/*
+ * solution 3: vector
+ * time: O(n)
+ * space: O(n)
+ * */
+
+class CustomStack {
+public:
+    CustomStack(int maxSize) {
+        _maxSize = maxSize;
+    }
+
+    void push(int x) {
+        if (nums.size() == _maxSize)
+            return;
+        nums.push_back(x);
+    }
+
+    int pop() {
+        if (nums.empty())
+            return -1;
+        int res = nums.back();
+        nums.pop_back();
+        return res;
+    }
+
+    void increment(int k, int val) {
+        if (nums.size() >= k) {
+            for (int i = 0; i < k; i++)
+                nums[i] += val;
+        }
+        else {
+            for (int i = 0; i < nums.size(); i++)
+                nums[i] += val;
+        }
+    }
+
+
+private:
+    int _maxSize;
+    vector<int> nums;
+};
+
 /**
  * Your CustomStack object will be instantiated and called as such:
  * CustomStack* obj = new CustomStack(maxSize);

@@ -72,8 +72,9 @@ public:
     
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     bool insert(int val) {
+        // 因为还没给num插入新元素，所以这里用nums.size()。
         val_index[val].push_back(nums.size());
-        // nums存的是pair:当前元素值，元素值对应的索引数组中最后一个索引的位置
+        // nums存的是pair:当前元素值，以及对应的索引
         nums.push_back({val, val_index[val].size() - 1});
         return val_index[val].size() == 1;
     }
@@ -92,13 +93,12 @@ public:
         nums[val_index[val].back()] = last;
         // 弹出被删除元素对应索引数组的末端
         val_index[val].pop_back();
+        // 删除掉最后一个元素，因为已经被移动到被删除元素的位置，长度需要减一。
+        nums.pop_back();
 
         // 如果删除后索引数组为空，表示没有元素了，直接删除key
         if (val_index[val].empty())
             val_index.erase(val);
-
-        // 删除掉最后一个元素，因为已经被移动到被删除元素的位置，长度需要减一。
-        nums.pop_back();
 
         return true;
     }

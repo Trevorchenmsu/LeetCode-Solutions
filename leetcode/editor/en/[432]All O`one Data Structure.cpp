@@ -62,79 +62,78 @@
  * space: O(n)
  * */
 class AllOne {
-private:
-    list<int> List; // store all the values
-    unordered_map<int, list<int>::iterator> val2iter; // get the position of value in the list based on iterator
-    unordered_map<string, int> key2val; // key-value pair
-    unordered_map<int, unordered_set<string>> val2set; // get all the keys under that value
-
-
 public:
     /** Initialize your data structure here. */
     AllOne() {
         // build a dummy node
         List.push_back(0);
-        val2iter[0] = List.begin();
+        cnt2iter[0] = List.begin();
     }
-    
+
     /** Inserts a new key <Key> with value 1. Or increments an existing key by 1. */
     void inc(string key) {
-        int val = key2val[key];
+        int cnt = key2cnt[key];
+        key2cnt[key] = cnt + 1; // add the count
 
-        key2val[key] = val + 1; // add the count
-        val2set[val + 1].insert(key); // for new value, add its key
-        if (val > 0) val2set[val].erase(key); // when val==0, we don't have key in val2set
+        cnt2set[cnt + 1].insert(key); // add key to new count
+        if (cnt > 0) cnt2set[cnt].erase(key); // delete key from old count; when cnt==0, we don't have key in cnt2set
 
         // when val + 1 is not on the list, we need to add it to the position in front of val
-        if (val2set[val + 1].size() == 1) {
-            List.insert(next(val2iter[val]), val + 1); // insert val + 1 to the list
-            val2iter[val + 1] = next(val2iter[val]); // it is single linked list
+        if (cnt2set[cnt + 1].size() == 1) {
+            List.insert(next(cnt2iter[cnt]), cnt + 1); // insert val + 1 to the list
+            cnt2iter[cnt + 1] = next(cnt2iter[cnt]); // it is single linked list
         }
 
-        // when we move the key in val to val + 1, the sets corresponding to val might be empty
-        if (val > 0 && val2set[val].size() == 0) // val > 0 is to make sure it is not the dummy node
-            List.erase(val2iter[val]);
+        // when we move the key from count to count + 1, the sets corresponding to count might be empty
+        if (cnt > 0 && cnt2set[cnt].size() == 0) // cnt > 0 is to make sure it is not the dummy node
+            List.erase(cnt2iter[cnt]);
 
     }
-    
+
     /** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */
     void dec(string key) {
-        int val = key2val[key];
+        int cnt = key2cnt[key];
 
-        if (val == 0) return; // dummy node
+        if (cnt == 0) return; // dummy node
 
-        key2val[key] = val - 1;
-        if (val - 1 > 0) val2set[val - 1].insert(key);
-        val2set[val].erase(key);
+        key2cnt[key] = cnt - 1;
+        if (cnt - 1 > 0) cnt2set[cnt - 1].insert(key);
+        cnt2set[cnt].erase(key);
 
-        if (val - 1 > 0 && val2set[val - 1].size() == 1) {
-            List.insert(val2iter[val], val - 1); // default insert into the current position
-            val2iter[val - 1] = prev(val2iter[val]);
+        if (cnt - 1 > 0 && cnt2set[cnt - 1].size() == 1) {
+            List.insert(cnt2iter[cnt], cnt - 1); // default insert into the current position
+            cnt2iter[cnt - 1] = prev(cnt2iter[cnt]);
         }
 
-        if (val2set[val].size() == 0)
-            List.erase(val2iter[val]);
+        if (cnt2set[cnt].size() == 0)
+            List.erase(cnt2iter[cnt]);
     }
-    
+
     /** Returns one of the keys with maximal value. */
     string getMaxKey() {
         // only the dummy node
         if (List.size() == 1)
             return "";
 
-        return *(val2set[List.back()].begin());
+        return *(cnt2set[List.back()].begin());
     }
-    
+
     /** Returns one of the keys with Minimal value. */
     string getMinKey() {
         // only the dummy node
         if (List.size() == 1)
             return "";
 
-        return *(val2set[*(++List.begin())].begin());
+        return *(cnt2set[*(++List.begin())].begin());
     }
-};
 
+private:
+    list<int> List; // store all the counts
+    unordered_map<int, list<int>::iterator> cnt2iter; // get the position of count in the list
+    unordered_map<string, int> key2cnt; // key-value pair
+    unordered_map<int, unordered_set<string>> cnt2set; // get all the keys under that count
+
+};
 /**
  * Your AllOne object will be instantiated and called as such:
  * AllOne* obj = new AllOne();

@@ -61,17 +61,18 @@ public:
 class Solution {
 public:
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
-        int start = 0, end = arr.size() - 1;
-        int cnt = arr.size() - k;
+        int left = 0, right = arr.size() - 1;
+        while (left < right) {
+            if (right - left + 1 == k)
+                break;
 
-        while (cnt > 0) {
-            if (abs(x - arr[start]) <= abs(x - arr[end]))
-                end--;
-            else start++;
-            cnt--;
+            if (abs(x - arr[left]) > abs(x - arr[right]))
+                left++;
+            else
+                right--;
         }
 
-        return vector<int> (arr.begin() + start, arr.begin() + start + k);
+        return vector<int> (arr.begin() + left, arr.begin() + left + k);
     }
 };
 

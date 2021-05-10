@@ -323,6 +323,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1849]Splitting a String Into Descending Consecutive Values.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1849]Splitting a String Into Descending Consecutive Values.cpp" />
+              <option name="questionId" value="1976" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[18]4Sum.cpp">
           <value>
             <LeetcodeEditor>
@@ -360,6 +368,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[223]Rectangle Area.cpp" />
               <option name="questionId" value="223" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[239]Sliding Window Maximum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[239]Sliding Window Maximum.cpp" />
+              <option name="questionId" value="239" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -512,6 +528,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[454]4Sum II.cpp" />
               <option name="questionId" value="454" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[460]LFU Cache.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[460]LFU Cache.cpp" />
+              <option name="questionId" value="460" />
             </LeetcodeEditor>
           </value>
         </entry>
