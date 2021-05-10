@@ -411,6 +411,22 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[308]Range Sum Query 2D - Mutable.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[308]Range Sum Query 2D - Mutable.cpp" />
+              <option name="questionId" value="308" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[315]Count of Smaller Numbers After Self.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[315]Count of Smaller Numbers After Self.cpp" />
+              <option name="questionId" value="315" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[331]Verify Preorder Serialization of a Binary Tree.cpp">
           <value>
             <LeetcodeEditor>
