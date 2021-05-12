@@ -427,6 +427,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[327]Count of Range Sum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[327]Count of Range Sum.cpp" />
+              <option name="questionId" value="327" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[331]Verify Preorder Serialization of a Binary Tree.cpp">
           <value>
             <LeetcodeEditor>
@@ -520,6 +528,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[410]Split Array Largest Sum.cpp" />
               <option name="questionId" value="410" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[424]Longest Repeating Character Replacement.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[424]Longest Repeating Character Replacement.cpp" />
+              <option name="questionId" value="424" />
             </LeetcodeEditor>
           </value>
         </entry>
