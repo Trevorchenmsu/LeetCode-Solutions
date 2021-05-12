@@ -283,6 +283,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1649]Create Sorted Array through Instructions.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1649]Create Sorted Array through Instructions.cpp" />
+              <option name="questionId" value="1772" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[170]Two Sum III - Data structure design.cpp">
           <value>
             <LeetcodeEditor>
@@ -584,6 +592,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[475]Heaters.cpp" />
               <option name="questionId" value="475" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[493]Reverse Pairs.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[493]Reverse Pairs.cpp" />
+              <option name="questionId" value="493" />
             </LeetcodeEditor>
           </value>
         </entry>
