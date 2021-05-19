@@ -76,7 +76,7 @@ public:
 };
 
 /*
- * solution 2: sliding window
+ * solution 2: sliding window + monotonic stack
  * time: O(n)
  * space: (n)
  * */
@@ -89,8 +89,10 @@ public:
 
         for (int i = 1; i < n; i++) {
             while (!dq.empty() && i - dq.front().second > k)
+                // larger than the window size k, delete the front
                 dq.pop_front();
 
+            // current step, add current value
             int curSteps = dq.front().first + nums[i];
 
             while (!dq.empty() && curSteps > dq.back().first)

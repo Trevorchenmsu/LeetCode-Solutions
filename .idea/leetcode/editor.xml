@@ -363,6 +363,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[179]Largest Number.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[179]Largest Number.cpp" />
+              <option name="questionId" value="179" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1834]Single-Threaded CPU.cpp">
           <value>
             <LeetcodeEditor>
@@ -448,6 +456,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[240]Search a 2D Matrix II.cpp" />
               <option name="questionId" value="240" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[275]H-Index II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[275]H-Index II.cpp" />
+              <option name="questionId" value="275" />
             </LeetcodeEditor>
           </value>
         </entry>
