@@ -475,6 +475,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[241]Different Ways to Add Parentheses.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[241]Different Ways to Add Parentheses.cpp" />
+              <option name="questionId" value="241" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[275]H-Index II.cpp">
           <value>
             <LeetcodeEditor>
@@ -776,6 +784,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[666]Path Sum IV.cpp" />
               <option name="questionId" value="666" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[678]Valid Parenthesis String.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[678]Valid Parenthesis String.cpp" />
+              <option name="questionId" value="678" />
             </LeetcodeEditor>
           </value>
         </entry>
