@@ -59,6 +59,11 @@ private:
             cnt += (stations[i] - stations[i - 1]) / delta;
         }
 
+        /*
+         * 如果这里采用cnt<k，即等号是在start=mid的情况。当前mid满足k个时，我们会把start变为k，后面的查找
+         * 会以这个mid/start为起点进行查找，下界被扩大了，而我们的目的是要最小penalty，即满足k的情况下找出
+         * 更小的值，而应该往左边搜索。所以当求和个数满足k个时，应让end=mid，这样会往更小的方向查找。
+         * */
         return cnt <= k;
     }
 };

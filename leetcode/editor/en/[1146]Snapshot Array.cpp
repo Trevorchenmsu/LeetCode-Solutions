@@ -57,7 +57,11 @@ public:
     
     void set(int index, int val) {
         vals[index] = val; // 更新当前index对应的val
-        changed.insert(index); // 加入改变发生改变的index
+        changed.insert(index); // 加入发生改变的index
+        /*
+         * 这里的changed就是特地存入index的，假如没有发生快照，不管这个index下的val被set过多少次
+         * 我们都只care它目前最新的状态，所以说只能有一个index，不能重复，因此用哈希集。
+         * */
     }
     
     int snap() {
