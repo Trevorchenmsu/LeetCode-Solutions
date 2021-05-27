@@ -507,6 +507,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[301]Remove Invalid Parentheses.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[301]Remove Invalid Parentheses.cpp" />
+              <option name="questionId" value="301" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[302]Smallest Rectangle Enclosing Black Pixels.cpp">
           <value>
             <LeetcodeEditor>
