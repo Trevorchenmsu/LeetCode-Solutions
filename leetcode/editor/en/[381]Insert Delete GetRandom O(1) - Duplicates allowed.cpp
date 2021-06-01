@@ -74,7 +74,7 @@ public:
     bool insert(int val) {
         // 因为还没给num插入新元素，所以这里用nums.size()。
         val_index[val].push_back(nums.size());
-        // nums存的是pair:当前元素值，以及对应的索引
+        // nums存的是pair:当前元素值，以及对应的索引.注意：这里pair第二个元素不是nums的，而是索引数组的长度
         nums.push_back({val, val_index[val].size() - 1});
         return val_index[val].size() == 1;
     }

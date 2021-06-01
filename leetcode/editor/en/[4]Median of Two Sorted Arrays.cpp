@@ -60,7 +60,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
  * solution: binary search
- * time: O(min(m,n))
+ * time: O(log(min(m,n)))
  * space: O(1)
  * */
 

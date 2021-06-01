@@ -142,18 +142,17 @@ public:
 class Solution {
 public:
     int maxFrequency(vector<int>& nums, int k) {
-        int left = 0, right = 0, n = nums.size();
         sort(nums.begin(), nums.end());
+        int i = 0, j = 0, n = nums.size();
         long sum = k;
 
-        while (right < n) {
-            sum += nums[right];
-            if ((long) nums[right] * (right - left + 1) > sum)
-                sum -= nums[left++];
-            right++;
+        for (; j < n; j++) {
+            sum += nums[j];
+            if ((long) nums[j] * (j - i + 1) > sum)
+                sum -= nums[i++];
         }
 
-        return right - left;
+        return j - i;
     }
 
 };
@@ -168,21 +167,19 @@ public:
 class Solution {
 public:
     int maxFrequency(vector<int>& nums, int k) {
-        int left = 0, right = 0, res = 1, n = nums.size();
+        int i = 0, j = 0, n = nums.size(), res = 0;
         sort(nums.begin(), nums.end());
         long sum = k;
 
-        while (right < n) {
-            sum += nums[right];
-            while ((long) nums[right] * (right - left + 1) > sum)
-                sum -= nums[left++];
-            res = max(res, right -  left + 1);
-            right++;
+        for (; j < n; j++) {
+            sum += nums[j];
+            while ((long) nums[j] * (j - i + 1) > sum)
+                sum -= nums[i++];
+            res = max(res, j - i + 1);
         }
 
         return res;
     }
-
 };
 
 //leetcode submit region end(Prohibit modification and deletion)

@@ -65,75 +65,85 @@ class AllOne {
 public:
     /** Initialize your data structure here. */
     AllOne() {
-        // build a dummy node
-        List.push_back(0);
-        cnt2iter[0] = List.begin();
+        //插入一个dummy node在list前面，方便后面操作
+        cntList.push_back(0);
+        cnt2iter[0] = cntList.begin();
     }
 
     /** Inserts a new key <Key> with value 1. Or increments an existing key by 1. */
     void inc(string key) {
+        // 更新kye2cnt：获得旧的cnt方便下面操作，cnt加1后更新key对应的cnt
         int cnt = key2cnt[key];
-        key2cnt[key] = cnt + 1; // add the count
+        key2cnt[key] = cnt + 1;
 
-        cnt2set[cnt + 1].insert(key); // add key to new count
-        if (cnt > 0) cnt2set[cnt].erase(key); // delete key from old count; when cnt==0, we don't have key in cnt2set
+        // 更新cnt2keys：新cnt对应的字符串集合中加入key。旧cnt对应的字符串集合中删除key。如果cnt为0，表示第一个插入，不用管。
+        cnt2keys[cnt + 1].insert(key);
+        if (cnt > 0) cnt2keys[cnt].erase(key);
 
-        // when val + 1 is not on the list, we need to add it to the position in front of val
-        if (cnt2set[cnt + 1].size() == 1) {
-            List.insert(next(cnt2iter[cnt]), cnt + 1); // insert val + 1 to the list
-            cnt2iter[cnt + 1] = next(cnt2iter[cnt]); // it is single linked list
+        /* 如果链表中已经存在cnt+1的话，我们是不需要重复插入这个新cnt到链表中，因为之前已经有其他string操作过。
+           如果链表中不存在这个cnt+1的话，我们就需要把这个值插到cnt后面，因为它们刚好相差1，这样可以保证cnt有序递增。
+           下面根据size==1来判定是否cnt+1是否已存在。因为上面我们加入key到cnt+1的映射中，所以size至少是1。
+        */
+        if (cnt2keys[cnt + 1].size() == 1) {
+            auto iter = cnt2iter[cnt];
+            cntList.insert(next(iter), cnt + 1); //插入cnt+1到链表中，位置为cnt的下一个迭代器
+            cnt2iter[cnt + 1] = next(iter); // 更新cnt+1在cnt2iter的迭代器位置。
         }
 
-        // when we move the key from count to count + 1, the sets corresponding to count might be empty
-        if (cnt > 0 && cnt2set[cnt].size() == 0) // cnt > 0 is to make sure it is not the dummy node
-            List.erase(cnt2iter[cnt]);
-
+        /* 当cnt下面的string转移到cnt+1下面去，cnt下面有可能就没有string了，此时这个cnt就需要从list中删除
+            下面的cnt>0条件可保证不是第一次添加的情况，因为第一次cnt=0，它下面的string集合size肯定为0
+        */
+        if (cnt > 0 && cnt2keys[cnt].size() == 0)
+            cntList.erase(cnt2iter[cnt]);
     }
 
     /** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */
     void dec(string key) {
+        // 更新kye2cnt：获得旧的cnt方便下面操作，cnt-1后更新key对应的cnt
         int cnt = key2cnt[key];
-
-        if (cnt == 0) return; // dummy node
-
         key2cnt[key] = cnt - 1;
-        if (cnt - 1 > 0) cnt2set[cnt - 1].insert(key);
-        cnt2set[cnt].erase(key);
 
-        if (cnt - 1 > 0 && cnt2set[cnt - 1].size() == 1) {
-            List.insert(cnt2iter[cnt], cnt - 1); // default insert into the current position
-            cnt2iter[cnt - 1] = prev(cnt2iter[cnt]);
+        // 更新cnt2keys：新cnt对应的字符串集合中加入key。因为是cnt-1，需要保证它大于0，不可以等于0，大于0才有对应的集合
+        // 旧cnt对应的字符串集合中删除key，因为cnt可能存在且大于0，直接删除即可。
+        if (cnt - 1 > 0)
+            cnt2keys[cnt - 1].insert(key);
+        cnt2keys[cnt].erase(key);
+
+        // 更新list和cnt2iter，与inc中的同理。但是要注意list的insert方法，表示插入到该迭代器的前一个位置
+        if (cnt - 1 > 0 && cnt2keys[cnt - 1].size() == 1) {
+            auto iter = cnt2iter[cnt];
+            cntList.insert(iter, cnt - 1);
+            cnt2iter[cnt - 1] = prev(iter);
         }
 
-        if (cnt2set[cnt].size() == 0)
-            List.erase(cnt2iter[cnt]);
+        // 当cnt下面的string移到cnt-1后，没有对应字符串了，就得从list中删除
+        if (cnt2keys[cnt].size() == 0)
+            cntList.erase(cnt2iter[cnt]);
     }
 
     /** Returns one of the keys with maximal value. */
     string getMaxKey() {
-        // only the dummy node
-        if (List.size() == 1)
+        if (cntList.size() == 1)
             return "";
 
-        return *(cnt2set[List.back()].begin());
+        return *(cnt2keys[cntList.back()].begin());
     }
 
     /** Returns one of the keys with Minimal value. */
     string getMinKey() {
-        // only the dummy node
-        if (List.size() == 1)
+        if (cntList.size() == 1)
             return "";
 
-        return *(cnt2set[*(++List.begin())].begin());
+        return *(cnt2keys[*(++cntList.begin())].begin());
     }
 
 private:
-    list<int> List; // store all the counts
-    unordered_map<int, list<int>::iterator> cnt2iter; // get the position of count in the list
-    unordered_map<string, int> key2cnt; // key-value pair
-    unordered_map<int, unordered_set<string>> cnt2set; // get all the keys under that count
-
+    list<int> cntList; // counts
+    unordered_map<string, int> key2cnt; // string-count
+    unordered_map<int, unordered_set<string>> cnt2keys; // 具有相同count的所有string
+    unordered_map<int, list<int>::iterator> cnt2iter; // count在list中的位置
 };
+
 /**
  * Your AllOne object will be instantiated and called as such:
  * AllOne* obj = new AllOne();

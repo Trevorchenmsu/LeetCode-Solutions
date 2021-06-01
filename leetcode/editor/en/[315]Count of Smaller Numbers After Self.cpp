@@ -92,7 +92,14 @@ public:
 
         for (int i = start; i <= mid; i++) {
             int val = nums[i];
+            // 起点为什么是begin + mid + 1？因为我们想在右侧找大于等于val的下界。
+            // 中点为什么是begin + end + 1？因为lower_bound需要的是超尾位置，而end只是最后一个元素的位置，需要加1获得超尾位置。
             auto pos = lower_bound(sorted.begin() + mid + 1, sorted.begin() + end + 1, val);
+            if (pos != sorted.end())
+                cout << *pos<<  " " << start  << " " << mid << " " << end << " " << val << endl;
+            else {
+                cout << start  << " " << mid << " " << end << " " << val << endl;
+            }
             res[i] += pos - (sorted.begin() + mid + 1);
         }
 
