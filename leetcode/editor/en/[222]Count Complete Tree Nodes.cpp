@@ -87,51 +87,60 @@ public:
 class Solution {
 public:
     int countNodes(TreeNode* root) {
-        if (root == NULL)
-            return 0;
+        if (root == NULL) return 0;
 
         TreeNode* node = root;
         int height = 0;
 
+        // 计算树高，根据树高得到最下层的上下界
         while (node != NULL) {
             height++;
             node = node->left;
         }
 
-        int start = 1 << (height - 1);
-        int end = (1 << height) - 1;
-
+        // 套用二分法模板
+        int start = 1 << (height - 1), end = (1 << height) - 1;
         while (start + 1 < end) { // O(log(logn))
             int mid = start + (end - start) / 2;
-
-            if (hasK(root, mid))
-                start = mid;
+            if (hasNode(root, mid))
+                start = mid; // 因为要找到最大值，所以找到这个节点后肯定要往更大的方向走
             else
                 end = mid;
         }
 
-        if (hasK(root, end))
+        if (hasNode(root, end))
             return end;
         else
             return start;
     }
 
+    /*
+    查找完全二叉树中是否存在某节点（只适用于完全二叉树，因为它可以保证除了最后一层，其他层都是满的）：
+    (1) 获取从该节点到根节点的逆向路径。从该节点值开始，每一层循环中把该节点值存起来，然后除2更新，这样就
+    相当于跳到了上一层，当该值变小到1时，表明抵达了根节点，继续除2就为0，可以跳出循环。
+    (2) 得到路径vector后，从尾到头遍历这个path，其实也就相当于从树的根节点往下遍历，如果在遍历过程中发现一个
+    节点是空的，就表明树中没有这个节点。为什么？因为路径中是提前假定这个路径是存在的，但是在树遍历过程中却找不到
+    其中一个节点，所以这个形成的路径是invalid。
+    */
+
 private:
-    bool hasK(TreeNode* root, int k) {
+    bool hasNode(TreeNode *root, int val) {
         vector<int> path;
 
-        while (k > 0) { // O(logn)
-            path.push_back(k);
-            k /= 2;
+        while (val > 0) { // O(logn)
+            path.push_back(val);
+            val /= 2;
         }
 
         for (int i = path.size() - 1; i >= 0; i--) { // O(logn)
             if (root == NULL)
                 return false;
 
-            if (i == 0)
-                return true;
+            // 为什么要在这里加个？如果不加的话，即使到了i=0时是满足条件的，它会在下面的判定
+            // 条件中继续产生i-1，这就成了负值越界了。
+            if (i == 0) return true;
 
+            //这里的trick就是利用到了完全二叉树的父节点和子节点两倍的关系
             if (path[i - 1] == 2 * path[i])
                 root = root->left;
             else
@@ -140,7 +149,6 @@ private:
 
         return true;
     }
-
 };
 
 

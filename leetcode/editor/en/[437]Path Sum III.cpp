@@ -79,4 +79,50 @@ private:
             return pathSumNum(root->left, sum - root->val) + pathSumNum(root->right, sum - root->val);
     }
 };
+
+/*
+ * solution 2: dfs + preorder traversal
+ * time: O(n^2)
+ * space: O(n)
+ *
+ * */
+class Solution {
+public:
+    int pathSum(TreeNode* root, int targetSum) {
+        vector<TreeNode*> path;
+        int res = 0, sum = 0;
+        dfs(root, targetSum, sum, res, path);
+        return res;
+    }
+
+    //先序遍历
+    void dfs(TreeNode* root, int targetSum, int curSum, int &res, vector<TreeNode*> &path) {
+        if (root == NULL)
+            return;
+
+        path.push_back(root);
+        curSum += root->val;
+        if (targetSum == curSum)
+            res++;
+
+        /* 如果上述if判定成立，表明根节点到当前节点的路径和是满足要求的。那么现在我们需要考虑从非根节点出发抵达当前
+           节点的路径，看它们是否也满足这个target sum。因此下面的for循环逐渐删除上面的节点值。为什么不从下面删减？
+           因为如果从下面删减，就变成了从根节点到删减后节点的路径，这是已考虑过的路径，如果该路径满足要求，不用在这个递归
+           处理，而是在上一个递归处理。注意：这里i并没有抵达数组的末端，因为考虑到了target sum可能为0的情况，如果把最后一个删
+           了，会加入错误的路径。
+        */
+        int sum = curSum;
+        for (int i = 0; i < path.size() - 1; i++) {
+            sum -= path[i]->val;
+            if (sum == targetSum) res++;
+        }
+
+        //上部分处理完毕后就可以进行先序遍历，然后左右子树，最后结束后进行回溯。
+        dfs(root->left, targetSum, curSum, res, path);
+        dfs(root->right, targetSum, curSum, res, path);
+        path.pop_back();
+        curSum -= root->val;
+    }
+};
+
 //leetcode submit region end(Prohibit modification and deletion)

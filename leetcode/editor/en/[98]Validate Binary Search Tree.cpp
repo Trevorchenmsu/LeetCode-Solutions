@@ -82,7 +82,7 @@ public:
 
 
 /*
- * solution 2: iteration
+ * solution 2: iteration + inorder traversal
  * time: O(n)
  * space: O(n)
  *
@@ -115,4 +115,82 @@ public:
     }
 
 };
+
+
+
+/*
+ * solution 3: dfs/recursion
+ * time: O(n)
+ * space: O(n)
+ *
+ * */
+
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        if (root == NULL) return true;
+
+        int flag = 0;
+
+        if (root->left != NULL) {
+            TreeNode* node = root->left;
+            while (node->right != NULL) {
+                node = node->right;
+            }
+            if (node->val >= root->val)
+                flag = 1;
+        }
+
+        if (root->right != NULL) {
+            TreeNode* node = root->right;
+            while (node->left != NULL) {
+                node = node->left;
+            }
+            if (node->val <= root->val)
+                flag = 1;
+        }
+
+        bool left = isValidBST(root->left);
+        bool right = isValidBST(root->right);
+
+        if (flag || !left || !right)
+            return false;
+
+        return left && right;
+    }
+};
+
+/*
+ * solution 4: dfs + inorder traversal
+ * time: O(n)
+ * space: O(n)
+ *
+ * */
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        if (root == NULL)
+            return true;
+
+        if (!isValidBST(root->left))
+            return false;
+
+        if (!firstNode && root->val <= prev)
+            return false;
+
+        firstNode = false;
+        prev = root->val;
+
+        if (!isValidBST(root->right))
+            return false;
+
+        return true;
+    }
+
+private:
+    bool firstNode = true;
+    long prev = LONG_MIN;
+};
+
+
 //leetcode submit region end(Prohibit modification and deletion)

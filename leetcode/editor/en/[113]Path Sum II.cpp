@@ -98,37 +98,38 @@ public:
         if (root == NULL)
             return res;
 
-        vector<TreeNode*> nodes; // since STL stack cannot be traversed, we use vector instead
-        TreeNode *cur = root, *pre = NULL; // pre node is used to adapt the characteristic of inorder traversal
-        int val = 0;
+        stack<TreeNode*> nodes;
+        vector<int> path;
+        TreeNode *cur = root, *pre;
+        int sum = 0;
 
-        // inorder traversal
+        // 中序遍历
         while (cur || !nodes.empty()) {
-            // get the left side nodes
+            // 先获取最左边的节点，同时计算路径和以及路径节点
             while (cur) {
-                nodes.push_back(cur);
-                val += cur->val;
+                nodes.push(cur);
+                sum += cur->val;
+                path.push_back(cur->val);
                 cur = cur->left;
             }
 
-            // see whether the leaf node is valid. if it is, add the path
-            cur = nodes.back();
-            if (cur->left == NULL && cur->right == NULL && val == targetSum) {
-                vector<int> path;
-                for (auto &node : nodes)
-                    path.push_back(node->val);
+            // 检查是否为有效叶子节点。如果路径和满足要求，把该路径加到结果中。
+            cur = nodes.top();
+            if (cur->left == NULL && cur->right == NULL && sum == targetSum) {
                 res.push_back(path);
             }
 
-            // change to right subtree
+            // 情况1：右子树不为空，右子树还未被访问过，直接将右子树作为当前节点去遍历
             if (cur->right != NULL && cur->right != pre)
                 cur = cur->right;
             else {
-                // no right subtree or it has been visited
+                // 右子树不存在或者右子树已经被访问过
+                // 这里还可以实现抵达左节点后，把考虑过的左节点情况消除，类似回溯处理
+                nodes.pop();
+                path.pop_back();
+                sum -= cur->val;
                 pre = cur;
-                val -= cur->val;
-                nodes.pop_back();
-                cur = NULL;
+                cur = NULL; // 在左叶子节点的情况下，将cur置为空相当于剪枝
             }
         }
 

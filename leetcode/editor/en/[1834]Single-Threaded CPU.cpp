@@ -159,7 +159,7 @@ public:
             tasks_sort.push({tasks[i][0], i, tasks[i][1]});
         }
 
-        while (res.size() < n) { // O(n
+        while (res.size() < n) { // O(n)
             // if cpu is idle, assign a task to it
             if (available.empty()) { // O(logn)
                 int enq_time = addNewTask(available, tasks_sort);
@@ -183,6 +183,7 @@ public:
 
 private:
     typedef priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> mini_heap;
+
     int addNewTask(mini_heap &available, mini_heap &tasks_sort) {
         vector<int> new_task = tasks_sort.top();
         tasks_sort.pop();

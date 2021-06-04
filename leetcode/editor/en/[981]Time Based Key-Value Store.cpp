@@ -75,10 +75,6 @@
  * space: O(n)
  * */
 class TimeMap {
-private:
-    unordered_map<string, unordered_map<int, string>> Map;// (key, timestamp-value)
-    unordered_map<string, vector<int>> key2times;
-
 public:
     /** Initialize your data structure here. */
     TimeMap() {
@@ -86,19 +82,22 @@ public:
     }
 
     void set(string key, string value, int timestamp) {
-        key2times[key].push_back(timestamp);
-        Map[key][timestamp] = value;
+        key2time[key].push_back(timestamp);
+        time2val[timestamp] = value;
     }
 
     string get(string key, int timestamp) {
-        // get the largest timestamp
-        int ts = binarySearch(key2times[key], timestamp);
-        string value = ts == -1 ? "" : Map[key][ts];
-        return value;
+        int t = binarySearch(key2time[key], timestamp);
+        return t == -1 ? "" : time2val[t];
     }
+
+private:
+    unordered_map<string, vector<int>> key2time;
+    unordered_map<int, string> time2val;
 
     int binarySearch(vector<int> &nums, int target) {
         int start = 0, end = nums.size() - 1;
+
         while (start + 1 < end) {
             int mid = start + (end - start) / 2;
             if (nums[mid] > target)

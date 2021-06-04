@@ -78,8 +78,8 @@ public:
 
 
 /*
- * solution 3: binary search
- * time: O(logn)
+ * solution 3: binary search + two pointers
+ * time: O(max(k,logn))
  * space: O(k)
  * */
 class Solution {
@@ -90,7 +90,7 @@ public:
 
         // find index of elements closest to x
         int start = 0, end = n - 1;
-        while (start + 1 < end) {
+        while (start + 1 < end) { // O(logn)
             int mid = start + (end - start) / 2;
             if (arr[mid] >= x)
                 end = mid;
@@ -100,7 +100,7 @@ public:
 
         deque<int> res;
         int left = start, right = end;
-        while (res.size() < k) {
+        while (res.size() < k) { // O(k)
             if (right == n || (left >= 0 && (x - arr[left] <= arr[right] - x)))
                 res.push_front(arr[left--]);
             else

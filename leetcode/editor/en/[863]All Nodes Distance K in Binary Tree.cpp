@@ -55,7 +55,7 @@
  */
 
 /*
- * solution: dfs + bfs
+ * solution 1: dfs + bfs
  * time: O(n)
  * space: O(n)
  * */
@@ -119,4 +119,138 @@ private:
         return {};
     }
 };
+
+
+/*
+ * solution 2: dfs + bfs
+ * time: O(n)
+ * space: O(n)
+ * */
+class Solution {
+public:
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+        unordered_map<TreeNode*, TreeNode*> parents;
+        parents[root] = NULL;
+        preorderDFS(parents, root);
+        vector<int> res;
+        BFS(root, parents, target, k, res);
+        return res;
+    }
+
+    void preorderDFS(unordered_map<TreeNode*, TreeNode*> &parents, TreeNode* root) {
+        if (root == NULL)
+            return;
+
+        if (root->left != NULL)
+            parents[root->left] = root;
+        if (root->right != NULL)
+            parents[root->right] = root;
+
+        preorderDFS(parents, root->left);
+        preorderDFS(parents, root->right);
+    }
+
+    void BFS(TreeNode* root,  unordered_map<TreeNode*, TreeNode*> &parents, TreeNode* target, int k, vector<int> &res) {
+        queue<TreeNode*> q;
+        unordered_set<TreeNode*> visited;
+        q.push(target);
+        visited.insert(target);
+
+        int step = 0;
+        while (!q.empty()) {
+            int len = q.size();
+            while (len--) {
+                TreeNode* cur = q.front(); q.pop();
+                if (step == k)
+                    res.push_back(cur->val);
+
+                TreeNode* parent = parents[cur];
+                if (parent != NULL && !visited.count(parent)) {
+                    q.push(parent);
+                    visited.insert(parent);
+                }
+
+                if (cur->left != NULL && !visited.count(cur->left)) {
+                    q.push(cur->left);
+                    visited.insert(cur->left);
+                }
+
+                if (cur->right != NULL && !visited.count(cur->right)) {
+                    q.push(cur->right);
+                    visited.insert(cur->right);
+                }
+
+            }
+            step++;
+            if (step > k) break;
+        }
+    }
+};
+
+/*
+ * solution 3: dfs + bfs
+ * time: O(n)
+ * space: O(n)
+ * */
+class Solution {
+public:
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+        unordered_map<TreeNode*, TreeNode*> parents;
+        parents[root] = NULL;
+        preorderDFS(parents, root);
+        vector<int> res;
+        BFS(root, parents, target, k, res);
+        return res;
+    }
+
+    void preorderDFS(unordered_map<TreeNode*, TreeNode*> &parents, TreeNode* root) {
+        if (root == NULL)
+            return;
+
+        if (root->left != NULL)
+            parents[root->left] = root;
+        if (root->right != NULL)
+            parents[root->right] = root;
+
+        preorderDFS(parents, root->left);
+        preorderDFS(parents, root->right);
+    }
+
+    void BFS(TreeNode* root,  unordered_map<TreeNode*, TreeNode*> &parents, TreeNode* target, int k, vector<int> &res) {
+        queue<TreeNode*> q;
+        vector<int> visited(501, 0);
+        q.push(target);
+        visited[target->val] = 1;
+
+        int step = 0;
+        while (!q.empty()) {
+            int len = q.size();
+            while (len--) {
+                TreeNode* cur = q.front(); q.pop();
+                if (step == k)
+                    res.push_back(cur->val);
+
+                TreeNode* parent = parents[cur];
+                if (parent != NULL && !visited[parent->val] ) {
+                    q.push(parent);
+                    visited[parent->val] = 1;
+                }
+
+                if (cur->left != NULL && !visited[cur->left->val]) {
+                    q.push(cur->left);
+                    visited[cur->left->val] = 1;
+                }
+
+                if (cur->right != NULL && !visited[cur->right->val]) {
+                    q.push(cur->right);
+                    visited[cur->right->val] = 1;
+                }
+
+            }
+            step++;
+            if (step > k) break;
+        }
+    }
+};
+
 //leetcode submit region end(Prohibit modification and deletion)
