@@ -76,27 +76,7 @@ public:
 };
 
 /*
- * solution 2: greedy
- * time: O(n)
- * space: O(1)
- * */
-class Solution {
-public:
-    bool canJump(vector<int>& nums) {
-        int max_val = 0;
-
-        for(int i = 0; i < nums.size(); ++i){
-            if(i > max_val) return false;
-            max_val = max(max_val, nums[i] + i);
-        }
-
-        return true;
-    }
-};
-
-
-/*
- * solution 3: top down dp
+ * solution 2: top down dp, TLE
  * time: O(n^2)
  * space: O(n)
  * */
@@ -121,10 +101,28 @@ public:
     }
 };
 
+/*
+ * solution 3: greedy
+ * time: O(n)
+ * space: O(1)
+ * */
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int max_val = 0;
+
+        for(int i = 0; i < nums.size(); ++i){
+            if(i > max_val) return false;
+            max_val = max(max_val, nums[i] + i);
+        }
+
+        return true;
+    }
+};
 
 
 /*
- * solution 4: top down dp
+ * solution 4: bottom up dp
  * time: O(n)
  * space: O(n)
  * */

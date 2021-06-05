@@ -163,6 +163,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1300]Sum of Mutated Array Closest to Target.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1300]Sum of Mutated Array Closest to Target.cpp" />
+              <option name="questionId" value="1232" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1306]Jump Game III.cpp">
           <value>
             <LeetcodeEditor>
@@ -187,6 +195,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1371]Find the Longest Substring Containing Vowels in Even Counts.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1371]Find the Longest Substring Containing Vowels in Even Counts.cpp" />
+              <option name="questionId" value="1473" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1381]Design a Stack With Increment Operation.cpp">
           <value>
             <LeetcodeEditor>
@@ -200,6 +216,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[13]Roman to Integer.cpp" />
               <option name="questionId" value="13" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1442]Count Triplets That Can Form Two Arrays of Equal XOR.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1442]Count Triplets That Can Form Two Arrays of Equal XOR.cpp" />
+              <option name="questionId" value="1553" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -259,6 +283,30 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1542]Find Longest Awesome Substring.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1542]Find Longest Awesome Substring.cpp" />
+              <option name="questionId" value="1668" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1552]Magnetic Force Between Two Balls.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1552]Magnetic Force Between Two Balls.cpp" />
+              <option name="questionId" value="1675" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1567]Maximum Length of Subarray With Positive Product.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1567]Maximum Length of Subarray With Positive Product.cpp" />
+              <option name="questionId" value="1690" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1569]Number of Ways to Reorder Array to Get Same BST.cpp">
           <value>
             <LeetcodeEditor>
@@ -291,6 +339,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1590]Make Sum Divisible by P.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1590]Make Sum Divisible by P.cpp" />
+              <option name="questionId" value="1694" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1597]Build Binary Expression Tree From Infix Expression.cpp">
           <value>
             <LeetcodeEditor>
@@ -304,6 +360,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[15]3Sum.cpp" />
               <option name="questionId" value="15" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1608]Special Array With X Elements Greater Than or Equal X.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1608]Special Array With X Elements Greater Than or Equal X.cpp" />
+              <option name="questionId" value="1730" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -331,6 +395,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1648]Sell Diminishing-Valued Colored Balls.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1648]Sell Diminishing-Valued Colored Balls.cpp" />
+              <option name="questionId" value="1771" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1649]Create Sorted Array through Instructions.cpp">
           <value>
             <LeetcodeEditor>
@@ -352,6 +424,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1655]Distribute Repeating Integers.cpp" />
               <option name="questionId" value="1758" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1658]Minimum Operations to Reduce X to Zero.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1658]Minimum Operations to Reduce X to Zero.cpp" />
+              <option name="questionId" value="1776" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -395,6 +475,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1802]Maximum Value at a Given Index in a Bounded Array.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1802]Maximum Value at a Given Index in a Bounded Array.cpp" />
+              <option name="questionId" value="1929" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1834]Single-Threaded CPU.cpp">
           <value>
             <LeetcodeEditor>
@@ -416,6 +504,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1849]Splitting a String Into Descending Consecutive Values.cpp" />
               <option name="questionId" value="1976" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1870]Minimum Speed to Arrive on Time.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1870]Minimum Speed to Arrive on Time.cpp" />
+              <option name="questionId" value="2000" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -936,6 +1032,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[91]Decode Ways.cpp" />
               <option name="questionId" value="91" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[930]Binary Subarrays With Sum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[930]Binary Subarrays With Sum.cpp" />
+              <option name="questionId" value="966" />
             </LeetcodeEditor>
           </value>
         </entry>

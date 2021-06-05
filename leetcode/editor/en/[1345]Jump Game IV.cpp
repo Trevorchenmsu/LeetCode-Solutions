@@ -71,53 +71,53 @@
  * time: O(n)
  * space: O(n)
  * */
-//class Solution {
-//public:
-//    int minJumps(vector<int>& arr) {
-//        int n = arr.size();
-//        if (n == 1) return 0;
-//
-//        unordered_map<int, vector<int>> children;
-//        for (int i = 0; i < n; i++)
-//            children[arr[i]].push_back(i);
-//
-//        vector<int> visited(n, 0);
-//        visited[0] = 1;
-//        queue<int> q;
-//        q.push(0);
-//
-//        int step = 0;
-//        while (!q.empty()) {
-//            int len = q.size();
-//            while (len--) {
-//                int cur = q.front(); q.pop();
-//                if (cur == n - 1) return step;
-//
-//                if (cur + 1 < n && visited[cur + 1] == 0) {
-//                    q.push(cur + 1);
-//                    visited[cur + 1] = 1;
-//                }
-//
-//                if (cur - 1 >= 0 && visited[cur - 1] == 0) {
-//                    q.push(cur - 1);
-//                    visited[cur - 1] = 1;
-//                }
-//
-//                for (auto &next : children[arr[cur]]) {
-//                    if (visited[next] == 0) {
-//                        q.push(next);
-//                        visited[next] = 1;
-//                    }
-//                }
-//
-//                children.erase(arr[cur]);
-//            }
-//            step++;
-//        }
-//
-//        return 0;
-//    }
-//};
+class Solution {
+public:
+    int minJumps(vector<int>& arr) {
+        int n = arr.size();
+        if (n == 1) return 0;
+
+        unordered_map<int, vector<int>> children;
+        for (int i = 0; i < n; i++)
+            children[arr[i]].push_back(i);
+
+        vector<int> visited(n, 0);
+        visited[0] = 1;
+        queue<int> q;
+        q.push(0);
+
+        int step = 0;
+        while (!q.empty()) {
+            int len = q.size();
+            while (len--) {
+                int cur = q.front(); q.pop();
+                if (cur == n - 1) return step;
+
+                if (cur + 1 < n && visited[cur + 1] == 0) {
+                    q.push(cur + 1);
+                    visited[cur + 1] = 1;
+                }
+
+                if (cur - 1 >= 0 && visited[cur - 1] == 0) {
+                    q.push(cur - 1);
+                    visited[cur - 1] = 1;
+                }
+
+                for (auto &next : children[arr[cur]]) {
+                    if (visited[next] == 0) {
+                        q.push(next);
+                        visited[next] = 1;
+                    }
+                }
+
+                children.erase(arr[cur]);
+            }
+            step++;
+        }
+
+        return 0;
+    }
+};
 
 /*
  * solution 2: bfs + dp

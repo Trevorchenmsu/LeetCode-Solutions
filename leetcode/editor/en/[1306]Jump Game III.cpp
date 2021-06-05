@@ -56,47 +56,47 @@
  * The maximum number of nodes within a single level for a binary tree would be N/2
  * so the maximum length of q is o(N/2+N/2)=o(N)
  * */
-//class Solution {
-//public:
-//    bool canReach(vector<int>& arr, int start) {
-//        int n = arr.size();
-//
-//        queue<int> q;
-//        q.push(start);
-//        unordered_set<int> visited;
-//        visited.insert(start);
-//
-//        while (!q.empty()) {
-//            int cur = q.front(); q.pop();
-//
-//            if (arr[cur] == 0) return true;
-//            int dir1 = cur + arr[cur], dir2 = cur - arr[cur];
-//
-//            if (isValid(arr, visited, dir1)) {
-//                q.push(dir1);
-//                visited.insert(dir1);
-//            }
-//
-//
-//            if (isValid(arr, visited, dir2)) {
-//                q.push(dir2);
-//                visited.insert(dir2);
-//            }
-//        }
-//
-//        return false;
-//    }
-//
-//    bool isValid(vector<int> &arr, unordered_set<int> &visited, int idx) {
-//        if (idx < 0 || idx >= arr.size())
-//            return false;
-//
-//        if (visited.count(idx))
-//            return false;
-//
-//        return true;
-//    }
-//};
+class Solution {
+public:
+    bool canReach(vector<int>& arr, int start) {
+        int n = arr.size();
+
+        queue<int> q;
+        q.push(start);
+        unordered_set<int> visited;
+        visited.insert(start);
+
+        while (!q.empty()) {
+            int cur = q.front(); q.pop();
+
+            if (arr[cur] == 0) return true;
+            int dir1 = cur + arr[cur], dir2 = cur - arr[cur];
+
+            if (isValid(arr, visited, dir1)) {
+                q.push(dir1);
+                visited.insert(dir1);
+            }
+
+
+            if (isValid(arr, visited, dir2)) {
+                q.push(dir2);
+                visited.insert(dir2);
+            }
+        }
+
+        return false;
+    }
+
+    bool isValid(vector<int> &arr, unordered_set<int> &visited, int idx) {
+        if (idx < 0 || idx >= arr.size())
+            return false;
+
+        if (visited.count(idx))
+            return false;
+
+        return true;
+    }
+};
 
 /*
  * solution 2: dfs
