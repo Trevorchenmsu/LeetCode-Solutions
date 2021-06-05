@@ -1,2 +1,2 @@
 # LeetCode-Solutions
-C++ Solutions for LeetCode 1-400
+C++ Solutions for LeetCode
