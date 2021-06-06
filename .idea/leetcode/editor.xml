@@ -691,6 +691,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[347]Top K Frequent Elements.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[347]Top K Frequent Elements.cpp" />
+              <option name="questionId" value="347" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[349]Intersection of Two Arrays.cpp">
           <value>
             <LeetcodeEditor>
@@ -928,6 +936,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[687]Longest Univalue Path.cpp" />
               <option name="questionId" value="687" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[692]Top K Frequent Words.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[692]Top K Frequent Words.cpp" />
+              <option name="questionId" value="692" />
             </LeetcodeEditor>
           </value>
         </entry>
