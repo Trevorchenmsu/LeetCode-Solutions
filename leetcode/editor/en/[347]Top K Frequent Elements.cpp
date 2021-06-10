@@ -43,13 +43,9 @@ public:
         priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> pq;
 
         for (auto &[num, cnt] : cnts) { // O(nlogk)
-            if (pq.empty() || pq.size() < k) {
-                pq.push({cnt, num});
-            }
-            else if (pq.top()[0] < cnt) {
+            pq.push({cnt, num});
+            if (pq.size() > k)
                 pq.pop();
-                pq.push({cnt, num});
-            }
         }
 
         vector<int> res;

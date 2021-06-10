@@ -56,40 +56,42 @@
 class Solution {
 public:
     int pathSum(vector<int>& nums) {
-        unordered_map<int, int> pos2val;
+        unordered_map<int, int> pos2val; // O(n)
         int res = 0;
 
-        for (auto &num : nums)
+        for (auto &num : nums) { // O(n)
             pos2val[num / 10] = num % 10;
+        }
 
-        dfs(nums[0] / 10, pos2val, 0, res);
+        dfs(pos2val, nums[0] / 10, res);
 
         return res;
     }
 
-    // preorder traversal
-    void dfs(int levelPos, unordered_map<int, int> &pos2val, int sum, int &res) {
-        int level = levelPos / 10, pos = levelPos % 10;
-        int left = (level + 1) * 10 + 2 * pos - 1, right = left + 1;
-        sum += pos2val[levelPos];
+    void dfs(unordered_map<int, int> &pos2val, int pos, int &res) {
+        int level = pos / 10, loc = pos % 10;
+        int left = (level + 1) * 10 + 2 * loc - 1, right = left + 1;
 
-        // reach leaf node
         if (!pos2val.count(left) && !pos2val.count(right)) {
-            res += sum;
+            res += pos2val[pos];
             return;
         }
 
-        if (pos2val.count(left))
-            dfs(left, pos2val,sum, res);
+        if (pos2val.count(left)) {
+            pos2val[left] += pos2val[pos];
+            dfs(pos2val, left, res);
+        }
 
-        if (pos2val.count(right))
-            dfs(right, pos2val, sum, res);
+        if (pos2val.count(right)) {
+            pos2val[right] += pos2val[pos];
+            dfs(pos2val, right, res);
+        }
     }
 };
 
 
 /*
- * solution 2: level traversal (BFS) + hashtable
+ * solution 2: level traversal (BFS) + hash table
  * time: O(n)
  * space: O(n)
  * */

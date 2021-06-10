@@ -88,6 +88,7 @@ public:
         dq.push_back({nums[0], 0});
 
         for (int i = 1; i < n; i++) {
+            // 这里的k不是滑窗的大小，k只是跳的最远位置，所以窗口大小应该为k+1
             while (!dq.empty() && i - dq.front().second > k)
                 // larger than the window size k, delete the front
                 dq.pop_front();

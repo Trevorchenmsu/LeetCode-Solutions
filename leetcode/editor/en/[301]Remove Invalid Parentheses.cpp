@@ -40,8 +40,69 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
  * solution 1: BFS + pruning
- * time: (2^n)
- * space: (2^n)
+ * time: O(2^n)
+ * space: O(2^n)
+ * */
+//class Solution {
+//public:
+//    vector<string> removeInvalidParentheses(string s) {
+//        vector<string> res;
+//        if (s.empty()) return res;
+//
+//        queue<string> q;
+//        q.push(s);
+//        unordered_set<string> visited;
+//        visited.insert(s);
+//        bool flag = false;
+//
+//        while (!q.empty()) {
+//            string cur = q.front(); q.pop();
+//
+//            if (isValid(cur)) { // O(n)
+//                res.push_back(cur);
+//                flag = true;
+//            }
+//
+//            if (flag) continue;
+//
+//            for (int i = 0; i < cur.size(); i++) { // O(N)
+//                if (isalpha(cur[i])) continue;
+//                string neighbor = cur.substr(0, i) + cur.substr(i + 1);
+//
+//                if (visited.count(neighbor))  continue;
+//
+//                q.push(neighbor);
+//                visited.insert(neighbor);
+//            }
+//        }
+//
+//        return res;
+//    }
+//
+//
+//private:
+//    bool isValid(string &s) {
+//        int cnt = 0;
+//        for (auto &ch : s) {
+//            if (ch == '(')
+//                cnt++;
+//
+//            if (ch == ')')
+//                cnt--;
+//
+//            if (cnt < 0)
+//                return false;
+//        }
+//
+//        return cnt == 0;
+//    }
+//};
+
+
+/*
+ * solution 2: DFS
+ * time: O(2^n)
+ * space: O(n)
  * */
 class Solution {
 public:
@@ -49,47 +110,44 @@ public:
         vector<string> res;
         if (s.empty()) return res;
 
-        queue<string> q;
-        q.push(s);
-        unordered_set<string> visited;
-        visited.insert(s);
-        bool flag = false;
-
-        while (!q.empty()) {
-            string cur = q.front(); q.pop();
-
-            if (isValid(cur)) { // O(n)
-                res.push_back(cur);
-                flag = true;
-            }
-
-            if (flag) continue;
-
-            for (int i = 0; i < cur.size(); i++) { // O(N)
-                if (isalpha(cur[i])) continue;
-                string neighbor = cur.substr(0, i) + cur.substr(i + 1);
-
-                if (visited.count(neighbor))  continue;
-
-                q.push(neighbor);
-                visited.insert(neighbor);
-            }
+        int numOfOpen = 0, numOfClose = 0;
+        for (auto &ch : s) { //O(n)
+            numOfOpen += (ch == '(');
+            if (numOfOpen == 0)
+                numOfClose += (ch == ')');
+            else
+                numOfOpen -= (ch == ')');
         }
 
+        dfs(s, res, 0, numOfOpen, numOfClose);
         return res;
     }
 
+    void dfs(string s, vector<string> &res, int start, int numOfOpen, int numOfClose) {
+        if (numOfOpen == 0 && numOfClose == 0) {
+            if (isValid(s)) { // O(n)
+                res.push_back(s);
+            }
+            return;
+        }
 
-private:
+        for (int i = start; i < s.size(); i++) { // O(n)
+            if (i != start && s[i] == s[i - 1]) continue;
+            string substr = s.substr(0, i) + s.substr(i + 1);
+            if (numOfOpen > 0 && s[i] == '(')
+                dfs(substr, res, i, numOfOpen - 1, numOfClose);
+            if (numOfClose > 0 && s[i] == ')')
+                dfs(substr, res, i, numOfOpen, numOfClose - 1);
+        }
+    }
+
     bool isValid(string &s) {
         int cnt = 0;
         for (auto &ch : s) {
             if (ch == '(')
                 cnt++;
-
             if (ch == ')')
                 cnt--;
-
             if (cnt < 0)
                 return false;
         }
@@ -97,6 +155,4 @@ private:
         return cnt == 0;
     }
 };
-
-
 //leetcode submit region end(Prohibit modification and deletion)
