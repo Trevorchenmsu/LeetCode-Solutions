@@ -45,16 +45,20 @@
 class Solution {
 public:
     int longestValidParentheses(string s) {
-        int start = 0, res = 0;
-        stack<int> Stack;
+        int left = 0, res = 0;
+        stack<int> st;
 
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] == '(') Stack.push(i);
+        for (int right = 0; right < s.size(); right++) {
+            if (s[right] == '(') {
+                st.push(right);
+            }
             else {
-                if (Stack.empty()) start = i + 1;
+                if (st.empty()){
+                    left = right + 1; //检查越界？不需要，因为没有用left作为下标
+                }
                 else {
-                    Stack.pop();
-                    res = Stack.empty() ? max(res, i - start + 1) : max(res, i - Stack.top());
+                    st.pop();
+                    res = st.empty()? max(res, right - left + 1) : max(res, right - st.top());
                 }
             }
         }

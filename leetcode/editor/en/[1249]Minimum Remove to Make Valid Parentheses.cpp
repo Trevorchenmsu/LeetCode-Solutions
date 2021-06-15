@@ -72,13 +72,15 @@ public:
             if (s[i] == '(')
                 Stack.push(i);
             else if (s[i] == ')') {
-                if (Stack.empty()) // right parenthesis comes first, invalid
+                // 右括号先出现，不合理，先保留位置，但置为空。
+                if (Stack.empty())
                     s[i] = ' ';
                 else
                     Stack.pop(); // match a left parenthesis
             }
         }
 
+        // 当有效的右括号都被匹配完了以后，左括号还有剩余，需要置为空
         while (!Stack.empty()) {
             s[Stack.top()] = ' ';
             Stack.pop();

@@ -131,6 +131,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[114]Flatten Binary Tree to Linked List.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[114]Flatten Binary Tree to Linked List.cpp" />
+              <option name="questionId" value="114" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1231]Divide Chocolate.cpp">
           <value>
             <LeetcodeEditor>
@@ -403,6 +411,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1644]Lowest Common Ancestor of a Binary Tree II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1644]Lowest Common Ancestor of a Binary Tree II.cpp" />
+              <option name="questionId" value="1780" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1648]Sell Diminishing-Valued Colored Balls.cpp">
           <value>
             <LeetcodeEditor>
@@ -576,6 +592,22 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[223]Rectangle Area.cpp" />
               <option name="questionId" value="223" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[226]Invert Binary Tree.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[226]Invert Binary Tree.cpp" />
+              <option name="questionId" value="226" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[236]Lowest Common Ancestor of a Binary Tree.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[236]Lowest Common Ancestor of a Binary Tree.cpp" />
+              <option name="questionId" value="236" />
             </LeetcodeEditor>
           </value>
         </entry>

@@ -46,7 +46,7 @@
  */
 
 /*
- * solution: dfs
+ * solution 1 : dfs
  * time: O(n^2)
  * space: O(n)
  *

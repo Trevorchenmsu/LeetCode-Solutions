@@ -120,18 +120,25 @@ private:
 
     int queryRange(SegTreeNode* node, int left, int right) {
         // 边界条件：左侧条件表示left和right都在start和end的左边，无效；
-        // 右侧条件表示left和right都在start和end的右边，没必须继续搜索下去。
+        //         右侧条件表示left和right都在start和end的右边，无效。
         if (right < node->start || left > node->end)
             return 0;
 
-        /* 为什么是这种判定条件？首先start和end并不是指根节点的start和end，而是当前节点的start和end
+        /* 为什么是下面这种判定条件？首先start和end并不是指根节点的start和end，而是当前节点的start和end
         当left和right能够包含整个start和end时，可以有3种情况：
-        （1）start和left相等，right比end大。此时我们要的就是代表这个start和end的node的info。但是缺了右半段怎么整？递归返回后就会
-        去到右侧去查找另一半的info结果。(2) left比start大，right和end相等。(3)start等于left，right等于end。同理。
+        （1）start和left相等，right比end大。此时我们要的就是代表这个start和end的node的info。
+            但是缺了右半段怎么整？递归返回后就会去到右侧去查找另一半的info结果。
+            这个例子中相当于最终return的queryRange(node->left, left, right)，它结束回到这里后，又会去
+            queryRange(node->right, left, right)
+         (2) left比start大，right和end相等。
+         这个例子相当于左侧已经执行完了，SE属于右侧queryRange(node->right, left, right)
+         (3)start等于left，right等于end。同理。
 
         S|_____|E            S|_____|E   S|__________|E
         L|__________R   L|__________|R   L|__________|R
-
+        为什么不考虑下面的情况？因为在这两种情况下SE的区间和根本不能用，它超过了LR的范围，无法代表LR区间，所以不需要考虑。
+            S|_____|E      S|_____|E
+        L|_____R               L|_____R
         */
         if (left <= node->start && right >= node->end)
             return node->info;

@@ -107,47 +107,5 @@ private:
 };
 
 
-/*
- * solution 3: divided and conquer, wrong answer
- * time: O(m + n)
- * space: O(log(m + n))
- *
- * */
-class Solution {
-public:
-    bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        if (matrix.empty() || matrix[0].empty())
-            return false;
-
-        int m = matrix.size(), n = matrix[0].size();
-
-        return divideConquer(matrix, target, 0, n - 1, 0, m - 1);
-    }
-
-
-private:
-    bool divideConquer(vector<vector<int>>& matrix, int target, int left, int right, int top, int bottom) {
-        if (left > right || top > bottom)
-            return false;
-
-        if (matrix[top][left] > target || matrix[bottom][right] < target)
-            return false;
-
-        int mid = left + (right - left) / 2;
-
-        int row = top;
-
-        // search in rows
-        while (row <= bottom && matrix[row][mid] <= target) {
-            if (matrix[row][mid] == target)
-                return true;
-            row++;
-        }
-
-        return divideConquer(matrix, target, left, mid - 1, row, bottom) ||
-               divideConquer(matrix, target, mid + 1, top, right, row - 1);
-    }
-
-};
 
 //leetcode submit region end(Prohibit modification and deletion)

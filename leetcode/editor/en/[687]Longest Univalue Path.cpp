@@ -69,7 +69,7 @@ private:
         int R = dfs(root->right);
 
         int left = 0, right = 0;
-        if (root->left != NULL && root->left->val== root->val)
+        if (root->left != NULL && root->left->val == root->val)
             left = L;
 
         if (root->right != NULL && root->right->val == root->val)

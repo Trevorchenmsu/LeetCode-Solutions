@@ -193,4 +193,39 @@ private:
 };
 
 
+
+/*
+ * solution 5: iteration + inorder traversal
+ * time: O(n)
+ * space: O(n)
+ *
+ * */
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        stack<TreeNode*> st;
+
+        bool firstNode = true;
+        int pre = 0;
+
+        while (root || !st.empty()) {
+            while (root) {
+                st.push(root);
+                root = root->left;
+            }
+
+            TreeNode* cur = st.top(); st.pop();
+
+            if (!firstNode && cur->val <= pre)
+                return false;
+
+            pre = cur->val;
+            root = cur->right;
+            firstNode = false;
+        }
+
+        return true;
+    }
+};
+
 //leetcode submit region end(Prohibit modification and deletion)
