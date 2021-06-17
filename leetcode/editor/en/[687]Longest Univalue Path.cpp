@@ -77,6 +77,8 @@ private:
 
         res = max(res, left + right + 1);
 
+        // 这里为什么要从left和right取较大值？因为left和right分别代表具有相同元素值的左右子树长度
+        // 题目中要求的是最大路径，所以我们要选一条较大的路径走。
         return max(left, right) + 1;
     }
 };

@@ -443,6 +443,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1650]Lowest Common Ancestor of a Binary Tree III.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1650]Lowest Common Ancestor of a Binary Tree III.cpp" />
+              <option name="questionId" value="1790" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1655]Distribute Repeating Integers.cpp">
           <value>
             <LeetcodeEditor>
@@ -456,6 +464,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1658]Minimum Operations to Reduce X to Zero.cpp" />
               <option name="questionId" value="1776" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1676]Lowest Common Ancestor of a Binary Tree IV.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1676]Lowest Common Ancestor of a Binary Tree IV.cpp" />
+              <option name="questionId" value="1816" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -603,6 +619,22 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[230]Kth Smallest Element in a BST.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[230]Kth Smallest Element in a BST.cpp" />
+              <option name="questionId" value="230" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[235]Lowest Common Ancestor of a Binary Search Tree.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[235]Lowest Common Ancestor of a Binary Search Tree.cpp" />
+              <option name="questionId" value="235" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[236]Lowest Common Ancestor of a Binary Tree.cpp">
           <value>
             <LeetcodeEditor>
@@ -640,6 +672,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[257]Binary Tree Paths.cpp" />
               <option name="questionId" value="257" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[272]Closest Binary Search Tree Value II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[272]Closest Binary Search Tree Value II.cpp" />
+              <option name="questionId" value="272" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1008,6 +1048,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[692]Top K Frequent Words.cpp" />
               <option name="questionId" value="692" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[701]Insert into a Binary Search Tree.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[701]Insert into a Binary Search Tree.cpp" />
+              <option name="questionId" value="784" />
             </LeetcodeEditor>
           </value>
         </entry>
