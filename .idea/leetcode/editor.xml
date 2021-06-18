@@ -243,6 +243,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1448]Count Good Nodes in Binary Tree.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1448]Count Good Nodes in Binary Tree.cpp" />
+              <option name="questionId" value="1544" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[146]LRU Cache.cpp">
           <value>
             <LeetcodeEditor>
@@ -571,6 +579,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[199]Binary Tree Right Side View.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[199]Binary Tree Right Side View.cpp" />
+              <option name="questionId" value="199" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1]Two Sum.cpp">
           <value>
             <LeetcodeEditor>
@@ -704,6 +720,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[295]Find Median from Data Stream.cpp" />
               <option name="questionId" value="295" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[297]Serialize and Deserialize Binary Tree.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[297]Serialize and Deserialize Binary Tree.cpp" />
+              <option name="questionId" value="297" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -976,6 +1000,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[581]Shortest Unsorted Continuous Subarray.cpp" />
               <option name="questionId" value="581" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[582]Kill Process.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[582]Kill Process.cpp" />
+              <option name="questionId" value="582" />
             </LeetcodeEditor>
           </value>
         </entry>
