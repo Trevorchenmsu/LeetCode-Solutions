@@ -93,4 +93,11 @@ private:
             presum[start + i] = temp[i];
     }
 };
+
+/*
+ * solution 2: Segment Tree
+ * time: O(nlog(logn))
+ * space: O(n)
+ * */
+
 //leetcode submit region end(Prohibit modification and deletion)

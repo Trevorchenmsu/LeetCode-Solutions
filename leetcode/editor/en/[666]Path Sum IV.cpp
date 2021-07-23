@@ -133,4 +133,48 @@ public:
 };
 
 
+
+/*
+ * solution 3: hashmap + preorder traversal
+ * time: O(n)
+ * space: O(n)
+ * */
+class Solution {
+public:
+    int pathSum(vector<int>& nums) {
+        if (nums.empty()) {
+            return 0;
+        }
+
+        unordered_map<int, int> pos2val;
+        for (auto &num : nums) {
+            pos2val[num / 10] = num % 10;
+        }
+
+        dfs(nums[0] / 10, pos2val, 0);
+
+        return res;
+    }
+
+    int res = 0;
+    void dfs(int root_pos, unordered_map<int, int> &pos2val, int pathSum) {
+        if (!pos2val.count(root_pos)) {
+            return;
+        }
+
+        int level = root_pos / 10, pos = root_pos % 10;
+        int left = (level + 1) * 10 + pos * 2 - 1, right = left + 1;
+        pathSum += pos2val[root_pos];
+
+        if (!pos2val.count(left) && !pos2val.count(right)) {
+            res += pathSum;
+        }
+
+        dfs(left, pos2val, pathSum);
+        dfs(right, pos2val, pathSum);
+        pathSum -= pos2val[root_pos];
+    }
+};
+
+
 //leetcode submit region end(Prohibit modification and deletion)

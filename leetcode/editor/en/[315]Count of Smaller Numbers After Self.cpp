@@ -42,32 +42,9 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-/*
- * solution 1: brute force, TLE
- * time: O(n^2)
- * space: O(1)
- * */
-//class Solution {
-//public:
-//    vector<int> countSmaller(vector<int>& nums) {
-//        vector<int> res;
-//
-//        for (int i = 0; i < nums.size(); i++) {
-//            int cnt = 0;
-//            for (int j = i + 1; j < nums.size(); j++) {
-//                if (nums[j] < nums[i])
-//                    cnt++;
-//            }
-//            res.push_back(cnt);
-//        }
-//
-//        return res;
-//    }
-//};
-
 
 /*
- * solution 2: divide and conquer, merge sort
+ * solution: divide and conquer, merge sort
  * time: O(nlogn)
  * space: O(n)
  * */

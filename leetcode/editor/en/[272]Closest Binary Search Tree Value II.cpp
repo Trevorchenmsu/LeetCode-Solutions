@@ -137,9 +137,81 @@ public:
     }
 };
 
+/*
+ * solution 2: inorder traversal + binary search + two pointers, another version
+ * time: O(n)
+ * space: O(n)
+ * */
+
+class Solution {
+public:
+    vector<int> closestKValues(TreeNode* root, double target, int k) {
+        vector<int> nodes, res;
+
+        inorderTraversal(root, nodes); // tree inorder traversal
+        int idx = firstIdxGEtarget(nodes, target); // binary search
+
+        // corner cases
+        if (idx == -1) {
+            return vector<int> (nodes.end() - k, nodes.end());
+        }
+
+        if (idx == 0) {
+            return vector<int> (nodes.begin(), nodes.begin() + k);
+        }
+
+        int left = idx - 1, right = idx; // two pointers
+        while (res.size() < k) {
+            if (left < 0 || abs(nodes[left] - target) >= abs(nodes[right] - target) && right < nodes.size()) {
+                res.push_back(nodes[right++]);
+            }
+
+            else if (right > nodes.size() - 1 || abs(nodes[left] - target) < abs(nodes[right] - target) && left >= 0) {
+                res.push_back(nodes[left--]);
+            }
+        }
+
+        return res;
+    }
+
+private:
+    void inorderTraversal(TreeNode* root, vector<int> &nodes) {
+        if (root == NULL) {
+            return;
+        }
+
+        inorderTraversal(root->left, nodes);
+        nodes.push_back(root->val);
+        inorderTraversal(root->right, nodes);
+    }
+
+    // find the first element index which is greater and equal to target
+    int firstIdxGEtarget(vector<int> &nodes, double target) {
+        int start = 0, end = nodes.size() - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (nodes[mid] >= target) {
+                end = mid;
+            }
+            else {
+                start = mid;
+            }
+        }
+
+        if (nodes[start] >= target) {
+            return start;
+        }
+
+        if (nodes[end] >= target) {
+            return end;
+        }
+
+        return -1;
+    }
+};
 
 /*
- * solution 3: inorder traversal, recursion
+ * solution 3: inorder traversal, recursion, sliding window
  * time: O(n)
  * space: O(n)
  * */
@@ -162,7 +234,7 @@ public:
         if (res.size() < k) {
             res.push_back(root->val);
         }
-        else if (abs(root->val - target) < abs(res[0] - target)) {
+        else if (abs(root->val - target) < abs(res[0] - target)) { // 0与target更远，那么0后面的肯定会近一点，优先删除0，类似滑窗思想
             res.erase(res.begin());
             res.push_back(root->val);
         }
@@ -199,11 +271,83 @@ public:
                 res.erase(res.begin());
                 res.push_back(cur->val);
             }
-            else break;
 
             root = cur->right;
         }
 
+        return res;
+    }
+};
+
+
+
+/*
+ * solution 5: follow up solution
+ * time: O(k + logn)
+ * space: O(logn)
+ * */
+
+
+class Solution {
+public:
+    void helper(TreeNode* root, vector<int>& inorder) {
+        if(root == NULL)
+            return;
+        helper(root->left, inorder);
+        inorder.push_back(root->val);
+        helper(root->right, inorder);
+    }
+
+private:
+    vector<int> closestKValues(TreeNode * root, double target, int k) {
+        if(k == 1)
+            return {root->val};
+        vector<int> inorder;
+        helper(root, inorder);
+        vector<int> res;
+        int start = 0;
+        int end = inorder.size() - 1;
+        while(start + 1 < end)
+        {
+            int mid = start + (end - start) / 2;
+            if(inorder[mid] == target)
+            {
+                res.push_back(inorder[mid]);
+                k--;
+                break;
+            }
+            else if(inorder[mid] < target)
+                start = mid;
+            else
+                end = mid;
+        }
+        end = start + 1;
+        while(k --)
+        {
+            if(start >= 0 && end < inorder.size())
+            {
+                if(abs(inorder[start] - target) < abs(inorder[end] - target))
+                {
+                    res.push_back(inorder[start]);
+                    start--;
+                }
+                else
+                {
+                    res.push_back(inorder[end]);
+                    end++;
+                }
+            }
+            else if(start >= 0)
+            {
+                res.push_back(inorder[start]);
+                start--;
+            }
+            else
+            {
+                res.push_back(inorder[end]);
+                end++;
+            }
+        }
         return res;
     }
 };

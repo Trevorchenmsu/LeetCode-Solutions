@@ -43,7 +43,7 @@
 
  /* solution 1: preorder traversal
   * time: O(n^2), for a skewed tree, we need to store n nodes. at the end of leaf node, we need to traverse the path
-  * space: O(n)
+  * space: O(h)
   *
   * */
 class Solution {
@@ -76,7 +76,7 @@ public:
 /* solution 2: preorder traversal
  * time: O(n), for a skewed tree, we need to store n nodes. at the end of leaf node,
  * we need to traverse the path
- * space: O(n)
+ * space: O(h)
  *
  * */
 class Solution {
@@ -98,6 +98,44 @@ public:
 
         dfs(root->left, path + to_string(root->val) + "->", res);
         dfs(root->right, path + to_string(root->val) + "->", res);
+    }
+};
+
+
+/* solution 3: preorder traversal
+ * time: O(n), for a skewed tree, we need to store n nodes. at the end of leaf node,
+ * we need to traverse the path
+ * space: O(h)
+ *
+ * */
+class Solution {
+public:
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> res;
+        if (root == NULL) {
+            return res;
+        }
+
+        string path = "";
+        dfs(root, res, path);
+        return res;
+    }
+
+    void dfs(TreeNode* root, vector<string> &res, string path) {
+        if (root == NULL) {
+            return;
+        }
+
+        if (root->left == NULL && root->right == NULL) {
+            path += to_string(root->val);
+            res.push_back(path);
+            return;
+        }
+
+        path += to_string(root->val) + "->" ;
+
+        dfs(root->left, res, path);
+        dfs(root->right, res, path);
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

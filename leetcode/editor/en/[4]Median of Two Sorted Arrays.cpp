@@ -73,13 +73,13 @@ public:
         int m = nums1.size(), n = nums2.size();
         int len = (m + n + 1) / 2;
 
-        int start = 0, end = m;
-        while (start < end) {
-            int mid_n1 = start + (end - start + 1) / 2;
+        int start = 0, end = m; // 不同于普通二分，这里右边界是m，而不是m-1
+        while (start < end) { // 九章模板采用倒是start + 1 < end
+            int mid_n1 = start + (end - start + 1) / 2; // 采用end-start+1，目的是得到右段的第一个元素，而不是左段的右边界。
             int mid_n2 = len - mid_n1;
 
-            if (nums1[mid_n1 - 1] > nums2[mid_n2])
-                end = mid_n1 - 1;
+            if (nums1[mid_n1 - 1] > nums2[mid_n2]) // 只需要判断N1左段最大值是否小于等于N2右端最小值
+                end = mid_n1 - 1; //这里会限制一个误区，认为让指针左移，但根据二分法，应该是右边界左移
             else
                 start = mid_n1;
         }

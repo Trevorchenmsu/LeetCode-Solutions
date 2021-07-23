@@ -92,4 +92,41 @@ public:
         return res;
     }
 };
+
+/*
+ * solution 3: hash table + sliding window
+ * time: O(n)
+ * space: O(1)
+ * */
+
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int res = 0, left = 0, maxFreq = INT_MIN;
+        unordered_map<char, int> cnts;
+
+
+        for (int right = 0; right < s.size(); right++) {
+            cnts[s[right]]++;
+            for (auto & cnt : cnts) {
+                if (cnt.second > maxFreq) {
+                    maxFreq = cnt.second;
+                }
+            }
+
+            while (right - left + 1 - maxFreq > k) {
+                cnts[s[left++]]--;
+                for (auto & cnt : cnts) {
+                    if (cnt.second > maxFreq) {
+                        maxFreq = cnt.second;
+                    }
+                }
+            }
+
+            res = max(res, right - left + 1);
+        }
+
+        return res;
+    }
+};
 //leetcode submit region end(Prohibit modification and deletion)

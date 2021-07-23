@@ -49,34 +49,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution 1: dfs, TLE
- * time: O(nk)
- * space: (k^n)
- * */
-class Solution {
-public:
-    int maxResult(vector<int>& nums, int k) {
-        int res = 0;
-        dfs(nums, 0, res, 0, k);
-        return res;
-    }
-
-    void dfs(vector<int> &nums, int idx, int &res, int sum, int k) {
-        if (idx >= nums.size())
-            return;
-
-        if (idx == nums.size() - 1) {
-            res = max(res, sum + nums[idx]);
-            return;
-        }
-
-        for (int i = 1; i <= k; i++)
-            dfs(nums, idx + i, res, sum + nums[idx], k);
-    }
-};
-
-/*
- * solution 2: sliding window + monotonic stack
+ * solution: sliding window + monotonic stack
  * time: O(n)
  * space: (n)
  * */
@@ -88,20 +61,25 @@ public:
         dq.push_back({nums[0], 0});
 
         for (int i = 1; i < n; i++) {
-            // 这里的k不是滑窗的大小，k只是跳的最远位置，所以窗口大小应该为k+1
+            /* 这里的k不是滑窗的大小，k只是跳的最远位置，所以窗口大小应该为k+1
+              为什么这里要弹出dq.front()?因为front存储的是窗口的左边界，当出现新的右窗口边界时，就要更新左边界。
+               在弹出front以后，顶替上来的front位置不一定是跟之前的front相临近的位置，而是从之前位置所跳到的和最大
+               的位置，这是因为我们维护的是一个单调递减栈，在窗口范围内和比较小的最终都会被pop掉，留下和最大的位置。
+               因为这个和最大的位置就可以作为下一个窗口的起跳点。
+            */
             while (!dq.empty() && i - dq.front().second > k)
                 // larger than the window size k, delete the front
                 dq.pop_front();
 
-            // current step, add current value
+            // 这两步就是用来更新当前窗口内和最大的元素。当新位置加上起点的值更大时，就要把dq中较小位置弹出让位
             int curSteps = dq.front().first + nums[i];
-
             while (!dq.empty() && curSteps > dq.back().first)
                 dq.pop_back();
 
             dq.push_back({curSteps, i});
         }
 
+        // 这里返回的不能时dq.front().first，因为更大的和都是在back逐渐加进去的
         return dq.back().first;
     }
 

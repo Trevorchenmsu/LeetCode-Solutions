@@ -144,6 +144,100 @@ private:
     unordered_map<int, list<int>::iterator> cnt2iter; // count在list中的位置
 };
 
+/*
+ * solution: some solution
+ * time: O(1)
+ * space: O(n)
+ * */
+class AllOne {
+public:
+    /** Initialize your data structure here. */
+    AllOne() {
+        countList.push_back(0);
+        cnt2iter[0] = countList.begin();
+    }
+
+    /** Inserts a new key <Key> with value 1. Or increments an existing key by 1. */
+    void inc(string key) {
+        int curCount = key2cnt[key];
+        key2cnt[key]++;
+
+        if (cnt2keys[curCount].count(key)) {
+            cnt2keys[curCount].erase(key);
+        }
+
+        cnt2keys[curCount + 1].insert(key);
+
+        // 这里要先添加节点再继续下面的删除节点，否则会改变迭代器的位置
+        if (cnt2keys[curCount + 1].size() == 1) {
+            auto iter = cnt2iter[curCount];
+            countList.insert(next(iter), curCount + 1);
+            cnt2iter[curCount + 1] = next(iter);
+        }
+
+        //这里要保证cnt大于0，否则可能会把dummy node删掉，因为dummy node的集合size也是0
+        if (curCount > 0 && cnt2keys[curCount].size() == 0) {
+            countList.erase(cnt2iter[curCount]);
+        }
+
+    }
+
+    /** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */
+    void dec(string key) {
+        int curCount = key2cnt[key];
+        key2cnt[key]--;
+
+        if (curCount - 1 > 0) {
+            cnt2keys[curCount - 1].insert(key);
+        }
+        cnt2keys[curCount].erase(key);
+
+        if (cnt2keys[curCount - 1].size() == 1) {
+            auto iter = cnt2iter[curCount];
+            countList.insert(iter, curCount - 1);
+            cnt2iter[curCount - 1] = prev(iter);
+        }
+
+
+        if (cnt2keys[curCount].size() == 0) {
+            countList.erase(cnt2iter[curCount]);
+        }
+    }
+
+    /** Returns one of the keys with maximal value. */
+    string getMaxKey() {
+        if (countList.size() == 1) {
+            return "";
+        }
+
+        return *(cnt2keys[countList.back()].begin());
+    }
+
+    /** Returns one of the keys with Minimal value. */
+    string getMinKey() {
+        if (countList.size() == 1) {
+            return "";
+        }
+
+        return *(cnt2keys[*(++countList.begin())].begin());
+    }
+
+private:
+    list<int> countList;
+    unordered_map<string, int> key2cnt;
+    unordered_map<int, unordered_set<string>> cnt2keys;
+    unordered_map<int, list<int>::iterator> cnt2iter;
+};
+
+/**
+ * Your AllOne object will be instantiated and called as such:
+ * AllOne* obj = new AllOne();
+ * obj->inc(key);
+ * obj->dec(key);
+ * string param_3 = obj->getMaxKey();
+ * string param_4 = obj->getMinKey();
+ */
+
 /**
  * Your AllOne object will be instantiated and called as such:
  * AllOne* obj = new AllOne();

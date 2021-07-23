@@ -26,46 +26,33 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution 1: backtrack, TLE
- * time: O(k*C(n, k))
- * space: O(C(n, k))/O(k)
+ * solution 1: binary search,
+ * time: O(n^2*logn)
+ * space: O(logn)
  * */
+
 class Solution {
 public:
     int triangleNumber(vector<int>& nums) {
-        if (nums.empty()) return 0;
-
-        vector<int> path;
-        backtrack(nums, path, 0);
-
-        return cnt;
-    }
-
-private:
-    int cnt;
-    void backtrack(vector<int> &nums, vector<int> &path, int idx) {
-        if (path.size() == 3) {
-            if (validTriangle(path)) cnt++;
-            return;
+        if (nums.size() < 3) {
+            return 0;
         }
 
-        for (int i = idx; i < nums.size(); i++) {
-            path.push_back(nums[i]);
-            backtrack(nums, path, i + 1);
-            path.pop_back();
+        sort(nums.begin(), nums.end());
+
+        int res = 0;
+
+        for (int i = 0; i < nums.size() - 2; i++) {
+            for (int j = i + 1; j < nums.size() - 1; j++) {
+                auto iter = lower_bound(nums.begin() + j + 1, nums.end(), nums[i] + nums[j]);
+                res += (iter - (nums.begin() + j + 1));
+            }
         }
+
+        return res;
     }
 
-    bool validTriangle(vector<int> &arr) {
-        int a = arr[0], b = arr[1], c = arr[2];
-
-        if (a + b <= c || a + c <= b || b + c <= a)
-            return false;
-
-        return true;
-    }
 };
-
 
 
 /*
@@ -167,6 +154,14 @@ public:
         for (int i = n - 1; i >= 2; --i) {
             int left = 0, right = i - 1;
             while (left < right) {
+                /*
+                 * 为什么nums[left]+nums[right]大于nums[i]就可以认为三角形有效，且把right-left个都加入结果？
+                 * 例子：[2,2,2,2,3,4]，假设L=0，R=4，i=5，nums[L]=2,nums[R]=3,nums[i]=4，满足上述条件
+                 * 因为三角形条件之一是两边之和大于第三边。由于数组是有序的且L位于左边第一个，因此在L后面R前面的所有元素都是大于nums[L],
+                 * 这也就说明，这些元素与nums[R]之和肯定会大于nums[i]，因为升序排列。所以我们可以把从L开始到R这段区间中的元素都算作是
+                 * 一个有效的三角形。从例子看，当前case有4个三角形，即R-L=4-0=4。这一点代入例子就很清楚了。
+                 *
+                 * */
                 if (nums[left] + nums[right] > nums[i]) {
                     res += right - left;
                     --right;

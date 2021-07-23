@@ -84,7 +84,7 @@ public:
 };
 
 /*
- * solution 2: divide and conquer
+ * solution 2: divide and conquer + postorder traversal
  * time: O(n)
  * space: O(n)
  * */

@@ -177,7 +177,11 @@ public:
         TreeNode* left = lowestCommonAncestor(root->left, p, q);
         TreeNode* right = lowestCommonAncestor(root->right, p, q);
 
-        // 如果左右子树找到的结果都不是空的，证明pq分布在两边。所以LCA只能是根节点
+        /* 如果左右子树找到的结果都不是空的，证明pq分布在两边。所以LCA只能是根节点，为什么？
+            从递归出口来看，返回值只能是：root为空，或者找到了p，或者找到了q。如果left，right都不为空，肯定
+            不是第一种情况，那么就是找到了p或者q。又因为两个同时存在，不可能是同时找到了两次p或者q，所以一定是
+            p和q分布在树的两侧，这样我们就可以认为LCA是当前根节点。
+         */
         if(left && right)
             return root;
 

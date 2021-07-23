@@ -146,6 +146,7 @@ private:
         }
 
         int left = root->left == NULL ? 0 : numOfChildren[root->left];
+
         if (left >= k) {
             return quickSelectOnTree(root->left, k, numOfChildren);
         }

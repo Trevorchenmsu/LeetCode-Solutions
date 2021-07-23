@@ -54,7 +54,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution: prefix sum
+ * solution 1: prefix sum
  * time: O(n)
  * space: O(1)
  * */
@@ -78,6 +78,37 @@ public:
         }
 
         return -1;
+    }
+};
+
+/*
+ * solution 2: prefix sum
+ * time: O(n)
+ * space: O(n)
+ * */
+
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> prefixSum(n, 0);
+
+        prefixSum[0] = nums[0];
+        for (int i = 1; i < n; i++) {
+            prefixSum[i] = prefixSum[i - 1] + nums[i];
+        }
+
+        int res = 1e5;
+        for (int i = 0; i < n; i++) {
+            if (i == 0 && prefixSum[n - 1] - prefixSum[i] == 0 ||
+                i == n - 1 && prefixSum[n - 2] == 0 ||
+                i > 0 && prefixSum[i - 1] == (prefixSum[n - 1] - prefixSum[i]) ) {
+
+                res = min(res, i);
+            }
+        }
+
+        return res == 1e5 ? -1 : res;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

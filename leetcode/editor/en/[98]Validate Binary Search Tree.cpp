@@ -54,7 +54,7 @@
 /*
  * solution 1: dfs/recursion
  * time: O(n)
- * space: O(logn)
+ * space: O(h)
  *
  * */
 class Solution {
@@ -80,48 +80,10 @@ public:
 };
 
 
-
 /*
- * solution 2: iteration + inorder traversal
+ * solution 2: dfs/recursion
  * time: O(n)
- * space: O(n)
- *
- * */
-class Solution {
-public:
-    bool isValidBST(TreeNode* root) {
-        long pre = LONG_MIN;
-        stack<TreeNode*> nodeStack;
-
-        // use root as condition, then we do not need to consider whether roo would be null
-        while (root || !nodeStack.empty()) {
-            // add the left nodes
-            while (root) {
-                nodeStack.push(root);
-                root = root->left;
-            }
-
-            TreeNode* node = nodeStack.top();
-            nodeStack.pop();
-
-            if (node->val <= pre)
-                return false;
-
-            pre = node->val;
-            root = node->right;
-        }
-
-        return true;
-    }
-
-};
-
-
-
-/*
- * solution 3: dfs/recursion
- * time: O(n)
- * space: O(n)
+ * space: O(h)
  *
  * */
 
@@ -161,9 +123,9 @@ public:
 };
 
 /*
- * solution 4: dfs + inorder traversal
+ * solution 3: dfs + inorder traversal
  * time: O(n)
- * space: O(n)
+ * space: O(h)
  *
  * */
 class Solution {
@@ -193,39 +155,39 @@ private:
 };
 
 
-
 /*
- * solution 5: iteration + inorder traversal
+ * solution 4: iteration + inorder traversal
  * time: O(n)
- * space: O(n)
+ * space: O(h)
  *
  * */
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        stack<TreeNode*> st;
+        long pre = LONG_MIN;
+        stack<TreeNode*> nodeStack;
 
-        bool firstNode = true;
-        int pre = 0;
-
-        while (root || !st.empty()) {
+        // use root as condition, then we do not need to consider whether roo would be null
+        while (root || !nodeStack.empty()) {
+            // add the left nodes
             while (root) {
-                st.push(root);
+                nodeStack.push(root);
                 root = root->left;
             }
 
-            TreeNode* cur = st.top(); st.pop();
+            TreeNode* node = nodeStack.top();
+            nodeStack.pop();
 
-            if (!firstNode && cur->val <= pre)
+            if (node->val <= pre)
                 return false;
 
-            pre = cur->val;
-            root = cur->right;
-            firstNode = false;
+            pre = node->val;
+            root = node->right;
         }
 
         return true;
     }
+
 };
 
 //leetcode submit region end(Prohibit modification and deletion)

@@ -53,19 +53,16 @@ class Solution {
 public:
     int hIndex(vector<int>& citations) {
         int n = citations.size();
-        /*目标是查找h，h的范围是从1到n，为了简化，在二分法中使用0到n-1.
-        为什么判定找到目标h采用c[mid]=n-mid？因为引用数组是有序的，n-mid即为mid右侧的那一堆论文
-        当考虑c[mid]为h指数时，根据定义要求，必须要有c[mid]大于等于h篇的论文，因此只能是右侧的那一堆论文*/
         int start = 0, end = n - 1;
 
         while (start + 1 < end) {
             int mid = start + (end - start) / 2;
-            if (citations[mid] == n - mid)
-                return n - mid;
-            else if (citations[mid] > n - mid)
+            if (citations[mid] >= n - mid) {
                 end = mid;
-            else
+            }
+            else {
                 start = mid;
+            }
         }
 
         if (citations[start] >= n - start)
