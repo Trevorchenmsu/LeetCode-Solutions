@@ -116,7 +116,7 @@ public:
 
 
 /*
- * solution 3: dp
+ * solution 3: dp, optimal
  * time: O(n^2)
  * space: O(n^2)
  * */

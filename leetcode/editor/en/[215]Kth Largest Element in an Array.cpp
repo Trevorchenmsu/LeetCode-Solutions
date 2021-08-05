@@ -36,31 +36,39 @@ public:
     }
 
     int quickSelect(vector<int> &nums, int start, int end, int k) {
-        if (start == end) return nums[start];
-
-        // partition
-        int i = start, j = end;
-        int mid = i + (j - i) / 2;
-        int pivot = nums[mid];
-
-        while (i <= j) {
-            while (i <= j && nums[i] < pivot)
-                i++;
-            while (i <= j && nums[j] > pivot)
-                j--;
-
-            if (i <= j)
-                swap(nums[i++], nums[j--]);
+        if (start == end) {
+            return nums[start];
         }
 
-        // divide and conquer
-        if (start + k - 1 <= j)
-            return quickSelect(nums, start, j, k); // left part
-        if (start + k - 1 >= i)
+        // partition
+        int mid = start + (end - start) / 2;
+        int pivot = nums[mid];
+
+        int i = start, j = end;
+        while (i <= j) {
+            while (i <= j  && nums[i] < pivot) {
+                i++;
+            }
+
+            while (i <= j && nums[j] > pivot) {
+                j--;
+            }
+
+            if (i <= j) {
+                swap(nums[i++], nums[j--]);
+            }
+        }
+
+
+        if (start + k - 1 <= j) {
+            return quickSelect(nums, start, j, k);
+        }
+
+        if (start + k - 1 >= i) {
             return quickSelect(nums, i, end, k - (i - start));
+        }
 
         return nums[j + 1];
     }
-
 };
 //leetcode submit region end(Prohibit modification and deletion)

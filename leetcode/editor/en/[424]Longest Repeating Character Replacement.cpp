@@ -129,4 +129,39 @@ public:
         return res;
     }
 };
+
+
+/*
+ * solution 4: sliding window, fastest
+ * time: O(n)
+ * space: O(1)
+ * */
+
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        vector<int> freqs(26, 0);
+        int left = 0, res = 0, max_freq = 0;
+
+        for(int right = 0; right < s.size(); right++) {
+
+            int window_size = right - left + 1;
+
+            freqs[s[right] - 'A']++;
+
+            max_freq = max(max_freq, freqs[s[right] - 'A']);
+
+            if(window_size - max_freq > k) {
+                freqs[s[left] - 'A']--;
+                left++;
+            }
+            else {
+                res = max(res, window_size);
+            }
+        }
+
+        return res;
+    }
+};
+
 //leetcode submit region end(Prohibit modification and deletion)

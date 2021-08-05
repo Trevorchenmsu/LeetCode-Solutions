@@ -37,7 +37,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution 1: divide and conquer
+ * solution: divide and conquer
  * time: O(nlog(logn))
  * space: O(n)
  * */
@@ -94,10 +94,5 @@ private:
     }
 };
 
-/*
- * solution 2: Segment Tree
- * time: O(nlog(logn))
- * space: O(n)
- * */
 
 //leetcode submit region end(Prohibit modification and deletion)

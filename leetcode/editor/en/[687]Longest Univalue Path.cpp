@@ -46,7 +46,7 @@
  */
 
 /*
- * solution: post order traversal
+ * solution 1: post order traversal
  * time: O(n)
  * space: O(n)
  * */
@@ -82,4 +82,46 @@ private:
         return max(left, right) + 1;
     }
 };
+
+/*
+ * solution 2: post order traversal
+ * time: O(n)
+ * space: O(n)
+ * */
+class Solution {
+public:
+    int longestUnivaluePath(TreeNode* root) {
+        if (root == NULL) {
+            return 0;
+        }
+        int res = 0;
+        int temp = dfs(root, res);
+        return res;
+    }
+
+private:
+    int dfs(TreeNode* root, int &res) {
+        if (root == NULL) {
+            return 0;
+        }
+
+        int L = 0, R = 0;
+
+        int left = dfs(root->left, res);
+        int right = dfs(root->right, res);
+
+        if (root->left != NULL && root->left->val == root->val) {
+            L = left;
+        }
+
+        if (root->right != NULL && root->right->val == root->val) {
+            R = right;
+        }
+
+        res = max(res, L + R);
+
+        return max(L, R) + 1;
+    }
+};
+
 //leetcode submit region end(Prohibit modification and deletion)

@@ -59,48 +59,56 @@ class RandomizedSet {
 public:
     /** Initialize your data structure here. */
     RandomizedSet() {
-        
+
     }
-    
+
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     bool insert(int val) {
-        if (val_index.count(val))
+        auto it = val2idx.find(val);
+        if (it != val2idx.end()) {
             return false;
-        val_arr.push_back(val);
-        val_index[val] = val_arr.size() - 1;
+        }
+
+        val2idx[val] = nums.size();
+        nums.push_back(val);
+
         return true;
     }
-    
+
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     bool remove(int val) {
-        if (!val_index.count(val))
+        auto it = val2idx.find(val);
+        if (it == val2idx.end()) {
             return false;
+        }
 
-        // get the index of remove element
-        int idx = val_index[val];
-        // move last element to the new index, the deleted element will be replaced
-        int last_element = val_arr.back();
-        val_arr[idx] = last_element;
-        // since we already replace the deleted element and the size of array reduce 1
-        // and the last element has been moved, so the current last element is useless.
-        val_arr.pop_back();
+        int idx = val2idx[val];
+        int last = nums.back();
+        nums[idx] = last;
+        val2idx[last] = idx;
+        val2idx.erase(val);
+        nums.pop_back();
 
-        val_index[last_element] = idx;
-        val_index.erase(val);
         return true;
     }
-    
+
     /** Get a random element from the set. */
     int getRandom() {
-        int idx = rand() % val_arr.size();
-        return val_arr[idx];
+        return nums[rand() % nums.size()];
     }
 
 private:
-    vector<int> val_arr;
-    unordered_map<int, int> val_index;
+    vector<int> nums;
+    unordered_map<int, int> val2idx;
 };
 
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * RandomizedSet* obj = new RandomizedSet();
+ * bool param_1 = obj->insert(val);
+ * bool param_2 = obj->remove(val);
+ * int param_3 = obj->getRandom();
+ */
 /**
  * Your RandomizedSet object will be instantiated and called as such:
  * RandomizedSet* obj = new RandomizedSet();

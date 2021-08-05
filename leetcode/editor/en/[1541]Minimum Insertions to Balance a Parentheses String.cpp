@@ -76,7 +76,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution: greedy
+ * solution 1: greedy
  * time: O(n)
  * space: O(1)
  * */
@@ -96,6 +96,38 @@ public:
             }
             if (cnt < 0)
                 res++, cnt++;
+        }
+
+        return res + cnt * 2;
+    }
+};
+
+/*
+ * solution 2: greedy
+ * time: O(n)
+ * space: O(1)
+ * */
+class Solution {
+public:
+    int minInsertions(string s) {
+        int cnt = 0, res = 0;
+
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '(') {
+                cnt++;
+            }
+            else {
+                if (i + 1 < s.size() && s[i + 1] == ')') {
+                    if (cnt > 0) cnt--;
+                    else res++;
+                    i++;
+                }
+                else {
+                    if (cnt > 0)
+                        res++,  cnt--;
+                    else res += 2;
+                }
+            }
         }
 
         return res + cnt * 2;

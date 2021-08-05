@@ -283,7 +283,7 @@ public:
 
 /*
  * solution 5: follow up solution
- * time: O(k + logn)
+ * time: O(k + logn) ?
  * space: O(logn)
  * */
 
@@ -300,10 +300,13 @@ public:
 
 private:
     vector<int> closestKValues(TreeNode * root, double target, int k) {
-        if(k == 1)
+        if(k == 1) {
             return {root->val};
+        }
+
         vector<int> inorder;
-        helper(root, inorder);
+        helper(root, inorder); //O(n)
+
         vector<int> res;
         int start = 0;
         int end = inorder.size() - 1;

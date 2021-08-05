@@ -163,6 +163,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1229]Meeting Scheduler.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1229]Meeting Scheduler.cpp" />
+              <option name="questionId" value="1165" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1231]Divide Chocolate.cpp">
           <value>
             <LeetcodeEditor>
@@ -203,6 +211,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1272]Remove Interval.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1272]Remove Interval.cpp" />
+              <option name="questionId" value="1200" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[127]Word Ladder.cpp">
           <value>
             <LeetcodeEditor>
@@ -216,6 +232,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1283]Find the Smallest Divisor Given a Threshold.cpp" />
               <option name="questionId" value="1408" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1288]Remove Covered Intervals.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1288]Remove Covered Intervals.cpp" />
+              <option name="questionId" value="1222" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -779,6 +803,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[253]Meeting Rooms II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[253]Meeting Rooms II.cpp" />
+              <option name="questionId" value="253" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[257]Binary Tree Paths.cpp">
           <value>
             <LeetcodeEditor>
@@ -1035,6 +1067,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[435]Non-overlapping Intervals.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[435]Non-overlapping Intervals.cpp" />
+              <option name="questionId" value="435" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[437]Path Sum III.cpp">
           <value>
             <LeetcodeEditor>
@@ -1072,6 +1112,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[448]Find All Numbers Disappeared in an Array.cpp" />
               <option name="questionId" value="448" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[452]Minimum Number of Arrows to Burst Balloons.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[452]Minimum Number of Arrows to Burst Balloons.cpp" />
+              <option name="questionId" value="452" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1152,6 +1200,30 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[55]Jump Game.cpp" />
               <option name="questionId" value="55" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[560]Subarray Sum Equals K.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[560]Subarray Sum Equals K.cpp" />
+              <option name="questionId" value="560" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[56]Merge Intervals.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[56]Merge Intervals.cpp" />
+              <option name="questionId" value="56" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[57]Insert Interval.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[57]Insert Interval.cpp" />
+              <option name="questionId" value="57" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1251,6 +1323,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[697]Degree of an Array.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[697]Degree of an Array.cpp" />
+              <option name="questionId" value="697" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[701]Insert into a Binary Search Tree.cpp">
           <value>
             <LeetcodeEditor>
@@ -1288,6 +1368,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[733]Flood Fill.cpp" />
               <option name="questionId" value="733" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[740]Delete and Earn.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[740]Delete and Earn.cpp" />
+              <option name="questionId" value="740" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1336,6 +1424,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[81]Search in Rotated Sorted Array II.cpp" />
               <option name="questionId" value="81" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[82]Remove Duplicates from Sorted List II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[82]Remove Duplicates from Sorted List II.cpp" />
+              <option name="questionId" value="82" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1432,6 +1528,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[981]Time Based Key-Value Store.cpp" />
               <option name="questionId" value="1023" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[986]Interval List Intersections.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[986]Interval List Intersections.cpp" />
+              <option name="questionId" value="1028" />
             </LeetcodeEditor>
           </value>
         </entry>

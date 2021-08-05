@@ -46,7 +46,7 @@
  */
 
 /*
- * solution 1 : dfs
+ * solution 1 : dfs， postorder traversal
  * time: O(n^2)
  * space: O(n)
  *
@@ -64,6 +64,7 @@ private:
         if (root == NULL)
             return;
 
+        // 目的是保证遍历每个节点，先用后序遍历走到树的最深处
         traverseTree(root->left, sum, res);
         traverseTree(root->right, sum, res);
         res += pathSumNum(root, sum);
@@ -110,6 +111,8 @@ public:
            因为如果从下面删减，就变成了从根节点到删减后节点的路径，这是已考虑过的路径，如果该路径满足要求，不用在这个递归
            处理，而是在上一个递归处理。注意：这里i并没有抵达数组的末端，因为考虑到了target sum可能为0的情况，如果把最后一个删
            了，会加入错误的路径。
+           为什么要考虑sum为0的情况？例如有条路径为[-7,3,4]，targetSum=0，那么这是条合理路径，当我们逐渐删除元素，最终剩下的sum=0，
+           刚好等于targetSum，这时候又会错误的计入一条路径，所以我们不能让路径删除到底。
         */
         int sum = curSum;
         for (int i = 0; i < path.size() - 1; i++) {
