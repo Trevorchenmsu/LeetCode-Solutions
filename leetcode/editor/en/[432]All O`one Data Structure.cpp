@@ -162,7 +162,8 @@ public:
         int curCount = key2cnt[key];
         key2cnt[key]++;
 
-        if (cnt2keys[curCount].count(key)) {
+        auto iter = cnt2keys[curCount].find(key);
+        if (iter != cnt2keys[curCount].end()) {
             cnt2keys[curCount].erase(key);
         }
 

@@ -57,32 +57,46 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+/*
+ * solution: sort
+ * time: O(nlogn)
+ * space: O(n)
+ *
+ * */
 class Solution {
 public:
+    static bool cmp (const vector<string> &s1, const vector<string> &s2) {
+        return s1[1] == s2[1] ? s1[0] < s2[0] : s1[1] < s2[1];
+    }
+
     vector<string> reorderLogFiles(vector<string>& logs) {
         vector<string> res;
-        if (logs.empty()) return res;
-
-        vector<string> digits;
-        vector<pair<string, string>> letters;
-
-        // separate the logs to digits and letters
-        for (const auto& log : logs) {
-            int i = log.find_first_of(' ');
-            if (isalpha(log[i + 1]))
-                letters.push_back(make_pair(log.substr(0, i), log.substr(i + 1)));
-            else digits.push_back(log);
+        if (logs.empty() || logs.size() == 0) {
+            return res;
         }
 
-        sort(letters.begin(), letters.end(), [](const auto& p1, const auto& p2){
-            return p1.second == p2.second ? p1.first < p2.first : p1.second < p2.second;
-        });
+        vector<string> digits;
+        vector<vector<string>> letters;
 
-        for (auto &s : letters)
-            res.push_back(s.first + " " + s.second);
+        for (const auto &log : logs) {
+            int i = log.find_first_of(' ');
+            if (isalpha(log[i + 1])) {
+                letters.push_back({log.substr(0, i), log.substr(i + 1)});
+            }
+            else {
+                digits.push_back(log);
+            }
+        }
 
-        for (auto &s : digits)
-            res.push_back(s);
+        sort(letters.begin(), letters.end(), cmp);
+
+        for (const auto &letter : letters) {
+            res.push_back(letter[0] + " " + letter[1]);
+        }
+
+        for (const auto &digit : digits) {
+            res.push_back(digit);
+        }
 
         return res;
     }

@@ -65,46 +65,44 @@ public:
     }
 
     int get(int key) {
-        if (key2val.find(key) == key2val.end())
+        auto it = key2val.find(key);
+        if (it == key2val.end()) {
             return -1;
+        }
 
-        //在链表中查找key的位置。因为是单向链表，所以iter的prev要连接iter的next。这样就相当于删除了这个节点
         auto iter = key2iter[key];
-        List.erase(iter);
-
-        // 把key插到链表末端
-        List.push_back(key);
-        key2iter[key] = --List.end();
+        keyList.erase(iter);
+        keyList.push_back(key);
+        key2iter[key] = --keyList.end();
 
         return key2val[key];
     }
 
     void put(int key, int value) {
-        //因为这里先采用了get函数，所以这个存在的节点已经被移动到了链表的末端，不用再移动操作
         if (get(key) != -1) {
             key2val[key] = value;
             return;
         }
 
-        // 如果链表满了，先删除链表头
-        if (List.size() == cap) {
-            int key_delete = *List.begin();
-            key2val.erase(key_delete);
-            key2iter.erase(key_delete);
-            List.erase(List.begin());
+        if (keyList.size() == cap) {
+            int key_del = *keyList.begin();
+            key2val.erase(key_del);
+            key2iter.erase(key_del);
+            keyList.erase(keyList.begin());
         }
 
-        //链表尾插入新节点，同时更新两个哈希表
+
         key2val[key] = value;
-        List.push_back(key);
-        key2iter[key] = --List.end();
+        keyList.push_back(key);
+        key2iter[key] = --keyList.end();
     }
 
 private:
-    unordered_map<int, int> key2val; //记录 key -> val
-    list<int> List; //把所有key按照recently visited的先后顺序排列
-    unordered_map<int, list<int>::iterator> key2iter; //记录key对应的在List中的迭代器位置
     int cap;
+    unordered_map<int, int> key2val;
+    list<int> keyList;
+    unordered_map<int, list<int>::iterator> key2iter;
+
 };
 
 

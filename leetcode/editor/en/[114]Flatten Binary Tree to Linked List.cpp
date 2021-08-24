@@ -80,6 +80,8 @@ public:
         flatten(root->left);
         flatten(right);
     }
+
+private:
     TreeNode* pre = NULL;
 };
 
@@ -153,6 +155,44 @@ public:
             cur->left = NULL;
         }
     }
+};
 
+/*
+ * solution 4: preorder traversal + iteration
+ * time: O(n)
+ * space: O(n)
+ * */
+
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        if (root == NULL) {
+            return;
+        }
+
+        stack<TreeNode*> st;
+        st.push(root);
+
+        TreeNode* dummy = new TreeNode();
+        TreeNode* prev = dummy;
+
+        while (!st.empty()) {
+            auto node = st.top(); st.pop();
+            prev->right = node;
+            prev = prev->right;
+
+            if (node->right) {
+                st.push(node->right);
+            }
+
+            if (node->left) {
+                st.push(node->left);
+            }
+
+            node->left = NULL;
+        }
+
+        root = dummy->right;
+    }
 };
 //leetcode submit region end(Prohibit modification and deletion)

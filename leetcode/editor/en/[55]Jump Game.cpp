@@ -37,46 +37,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution 1: bfs, TLE
- * time: O(n^2)
- * space: O(n^2),
- * */
-class Solution {
-public:
-    bool canJump(vector<int>& nums) {
-        queue<int> q; // queue stores the index
-        q.push(0);
-        int target = nums.size() - 1;
-
-        unordered_set<int> visited;
-        visited.insert(0);
-
-        int idx = 0;
-        while (!q.empty()) {
-            int cur = q.front(); q.pop();
-            if (cur == target)
-                return true;
-
-            while (nums[cur]) {
-                if (cur + nums[cur] >= nums.size())
-                    idx = nums.size() - 1;
-                else
-                    idx = cur + nums[cur];
-
-                if (visited.count(idx))
-                    continue;
-
-                q.push(idx);
-                nums[cur]--;
-            }
-        }
-
-        return false;
-    }
-};
-
-/*
- * solution 2: top down dp, TLE
+ * solution 1: top down dp, TLE
  * time: O(n^2)
  * space: O(n)
  * */
@@ -101,8 +62,31 @@ public:
     }
 };
 
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        if (nums.empty() || nums.size() == 0) {
+            return false;
+        }
+
+        int n = nums.size();
+        vector<int> dp(n, 0);
+        dp[0] = 1;
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                dp[i] = dp[j] && (nums[j] + j >= i);
+                if (dp[i] == 1) {
+                    break;
+                }
+            }
+        }
+
+        return dp[n - 1];
+    }
+};
+
 /*
- * solution 3: greedy
+ * solution 2: greedy
  * time: O(n)
  * space: O(1)
  * */

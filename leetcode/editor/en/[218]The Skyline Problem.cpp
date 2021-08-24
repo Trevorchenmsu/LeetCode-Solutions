@@ -70,33 +70,56 @@
 class Solution {
 public:
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
-        vector<pair<int, int>> lines;
         vector<vector<int>> res;
+        vector<vector<int>> lines;
 
-        // sweep line
-        for (const auto& b : buildings) {
-            lines.push_back({b[0], -b[2]}); // left edge of rectangle
-            lines.push_back({b[1], b[2]}); // right edge of rectangle
+
+        //存储所有矩形左边和右边的xy坐标，左边以负数加入，便于区分左右边，然后以x坐标排序
+        for(const auto& b : buildings){
+            lines.push_back({b[0], -b[2]});
+            lines.push_back({b[1], b[2]});
         }
         sort(lines.begin(), lines.end());
 
+        /*采用有序哈希集存储高度，目的是为了让高度有序，为什么？因为这样我们可以每次都取高度
+          的最大值，当较高矩形存在时，这个较大的高度会覆盖很多小矩形，从而不用考虑它们
+          预先存入0是防止所有高度被删除后，仍然需要底平面（高度为0）来作为高度的关键点。
+         */
         multiset<int> heights{0};
+
         int curHeight = 0;
         int preHeight = 0;
 
-        for (const auto& line : lines) {
-            if (line.second < 0) // encounter left edge
-                heights.insert(-line.second);
-            else
-                // encounter right edge, the height is no longer useful
-                heights.erase(heights.find(line.second));
+        /*
+         * 遍历所有边。如果遇到高度为负数，表示遇到了矩形左边，将高度插入哈希集中，同时取负还原高度值。
+         * 如果遇到高度为负数，表示遇到了矩形右边，即目前这个矩形已经被考虑完毕，它的高度不再被需要，
+         * 所以从高度哈希集中删除掉。
+         *
+         * */
+        for(const auto &line : lines){
+            if(line[1] < 0) {
+                heights.insert(-line[1]);
+            }
+            else {
+                auto it = heights.find(line[1]);
+                heights.erase(it);
+            }
+
+            /*
+             * 最关键的模块：
+             * (1)先对高度哈希集取最后一个元素，因为它是有序的，最后一个也是最大的，作为当前高度；
+             * (2)如果当前高度不等于之前的高度，即表示当前高度比之前的高度大（因为有序），则把
+             *    对应x坐标和当前高度加入结果中，并更新之前高度。只要目前有矩形存在，它就会覆盖其他
+             *    小矩形，因此下面的curHeight总是这个高，if也不会执行。只有当走到大矩形的右边界时，
+             *    通过上面的erase语句把它从高度哈希集中删除，接下来的curHeight就由第二大高度顶替，
+             *    从而加入新的关键点。此时是以被删除矩形的右边界为x坐标，y则为第二大高度。
+             * */
             curHeight = *heights.rbegin();
-            if (curHeight != preHeight) {
-                res.push_back({line.first, curHeight});
+            if(curHeight != preHeight){
+                res.push_back({line[0], curHeight});
                 preHeight = curHeight;
             }
         }
-
         return res;
     }
 };

@@ -62,6 +62,11 @@
 //["901 mail.com",,,,"5 org","951 com"]
 
 //leetcode submit region begin(Prohibit modification and deletion)
+/*
+ * solution 1: hash table
+ * time: O(nL)
+ * space: O(n)
+ * */
 class Solution {
 public:
     vector<string> subdomainVisits(vector<string>& cpdomains) {
@@ -73,18 +78,59 @@ public:
             int idx = cpd.find(" ");
             int cnt = stoi(cpd.substr(0, idx));
             string s = cpd.substr(idx + 1);
+            cnt_map[s] += cnt;
 
             for (int i = 0; i < s.length(); i++) {
                 if (s[i] == '.') {
                     cnt_map[s.substr(i + 1)] += cnt;
                 }
             }
-            cnt_map[s] += cnt;
         }
 
         for (auto &m : cnt_map) {
             string s = to_string(m.second) + " " + m.first;
             res.push_back(s);
+        }
+
+        return res;
+    }
+};
+
+/*
+ * solution 2: hash table
+ * time: O(nL)
+ * space: O(n)
+ * */
+class Solution {
+public:
+    vector<string> subdomainVisits(vector<string>& cpds) {
+        vector<string> res;
+        if (cpds.empty() || cpds.size() == 0) {
+            return res;
+        }
+
+        unordered_map<string, int> str2cnt;
+        for (const auto& cpd : cpds) {
+            int idx = cpd.find_first_of(' ');
+            int num = stoi(cpd.substr(0, idx));
+            for (int i = cpd.size() - 1; i >= 0; i--) {
+                if (isalpha(cpd[i])) {
+                    continue;
+                }
+                else if (cpd[i] == '.') {
+                    string subdomain = cpd.substr(i + 1, cpd.size() - i);
+                    str2cnt[subdomain] += num;
+                }
+                else if (cpd[i] == ' ') {
+                    string subdomain = cpd.substr(i + 1, cpd.size() - i);
+                    str2cnt[subdomain] += num;
+                    break;
+                }
+            }
+        }
+
+        for (const auto&[str, cnt] : str2cnt) {
+            res.push_back(to_string(cnt) + " " + str);
         }
 
         return res;

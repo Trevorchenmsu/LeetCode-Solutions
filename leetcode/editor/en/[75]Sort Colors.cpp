@@ -41,7 +41,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution: two pointers
+ * solution 1: two pointers, optimal
  * time: O(n)
  * space: O(1)
  * */
@@ -59,6 +59,101 @@ public:
             else
                 swap(nums[i], nums[right--]);
         }
+    }
+};
+
+/*
+ * solution 2: merge sort
+ * time: O(nlogn)
+ * space: O(n)
+ * */
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        if (nums.size() == 1) {
+            return;
+        }
+
+        int n = nums.size();
+        vector<int> bucket(n);
+        mergeSort(nums, 0, n - 1, bucket);
+    }
+
+private:
+    void mergeSort(vector<int> &nums, int start, int end, vector<int> &bucket) {
+        if (start >= end) {
+            return;
+        }
+
+        int mid = start + (end - start) / 2;
+        mergeSort(nums, start, mid, bucket);
+        mergeSort(nums, mid + 1, end, bucket);
+
+        int idx = start, i = start, j = mid + 1;
+        while (i <= mid && j <= end) {
+            if (nums[i] <= nums[j]) {
+                bucket[idx++] = nums[i++];
+            }
+            else {
+                bucket[idx++] = nums[j++];
+            }
+        }
+
+        while (i <= mid) {
+            bucket[idx++] = nums[i++];
+        }
+
+        while (j <= end) {
+            bucket[idx++] = nums[j++];
+        }
+
+        for (int i = start; i <= end; i++) {
+            nums[i] = bucket[i];
+        }
+    }
+};
+
+/*
+ * solution 3: quick sort
+ * time: O(nlogn)
+ * space: O(logn)
+ * */
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        if (nums.size() == 1) {
+            return;
+        }
+
+        quickSort(nums, 0, nums.size() - 1);
+    }
+
+private:
+    void quickSort(vector<int> &nums, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+
+        // partition
+        int mid = start + (end - start) / 2;
+        int pivot = nums[mid];
+        int i = start, j = end;
+        while (i <= j) {
+            while (i <= j && nums[i] < pivot) {
+                i++;
+            }
+
+            while (i <= j && nums[j] > pivot) {
+                j--;
+            }
+
+            if (i <= j) {
+                swap(nums[i++], nums[j--]);
+            }
+        }
+
+        quickSort(nums, start, j);
+        quickSort(nums, i, end);
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

@@ -77,10 +77,14 @@ public:
     int jump(vector<int>& nums) {
         int res = 0, preMax = 0, curMax = 0;
         for (int i = 0; i < nums.size(); i++) {
+            // 因为我们还处于上一次的最远距离的范围内，所以只要if不符合条件，我们就不更新结果
+            // 当i当于preMax。则表示已经超过上一次所能覆盖的区间，所以我们要用之前一路上更新的curMax来替换
+            // 它表示为之前访问路径中的一个最大的覆盖范围。
             if (i > preMax) {
                 preMax = curMax;
                 res++;
             }
+            // 目前路径上可以走的当前最远距离
             curMax = max(curMax, nums[i] + i);
         }
 

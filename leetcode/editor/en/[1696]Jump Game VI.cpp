@@ -68,15 +68,19 @@ public:
                因为这个和最大的位置就可以作为下一个窗口的起跳点。
             */
             while (!dq.empty() && i - dq.front().second > k)
-                // larger than the window size k, delete the front
                 dq.pop_front();
 
-            // 这两步就是用来更新当前窗口内和最大的元素。当新位置加上起点的值更大时，就要把dq中较小位置弹出让位
-            int curSteps = dq.front().first + nums[i];
+            /*
+             * 这两步就是用来更新当前窗口内和最大的元素。当新位置加上起点的值更大时，就要把dq中较小位置弹出让位
+             * 这里的curSteps就是我漏掉的求和，在每次遍历中都把和记录好。每次累加和没有关系，因为在单调栈中会降序排序，
+             * 所有最终优先考虑的都是最大值。
+             * */
+            int score = dq.front().first + nums[i];
             while (!dq.empty() && curSteps > dq.back().first)
                 dq.pop_back();
 
-            dq.push_back({curSteps, i});
+            // 所以最终插入单调栈尾部的不是单纯的数组值和idx，而是累加在那个idx的和及其idx
+            dq.push_back({score, i});
         }
 
         // 这里返回的不能时dq.front().first，因为更大的和都是在back逐渐加进去的

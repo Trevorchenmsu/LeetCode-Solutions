@@ -167,15 +167,20 @@ public:
 class Solution {
 public:
     int maxFrequency(vector<int>& nums, int k) {
-        int i = 0, j = 0, n = nums.size(), res = 0;
+        if (nums.empty() || nums.size() == 0) {
+            return 0;
+        }
+
         sort(nums.begin(), nums.end());
         long sum = k;
+        int left = 0, res = 0;
+        for (int right = 0; right < nums.size(); right++) {
+            sum += nums[right];
+            while (sum < (long) (right - left + 1) * nums[right]) {
+                sum -= nums[left++];
+            }
 
-        for (; j < n; j++) {
-            sum += nums[j];
-            while ((long) nums[j] * (j - i + 1) > sum)
-                sum -= nums[i++];
-            res = max(res, j - i + 1);
+            res = max(res, right -  left + 1);
         }
 
         return res;

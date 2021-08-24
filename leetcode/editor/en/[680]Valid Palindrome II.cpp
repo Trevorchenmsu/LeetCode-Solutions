@@ -29,7 +29,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution: two pointers
+ * solution 1: two pointers
  * time: (n)
  * space:(1)
  *
@@ -61,6 +61,57 @@ private:
     bool isPalindrome(string &s, int left, int right) {
         pair<int, int>  diff = findDiff(s, left, right);
         return diff.first >= diff.second;
+    }
+};
+
+
+/*
+ * solution 2: two pointers
+ * time: (n)
+ * space:(1)
+ *
+ * */
+
+
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        if (s.empty() || s.size() == 0) {
+            return true;
+        }
+
+        int left = 0, right = s.size() - 1;
+        while (left <= right) {
+            if (s[left] == s[right]) {
+                left++, right--;
+            }
+            else {
+                break;
+            }
+        }
+
+        if (left > right) {
+            return true;
+        }
+
+        string str_left = s.substr(left + 1, right - left);
+        string str_right = s.substr(left, right - left);
+
+        return isPalindrome(str_left) ||
+               isPalindrome(str_right);
+    }
+
+private:
+    bool isPalindrome(string &s) {
+        int left = 0, right = s.size() - 1;
+        while (left < right) {
+            if (s[left] != s[right]) {
+                return false;
+            }
+            left++, right--;
+        }
+
+        return true;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

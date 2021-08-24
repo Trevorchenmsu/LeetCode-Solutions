@@ -191,7 +191,8 @@ public:
  * solution 3: dfs + bfs
  * time: O(n)
  * space: O(n)
- * */class Solution {
+ * */
+class Solution {
 public:
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
         vector<int> res;
@@ -252,5 +253,87 @@ public:
         findParents(parents, root->right);
     }
 };
+
+
+/*
+ * solution 4: dfs + bfs
+ * time: O(n)
+ * space: O(n)
+ * */
+ class Solution {
+ public:
+     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+         vector<int> res;
+         if (root == NULL) {
+             return res;
+         }
+
+         unordered_map<TreeNode*, TreeNode*> parents;
+         parents[root] = NULL;
+         getParents(root, parents);
+
+         unordered_set<TreeNode*> visited;
+         visited.insert(target);
+
+         queue<TreeNode*> q;
+         q.push(target);
+
+         int step = 0;
+         while (!q.empty()) {
+             int len = q.size();
+             while (len--) {
+                 auto cur = q.front(); q.pop();
+                 if (step == k) {
+                     res.push_back(cur->val);
+                 }
+
+                 auto it = visited.find(cur->left);
+                 if (cur->left != NULL && it == visited.end()) {
+                     q.push(cur->left);
+                     visited.insert(cur->left);
+                 }
+
+                 it = visited.find(cur->right);
+                 if (cur->right != NULL && it == visited.end()) {
+                     q.push(cur->right);
+                     visited.insert(cur->right);
+                 }
+
+                 it = visited.find(parents[cur]);
+                 if (parents[cur] != NULL && it == visited.end()) {
+                     q.push(parents[cur]);
+                     visited.insert(parents[cur]);
+                 }
+             }
+
+             step++;
+
+             if (step > k) {
+                 break;
+             }
+         }
+
+         return res;
+
+     }
+
+ private:
+     void getParents(TreeNode* root,  unordered_map<TreeNode*, TreeNode*> &parents) {
+         if (root == NULL) {
+             return;
+         }
+
+         if (root->left != NULL) {
+             parents[root->left] = root;
+         }
+
+         if (root->right != NULL) {
+             parents[root->right] = root;
+         }
+
+         getParents(root->left, parents);
+         getParents(root->right, parents);
+     }
+ };
 
 //leetcode submit region end(Prohibit modification and deletion)
