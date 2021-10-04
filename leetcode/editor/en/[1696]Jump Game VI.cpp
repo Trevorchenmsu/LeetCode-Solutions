@@ -49,7 +49,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution: sliding window + monotonic stack
+ * solution 1: sliding window + monotonic stack
  * time: O(n)
  * space: (n)
  * */
@@ -67,7 +67,7 @@ public:
                的位置，这是因为我们维护的是一个单调递减栈，在窗口范围内和比较小的最终都会被pop掉，留下和最大的位置。
                因为这个和最大的位置就可以作为下一个窗口的起跳点。
             */
-            while (!dq.empty() && i - dq.front().second > k)
+            if (!dq.empty() && i - dq.front().second > k)
                 dq.pop_front();
 
             /*
@@ -86,7 +86,73 @@ public:
         // 这里返回的不能时dq.front().first，因为更大的和都是在back逐渐加进去的
         return dq.back().first;
     }
-
-
 };
+
+
+/*
+ * solution 2: sliding window + monotonic stack, better solution，标准的单调栈和滑窗处理
+ * time: O(n)
+ * space: (n)
+ * */
+
+class Solution {
+public:
+    int maxResult(vector<int>& nums, int k) {
+        if (nums.empty() || nums.size() == 0) {
+            return 0;
+        }
+
+        deque<int> dq;
+        dq.push_back(0);
+
+        for(int i = 1; i < nums.size(); i++) {
+            nums[i] += nums[dq.front()];
+
+            // 标准单调栈处理
+            while (!dq.empty() && nums[i] >= nums[dq.back()]) {
+                dq.pop_back();
+            }
+
+            // 标准滑窗处理，超出窗口后删除
+            if(!dq.empty() && i - dq.front() >= k) {
+                dq.pop_front();
+            }
+
+            // 标准单调栈加入元素
+            dq.push_back(i);
+        }
+
+        return nums.back();
+    }
+};
+
+
+/*
+ * solution 3: sliding window + max heap, slower solution
+ * time: O(nlogn)
+ * space: (n)
+ * */
+class Solution {
+public:
+    int maxResult(vector<int>& nums, int k) {
+        if (nums.empty() || nums.size() == 0) {
+            return 0;
+        }
+
+        int n = nums.size();
+        priority_queue<pair<int, int>> pq;
+        pq.push({nums[0], 0});
+
+        for (int i = 1; i < n; i++) {
+            while (!pq.empty() && i - pq.top().second > k) {
+                pq.pop();
+            }
+
+            nums[i] = nums[i] + nums[pq.top().second];
+            pq.push({nums[i], i});
+        }
+        return nums[n - 1];
+    }
+};
+
 //leetcode submit region end(Prohibit modification and deletion)

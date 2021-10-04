@@ -138,7 +138,81 @@ public:
 };
 
 /*
- * solution 2: sweep line
+ * solution 2: sweep line, TLE
+ * time:
+ * space:
+ *
+ * */
+class Solution {
+public:
+    bool isRectangleCover(vector<vector<int>>& rectangles) {
+        int left = INT_MAX, bottom = INT_MAX, top = INT_MIN, right = INT_MIN;
+
+        vector<vector<int>> events;
+        int start = 0, end = 1;
+        long total_area = 0;
+
+        for (auto &rec : rectangles) {
+            int x1 = rec[0], y1 = rec[1], x2 = rec[2], y2 = rec[3];
+            total_area += (double) (x2 - x1) * (y2 - y1);
+            events.push_back({x1, start, y1, y2});
+            events.push_back({x2, end, y1, y2});
+            left = min(left, x1);
+            bottom = min(bottom, y1);
+            top = max(top, y2);
+            right = max(right, x2);
+        }
+        sort(events.begin(), events.end());
+
+        long area = (long) (top - bottom) * (right - left);
+        vector<vector<int>> y_ranges;
+        int pre_x = 0;
+        long res = 0;
+
+        for (auto &event : events) {
+            int cur_x = event[0], state = event[1], y1 = event[2], y2 = event[3];
+            res += getArea(cur_x - pre_x, y_ranges);
+
+            if (state == start) {
+                y_ranges.push_back({y1, y2});
+                sort(y_ranges.begin(), y_ranges.end());
+            }
+            else {
+                for (int i = 0; i < y_ranges.size(); i++) {
+                    if (y_ranges[i][0] == y1 && y_ranges[i][1] == y2) {
+                        y_ranges.erase(y_ranges.begin() + i);
+                    }
+                }
+            }
+
+            pre_x = cur_x;
+        }
+
+        if (total_area > area) {
+            return false;
+        }
+
+        return area == res;
+    }
+
+    long getArea(int width, vector<vector<int>> &y_ranges) {
+        long pre_top = LONG_MIN, area = 0;
+        for (auto &y_range : y_ranges) {
+            long bottom = y_range[0], top = y_range[1];
+            bottom = max(bottom, pre_top);
+            if (top > bottom) {
+                area += (top - bottom) * width;
+            }
+            pre_top = top;
+        }
+
+        return area;
+    }
+};
+
+
+/*
+ * solution 3: sweep line
  * time:
  * space:
  *

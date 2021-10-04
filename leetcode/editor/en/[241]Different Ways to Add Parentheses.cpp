@@ -40,7 +40,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
  * solution: divide and conquer
- * time: O(n^3)?
+ * time: O(C_n)，具体为卡特兰数， Catalan number
  * space: O(n)
  *
  * */
@@ -68,6 +68,54 @@ public:
 
         if (res.empty())
             res.push_back(stoi(expression));
+
+        return res;
+    }
+};
+
+
+/*
+ * solution: divide and conquer, another format
+ * time: O(C_n)，具体为卡特兰数
+ * space: O(n)
+ *
+ * */
+class Solution {
+public:
+    vector<int> diffWaysToCompute(string s) {
+        if (s.size() == 1 || s.size() == 2 && isdigit(s[1])) {
+            int num = stoi(s);
+            return {num};
+        }
+
+        vector<int> res, left_res, right_res;
+        int n = s.size();
+        for (int i = 0; i < n; i++) {
+            if (isdigit(s[i])) {
+                continue;
+            }
+
+            string left = s.substr(0, i);
+            string right = s.substr(i + 1);
+            left_res = diffWaysToCompute(left);
+            right_res = diffWaysToCompute(right);
+            int val = 0;
+            for (auto &num1 : left_res) {
+                for (auto &num2 : right_res) {
+                    if (s[i] == '-') {
+                        val = num1 - num2;
+                    }
+                    if (s[i] == '+') {
+                        val = num1 + num2;
+                    }
+                    if (s[i] == '*') {
+                        val = num1 * num2;
+                    }
+                    res.push_back(val);
+                }
+            }
+
+        }
 
         return res;
     }

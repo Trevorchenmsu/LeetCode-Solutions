@@ -39,16 +39,18 @@
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        if (nums1.size() > nums2.size())
+        if (nums1.size() > nums2.size()) {
             return intersection(nums2, nums1);
+        }
 
         unordered_set<int> res;
-
-        unordered_set<int> set2(nums2.begin(), nums2.end());
+        unordered_set<int> numSet(nums2.begin(), nums2.end());
 
         for (auto &num : nums1) {
-            if (set2.count(num))
+            auto it = numSet.find(num);
+            if (it != numSet.end()) {
                 res.insert(num);
+            }
         }
 
         return vector<int> (res.begin(), res.end());
@@ -81,9 +83,9 @@ public:
             else j++;
         }
 
-        vector<int> ans(res.begin(), res.end()); //  O(min(m, n))
+        vector<int> res(res.begin(), res.end()); //  O(min(m, n))
 
-        return ans;
+        return res;
     }
 };
 

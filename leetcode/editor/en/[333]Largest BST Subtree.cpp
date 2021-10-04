@@ -59,7 +59,7 @@
  */
 
 /*
- * solution: tree recursion
+ * solution 1: tree recursion
  * time: O(n)
  * space: O(logn)
  *
@@ -110,6 +110,63 @@ public:
         res = max(res, leftNum + rightNum + 1);
 
         return leftNum + rightNum + 1;
+    }
+};
+
+
+/*
+ * solution 2: tree recursion
+ * time: O(n^2)
+ * space: O(logn)
+ *
+ * */
+class Solution {
+public:
+    int largestBSTSubtree(TreeNode* root) {
+        if (root == NULL) {
+            return 0;
+        }
+
+        //每一次先判定当前树是否为BST，如果是，就数节点个数，同时更新最大节点数。
+        if (isValidBST(root, INT_MIN, INT_MAX)) {
+            int count = 0;
+            countNodes(root, count);
+            res = max(res, count);
+        }
+
+        // 根节点考虑完毕后，继续考虑左右子树，先序遍历。
+        largestBSTSubtree(root->left);
+        largestBSTSubtree(root->right);
+
+        return res;
+    }
+
+private:
+    int res = 0;
+    void countNodes(TreeNode* root, int &count) {
+        if (root == NULL) {
+            return;
+        }
+
+        count++;
+        countNodes(root->left, count);
+        countNodes(root->right, count);
+    }
+
+    bool isValidBST(TreeNode* root, int min, int max) {
+        if (root == NULL) {
+            return true;
+        }
+
+        if (root->val <= min) {
+            return false;
+        }
+
+        if (root->val >= max) {
+            return false;
+        }
+
+        return isValidBST(root->left, min, root->val) && isValidBST(root->right, root->val, max);
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

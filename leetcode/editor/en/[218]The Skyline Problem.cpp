@@ -61,18 +61,29 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
 /*
- * Solution: sweep line
+ * 做题前的疑问：
+ * 1.什么时候确定一个矩形被考虑完毕，即右边弹出？用下面正负标记
+ * 2.用01标记左右边？存入数组时，左边以负数加入，右边以正数加入。
+ * 3.用什么数据结构？采用了treeset，即multiset，不仅有序还支持多个重复元素。我完全没有想到用这个额外的数据结构。但是仔细思考扫描线的模板，需要一个
+ * yRanges数组来存储一条边上的多个不同的y点，那么这里就自然会想到需要用一个额外的数据结构来存储高度，即y值。
+ * 4.用什么变量来比较两个不同的高？采用了当前高度curHeight和之前高度preHeight进行比较
+ *
+ * */
+
+/*
+ * Solution 1: sweep line
  * time: O(nlogn)
  * space: O(n)
  *
  * */
+
 class Solution {
 public:
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
         vector<vector<int>> res;
         vector<vector<int>> lines;
-
 
         //存储所有矩形左边和右边的xy坐标，左边以负数加入，便于区分左右边，然后以x坐标排序
         for(const auto& b : buildings){
@@ -84,6 +95,7 @@ public:
         /*采用有序哈希集存储高度，目的是为了让高度有序，为什么？因为这样我们可以每次都取高度
           的最大值，当较高矩形存在时，这个较大的高度会覆盖很多小矩形，从而不用考虑它们
           预先存入0是防止所有高度被删除后，仍然需要底平面（高度为0）来作为高度的关键点。
+          这个哈希集还有一个好处就是维持矩形一直active，只要没遇到矩形的右边，它的高就一直在集合里面作用，直到遇到右边才删除
          */
         multiset<int> heights{0};
 
@@ -123,4 +135,6 @@ public:
         return res;
     }
 };
+
+
 //leetcode submit region end(Prohibit modification and deletion)

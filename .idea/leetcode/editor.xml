@@ -107,6 +107,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[10]Regular Expression Matching.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[10]Regular Expression Matching.cpp" />
+              <option name="questionId" value="10" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[110]Balanced Binary Tree.cpp">
           <value>
             <LeetcodeEditor>
@@ -128,6 +136,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[113]Path Sum II.cpp" />
               <option name="questionId" value="113" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1143]Longest Common Subsequence.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1143]Longest Common Subsequence.cpp" />
+              <option name="questionId" value="1250" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -195,6 +211,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1235]Maximum Profit in Job Scheduling.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1235]Maximum Profit in Job Scheduling.cpp" />
+              <option name="questionId" value="1352" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1249]Minimum Remove to Make Valid Parentheses.cpp">
           <value>
             <LeetcodeEditor>
@@ -251,6 +275,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[128]Longest Consecutive Sequence.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[128]Longest Consecutive Sequence.cpp" />
+              <option name="questionId" value="128" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1300]Sum of Mutated Array Closest to Target.cpp">
           <value>
             <LeetcodeEditor>
@@ -291,6 +323,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1347]Minimum Number of Steps to Make Two Strings Anagram.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1347]Minimum Number of Steps to Make Two Strings Anagram.cpp" />
+              <option name="questionId" value="1469" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[135]Candy.cpp">
           <value>
             <LeetcodeEditor>
@@ -307,11 +347,27 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1375]Bulb Switcher III.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1375]Bulb Switcher III.cpp" />
+              <option name="questionId" value="1491" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1381]Design a Stack With Increment Operation.cpp">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1381]Design a Stack With Increment Operation.cpp" />
               <option name="questionId" value="1497" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[138]Copy List with Random Pointer.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[138]Copy List with Random Pointer.cpp" />
+              <option name="questionId" value="138" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -323,11 +379,27 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[139]Word Break.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[139]Word Break.cpp" />
+              <option name="questionId" value="139" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[13]Roman to Integer.cpp">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[13]Roman to Integer.cpp" />
               <option name="questionId" value="13" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[140]Word Break II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[140]Word Break II.cpp" />
+              <option name="questionId" value="140" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -352,6 +424,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1465]Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts.cpp" />
               <option name="questionId" value="1575" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1466]Reorder Routes to Make All Paths Lead to the City Zero.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1466]Reorder Routes to Make All Paths Lead to the City Zero.cpp" />
+              <option name="questionId" value="1576" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -747,6 +827,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[19]Remove Nth Node From End of List.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[19]Remove Nth Node From End of List.cpp" />
+              <option name="questionId" value="19" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1]Two Sum.cpp">
           <value>
             <LeetcodeEditor>
@@ -779,6 +867,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[212]Word Search II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[212]Word Search II.cpp" />
+              <option name="questionId" value="212" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[215]Kth Largest Element in an Array.cpp">
           <value>
             <LeetcodeEditor>
@@ -803,6 +899,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[21]Merge Two Sorted Lists.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[21]Merge Two Sorted Lists.cpp" />
+              <option name="questionId" value="21" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[222]Count Complete Tree Nodes.cpp">
           <value>
             <LeetcodeEditor>
@@ -824,6 +928,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[226]Invert Binary Tree.cpp" />
               <option name="questionId" value="226" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[22]Generate Parentheses.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[22]Generate Parentheses.cpp" />
+              <option name="questionId" value="22" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -907,6 +1019,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[26]Remove Duplicates from Sorted Array.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[26]Remove Duplicates from Sorted Array.cpp" />
+              <option name="questionId" value="26" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[272]Closest Binary Search Tree Value II.cpp">
           <value>
             <LeetcodeEditor>
@@ -960,6 +1080,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[297]Serialize and Deserialize Binary Tree.cpp" />
               <option name="questionId" value="297" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[29]Divide Two Integers.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[29]Divide Two Integers.cpp" />
+              <option name="questionId" value="29" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1075,11 +1203,27 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[338]Counting Bits.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[338]Counting Bits.cpp" />
+              <option name="questionId" value="338" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[33]Search in Rotated Sorted Array.cpp">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[33]Search in Rotated Sorted Array.cpp" />
               <option name="questionId" value="33" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[341]Flatten Nested List Iterator.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[341]Flatten Nested List Iterator.cpp" />
+              <option name="questionId" value="341" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1107,6 +1251,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[34]Find First and Last Position of Element in Sorted Array.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[34]Find First and Last Position of Element in Sorted Array.cpp" />
+              <option name="questionId" value="34" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[350]Intersection of Two Arrays II.cpp">
           <value>
             <LeetcodeEditor>
@@ -1128,6 +1280,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[367]Valid Perfect Square.cpp" />
               <option name="questionId" value="367" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[370]Range Addition.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[370]Range Addition.cpp" />
+              <option name="questionId" value="370" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1243,6 +1403,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[44]Wildcard Matching.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[44]Wildcard Matching.cpp" />
+              <option name="questionId" value="44" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[452]Minimum Number of Arrows to Burst Balloons.cpp">
           <value>
             <LeetcodeEditor>
@@ -1280,6 +1448,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[475]Heaters.cpp" />
               <option name="questionId" value="475" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[480]Sliding Window Median.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[480]Sliding Window Median.cpp" />
+              <option name="questionId" value="480" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1371,6 +1547,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[567]Permutation in String.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[567]Permutation in String.cpp" />
+              <option name="questionId" value="567" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[56]Merge Intervals.cpp">
           <value>
             <LeetcodeEditor>
@@ -1427,6 +1611,22 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[62]Unique Paths.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[62]Unique Paths.cpp" />
+              <option name="questionId" value="62" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[63]Unique Paths II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[63]Unique Paths II.cpp" />
+              <option name="questionId" value="63" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[658]Find K Closest Elements.cpp">
           <value>
             <LeetcodeEditor>
@@ -1480,6 +1680,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[694]Number of Distinct Islands.cpp" />
               <option name="questionId" value="694" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[696]Count Binary Substrings.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[696]Count Binary Substrings.cpp" />
+              <option name="questionId" value="696" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1651,6 +1859,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[85]Maximal Rectangle.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[85]Maximal Rectangle.cpp" />
+              <option name="questionId" value="85" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[863]All Nodes Distance K in Binary Tree.cpp">
           <value>
             <LeetcodeEditor>
@@ -1768,6 +1984,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[98]Validate Binary Search Tree.cpp" />
               <option name="questionId" value="98" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[992]Subarrays with K Different Integers.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[992]Subarrays with K Different Integers.cpp" />
+              <option name="questionId" value="1034" />
             </LeetcodeEditor>
           </value>
         </entry>

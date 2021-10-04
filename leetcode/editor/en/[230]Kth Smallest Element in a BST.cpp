@@ -113,10 +113,8 @@ public:
 
 /*
  * solution for follow-up: quick select
- * time :  O(n)
- * space:
- *
- *
+ * time : O(n)
+ * space: O(n)
  * */
 
 class Solution {

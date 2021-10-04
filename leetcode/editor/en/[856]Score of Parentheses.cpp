@@ -59,15 +59,16 @@ class Solution {
 public:
     int scoreOfParentheses(string s) {
         int res = 0;
-        stack<int> Stack;
+        stack<int> st;
+
         for (auto &ch : s) {
             if (ch == '(') {
-                Stack.push(res);
+                st.push(res);
                 res = 0;
             }
             else {
-                res = Stack.top() + max(2 * res, 1);
-                Stack.pop();
+                res = st.top() + max(2 * res, 1);
+                st.pop();
             }
         }
 

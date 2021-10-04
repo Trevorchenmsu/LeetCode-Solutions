@@ -122,6 +122,10 @@ public:
  * */
 class Solution {
 public:
+    /*
+     * 主要目的是查找滑窗的位置。当得到mid时，mid+k就是一个被预测的窗口位置。如果x离mid比较远，即离mid+k较近
+     * 此时start就得往后移动，所以start=mid+1.反之
+     * */
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
         int start = 0, end = arr.size() - k;
         while (start < end) {

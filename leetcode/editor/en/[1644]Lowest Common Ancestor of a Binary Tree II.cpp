@@ -64,7 +64,7 @@
  /*
   * solution: divide and conquer
   * time: O(n)
-  * space: O(n)
+  * space: O(h)
   * */
 class Solution {
 public:
@@ -109,6 +109,39 @@ private:
         }
 
         return left == NULL ? right : left;
+    }
+};
+
+
+/*
+ * solution: divide and conquer, optimal, without checking node existence
+ * time: O(n)
+ * space: O(h)
+ * */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        pair<TreeNode*, bool> res = LCA(root, p, q);
+        return res.second ? res.first : NULL;
+    }
+
+    pair<TreeNode*, bool> LCA(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (root == NULL) {
+            return {NULL, false};
+        }
+
+        auto left = LCA(root->left, p, q);
+        auto right = LCA(root->right, p, q);
+
+        if (left.first != NULL && right.first != NULL) {
+            return {root, true};
+        }
+
+        if (root == p || root == q) {
+            return {root, left.first || right.first};
+        }
+
+        return left.first ? left : right;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

@@ -74,6 +74,14 @@
  *
  *
  * */
+
+/* 做题前的疑问：
+ * 1.怎样确定最小翻转节点数？没有特别的记录，只要遇到不同的就交换，有点贪心的思想，结果就是最小的。
+ * 2.怎样翻转节点？答案的dfs就比较tricky
+ * 3.如何判定voyage和节点不同时是左节点还是右节点？先与跟节点判定，然后元素指针前进来判定左还是右
+ * 4.被翻转的是子树，但是记录翻转节点数是这个子树的父节点？对，所以要进行翻转的时候需要把父节点加到结果中
+ *
+ * */
 class Solution {
 public:
     vector<int> flipMatchVoyage(TreeNode* root, vector<int>& voyage) {
@@ -83,11 +91,25 @@ public:
     }
 
 private:
+    /*
+     * dfs返回值：在遍历树的过程中，判定当前节点和当前数组元素是否相等。
+     * */
     bool dfs(TreeNode* root, vector<int> &voyage, vector<int> &res, int &idx) {
+        // 如果当前节点为空，在voyage里面不会有任何体现或差异，所以空节点不影响结果，可判定为true
         if (!root) return true;
 
+        /* 首先要明确的是，我们要翻转的是子树，而不是父节点，如果父节点一开始就不等于当前数组元素
+         * 那么就需要退回到上一层去作为上一层父节点的子节点，然后进行flip。
+         * idx++这里是为了方便下面处理子节点，因为idx前进就相当于考虑下一个节点
+        */
         if (root->val != voyage[idx++]) return false;
 
+        /* 既然已经确定父节点相等了，接下来就要看看左右子节点是否满足当前数组元素的要求
+         * 如果左子节点存在且不等于当前数组元素，即表示遇到了要交换的节点，先把根节点存到结果中。
+         * 下面的两个dfs的位置就体现了交换左右子树的过程：可以看到在idx下的元素本该对应着左子节点，
+         * 但是因为前面我们已经知道它不等于左子节点，所以在进一步递归时，我们把root改成了root->right，
+         * 如果在下一层的递归中，这个dfs返回的是false，则证明交换不成功。如果成功的话会逐步深入递归。
+         * */
         if (root->left && root->left->val != voyage[idx]) {
             res.push_back(root->val);
             return dfs(root->right, voyage, res, idx) && dfs(root->left, voyage, res, idx);

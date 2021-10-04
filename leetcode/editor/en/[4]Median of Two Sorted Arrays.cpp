@@ -102,7 +102,7 @@ public:
 
 
 /*
- * solution 2: divide and conquery
+ * solution 2: divide and conquer
  * time: O(log(m + n))
  * space: O(log(m + n))
  * */
@@ -111,20 +111,33 @@ class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int m = nums1.size(), n = nums2.size();
+        // 如果m+n为奇数，则left和right相等。如果为偶数，则left和right错开。这样可以应对奇偶长度的m+n
         int left = (m + n + 1) / 2, right = (m + n + 2) / 2;
 
+        //分治法的思路相当于在n1和n2合成的大数组中，查找第k个数，这个k就是上面的left或者right
         return (findKth(nums1, 0, nums2, 0, left) + findKth(nums1, 0, nums2, 0, right)) / 2.0;
     }
 
     int findKth(vector<int> &nums1, int i, vector<int> &nums2, int j, int k) {
+        //如果n1的起始位置大于等于其数组长度时，则其所有数字已经被淘汰了
         if (i >= nums1.size())
             return nums2[j + k - 1];
 
+        //如果n2的起始位置大于等于其数组长度时，则其所有数字已经被淘汰了
         if (j >= nums2.size())
             return nums1[i + k - 1];
 
+        // 如果k=1，表示我们要查找第一个数，那只能时n1或者n2的起点
         if (k == 1)
             return min(nums1[i], nums2[j]);
+
+        /*
+         *因为需要在两个有序数组中找到第K个元素，为了加快搜索的速度，可以使用二分法，那么对谁二分呢，数组么？
+         *其实要对K二分，意思是需要分别在nums1和nums2中查找第K/2个元素。为什么可以这样?假如把n1和n2各自分为两段，左段肯定都是较小的数，
+         * 即便我们要合成整个大数组，那也是n1的左段和n2的左段合成较小的大数组左段，右段同理。例如n1=[1,2,3,4],n2=[5,6,7,8]，我想找第4个数，
+         *
+         *
+         * */
 
         int midVal1 = (i + k / 2 - 1 < nums1.size()) ? nums1[i + k / 2 - 1] : INT_MAX;
         int midVal2 = (j + k / 2 - 1 < nums2.size()) ? nums2[j + k / 2 - 1] : INT_MAX;
