@@ -59,63 +59,120 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * Solution: two stacks
+ * Solution 1: two stacks
  * time: O(n)
  * space: O(n)
+ * */
+class MaxStack {
+public:
+    MaxStack() {
+
+    }
+
+    void push(int x) {
+        st.push(x);
+        if (maxSt.empty() || x > maxSt.top()) {
+            maxSt.push(x);
+        }
+        else {
+            maxSt.push(maxSt.top());
+        }
+    }
+
+    int pop() {
+        int val = st.top();
+        st.pop();
+        maxSt.pop();
+        return val;
+    }
+
+    int top() {
+        return st.top();
+    }
+
+    int peekMax() {
+        return maxSt.top();
+    }
+
+    int popMax() {
+        int val = maxSt.top();
+        while (st.top() != val) {
+            buffer.push(pop());
+        }
+        pop();
+        while (!buffer.empty()) {
+            push(buffer.top());
+            buffer.pop();
+        }
+        return val;
+    }
+
+    stack<int> st, maxSt, buffer;
+};
+
+
+/*
+ * Solution 2: list + treemap, follow up
+ * time: O(logN)
+ * space: O(N)
  * */
 
 class MaxStack {
 public:
-    /** initialize your data structure here. */
     MaxStack() {
-        
-    }
-    
-    void push(int x) {
-        if (maxStack.empty() || maxStack.top() <= x)
-            maxStack.push(x);
-        dataStack.push(x);
-    }
-    
-    int pop() {
-        if (!maxStack.empty() && maxStack.top() == dataStack.top())
-            maxStack.pop();
-        int res = dataStack.top();
-        dataStack.pop();
-        return res;
-    }
-    
-    int top() {
-        return dataStack.top();
-    }
-    
-    int peekMax() {
-        return maxStack.top();
-    }
-    
-    int popMax() {
-        int res = maxStack.top();
 
-        stack<int> temp;
-        while (dataStack.top() != maxStack.top()) {
-            temp.push(dataStack.top());
-            dataStack.pop();
+    }
+
+    // 链表直接插入值，同时更新映射。以链表尾作为对应的迭代器位置，因为在链表中是插到尾巴的
+    void push(int x) { // O(logN)
+        valueList.push_back(x);
+        valToiter[x].push_back(--valueList.end());
+    }
+
+    int pop() { // O(logN)
+        // 首先获取链表尾元素用作返回值，然后删除该元素
+        int val = valueList.back();
+        valueList.pop_back();
+
+        // 从值对应的迭代器数组中删除最后一个迭代器，可能有多个重复元素，所以删除后要判定size，如果为0，key就要删除
+        valToiter[val].pop_back();
+        if (valToiter[val].size() == 0) {
+            valToiter.erase(val);
         }
 
-        dataStack.pop();
-        maxStack.pop();
-
-        while (!temp.empty()) {
-            push(temp.top());
-            temp.pop();
-        }
-
-        return res;
+        return val;
     }
 
-private:
-    stack<int> maxStack, dataStack;
+    int top() { // O(1)
+        return valueList.back();
+    }
+
+    int peekMax() { // O(1)
+        // 原来哈希表中也可以用end()作为迭代器来获取元素
+        return (--valToiter.end())->first;
+    }
+
+    int popMax() { // O(logN)
+        // 从treemap中获取最大元素，因为自动排序，只需要获取最后一个
+        int val = (--valToiter.end())->first;
+        // 这里用val获取迭代器的原因是，在链表中最大值不一定是链表尾，所以需要用迭代器的位置进行删除
+        auto iter = valToiter[val].back();
+        valueList.erase(iter);
+
+        // 因为删除了一个最大值，所以需要从对应的迭代器数组中删除一个迭代器，如果size0，就删除key
+        valToiter[val].pop_back();
+        if (valToiter[val].size() == 0) {
+            valToiter.erase(val);
+        }
+
+        return val;
+    }
+
+    // 采用链表存储插入值，采用treemap实现值映射迭代器，因为可能有重复元素，所以用数组存迭代器
+    list<int> valueList;
+    map<int, vector<list<int>::iterator>> valToiter;
 };
+
 
 /**
  * Your MaxStack object will be instantiated and called as such:

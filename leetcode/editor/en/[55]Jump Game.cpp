@@ -44,33 +44,12 @@
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        int n = nums.size();
-        vector<int> dp(n);
-
-        dp[0] = 1;
-
-        for (int i = 1; i < n; i++) {
-            for (int j = 0; j < i; j++) {
-                if (dp[j] && nums[j] + j >= i) {
-                    dp[i] = 1;
-                    break;
-                }
-            }
-        }
-
-        return dp[n - 1];
-    }
-};
-
-class Solution {
-public:
-    bool canJump(vector<int>& nums) {
         if (nums.empty() || nums.size() == 0) {
             return false;
         }
 
         int n = nums.size();
-        vector<int> dp(n, 0);
+        vector<int> dp(n);
         dp[0] = 1;
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
@@ -106,7 +85,7 @@ public:
 
 
 /*
- * solution 4: bottom up dp
+ * solution 3: bottom up dp
  * time: O(n)
  * space: O(n)
  * */

@@ -109,44 +109,47 @@ private:
 
 /*
  * solution 2: binary search
- * time: O(n*log()maxPile)
+ * time: O(n*log(maxPile))
  * space: O(1)
  * */
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        if (piles.empty()) return 0;
-
-        int start = 1, end = 0;
-
-        for (auto &pile : piles) { // O(n)
-            start = min(start, pile);
-            end = max(end, pile);
+        if (piles.empty() || piles.size() == 0) {
+            return 0;
         }
 
-        while (start + 1 < end) { // O(n*log(max(pile)
-            long mid = start + (end - start) / 2;
-            if (canEatup(piles, mid) <= h)
+        int start = 1, end = *max_element(piles.begin(), piles.end());
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (canComplete(piles, mid, h)) {
                 end = mid;
-            else
+            }
+            else {
                 start = mid;
+            }
         }
 
-        if (canEatup(piles, start) < h) return (int) start; // O(n)
-
-        return (int) end;
-    }
-
-private:
-    int canEatup(vector<int> &piles, int k) { // O(n)
-        int cnt = 0;
-
-        for (auto &pile : piles) {
-            cnt += (pile + k - 1) / k;
+        if (canComplete(piles, start, h)) {
+            return start;
         }
 
-        return cnt;
+        return end;
     }
 
+    bool canComplete(vector<int>& piles, int k, int h) {
+        int sum = 0;
+
+        for (auto pile : piles) {
+            sum += (pile + k - 1) / k;
+            if (sum > h) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 };
+
+
 //leetcode submit region end(Prohibit modification and deletion)

@@ -41,7 +41,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution 1: two pointers, optimal
+ * solution 1: three pointers, optimal
  * time: O(n)
  * space: O(1)
  * */

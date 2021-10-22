@@ -79,7 +79,7 @@ private:
 
 
 /*
- * solution 2: dp
+ * solution 2: dp，区间型dp，先循环区间长度，再循环区间起点
  * time: O(n^2)
  * space: O(n^2)
  * */

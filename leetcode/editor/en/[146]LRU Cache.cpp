@@ -111,89 +111,89 @@ private:
  * time: O(1)
  * space: O(n)
  * */
-//class LRUCache {
-//public:
-//    struct Node {
-//        int val, key;
-//        Node* prev;
-//        Node* next;
-//        Node(int _key, int _val): key(_key), val(_val), prev(NULL), next(NULL) {}
-//    };
-//
-//
-//    LRUCache(int capacity) {
-//        _capacity = capacity;
-//        head = NULL;
-//        tail = NULL;
-//    }
-//
-//    int get(int key) { // O(1)
-//        Node* node = key2nodes[key];
-//        if (node == NULL) return -1;
-//        if (node != tail)
-//            move2end(node);
-//
-//        return node->val;
-//    }
-//
-//    void put(int key, int value) { // O(1)
-//        Node* node = key2nodes[key];
-//        if (node != NULL) {
-//            // key exists
-//            node->val = value;
-//            if (node != tail)
-//                move2end(node);
-//        }
-//        else {
-//            Node* new_node = new Node(key, value);
-//
-//            // initial case
-//            if (head == NULL && tail == NULL) {
-//                head = new_node;
-//                tail = new_node;
-//            }
-//            else {
-//
-//                if (_capacity == 0) {
-//                    int delete_key = head->key;
-//                    key2nodes.erase(delete_key);
-//                    head = head->next;
-//                    _capacity++;
-//                }
-//
-//                tail->next = new_node;
-//                new_node->prev = tail;
-//                new_node->next = NULL;
-//                tail = new_node;
-//            }
-//
-//            key2nodes[key] = new_node;
-//            _capacity--;
-//        }
-//    }
-//
-//    void move2end(Node* node) { // O(1)
-//        if (node == head) {
-//            head = head->next;
-//        }
-//        else {
-//            node->prev->next = node->next;
-//            node->next->prev = node->prev;
-//        }
-//
-//        tail->next = node;
-//        node->prev = tail;
-//        node->next = NULL;
-//        tail = node;
-//    }
-//
-//private:
-//    int _capacity;
-//    Node* head;
-//    Node* tail;
-//    unordered_map<int, Node*> key2nodes;
-//
-//};
+class LRUCache {
+public:
+    struct Node {
+        int val, key;
+        Node* prev;
+        Node* next;
+        Node(int _key, int _val): key(_key), val(_val), prev(NULL), next(NULL) {}
+    };
+
+
+    LRUCache(int capacity) {
+        _capacity = capacity;
+        head = NULL;
+        tail = NULL;
+    }
+
+    int get(int key) { // O(1)
+        Node* node = key2nodes[key];
+        if (node == NULL) return -1;
+        if (node != tail)
+            move2end(node);
+
+        return node->val;
+    }
+
+    void put(int key, int value) { // O(1)
+        Node* node = key2nodes[key];
+        if (node != NULL) {
+            // key exists
+            node->val = value;
+            if (node != tail)
+                move2end(node);
+        }
+        else {
+            Node* new_node = new Node(key, value);
+
+            // initial case
+            if (head == NULL && tail == NULL) {
+                head = new_node;
+                tail = new_node;
+            }
+            else {
+
+                if (_capacity == 0) {
+                    int delete_key = head->key;
+                    key2nodes.erase(delete_key);
+                    head = head->next;
+                    _capacity++;
+                }
+
+                tail->next = new_node;
+                new_node->prev = tail;
+                new_node->next = NULL;
+                tail = new_node;
+            }
+
+            key2nodes[key] = new_node;
+            _capacity--;
+        }
+    }
+
+    void move2end(Node* node) { // O(1)
+        if (node == head) {
+            head = head->next;
+        }
+        else {
+            node->prev->next = node->next;
+            node->next->prev = node->prev;
+        }
+
+        tail->next = node;
+        node->prev = tail;
+        node->next = NULL;
+        tail = node;
+    }
+
+private:
+    int _capacity;
+    Node* head;
+    Node* tail;
+    unordered_map<int, Node*> key2nodes;
+
+};
 
 
 /**

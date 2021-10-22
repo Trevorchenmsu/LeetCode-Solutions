@@ -197,7 +197,7 @@ private:
 
 /*
  * solution 3: pq
- * time: O(n^2*logn)
+ * time: O(n^2*logn)， optimal
  * space: O(n)
  *
  * */
