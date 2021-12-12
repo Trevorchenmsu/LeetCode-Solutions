@@ -61,7 +61,7 @@ public:
 
 /*
  * soultion 2: quick select
- * time: O(n)
+ * time: 平均为O(n)，最差为O(n^2)，当数组元素全部一样或者全递增或者全递减的情况，是最坏情况。
  * space: O(n)
  *
  * */
@@ -117,4 +117,141 @@ public:
     }
 };
 
+/*
+ * soultion 3: quick select，模板优化
+ * time: 平均为O(n)，最差为O(n^2)，当数组元素全部一样或者全递增或者全递减的情况，是最坏情况。
+ * space: O(n)
+ *
+ * */
+
+class Solution {
+public:
+    unordered_map<int, int> cnts;
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        for (auto &num : nums) // O(n)
+            cnts[num]++;
+
+        vector<int> unique;
+        for (auto &[num, cnt] : cnts) // O(L), the length of unique element
+            unique.push_back(num);
+
+        int n = unique.size();
+        auto k_freq = quickSelect(unique, 0, n - 1, n - (k - 1)); // O(n)
+
+        vector<int> res;
+        for (auto &[num, cnt] : cnts) // O(L)
+            if (cnt >= k_freq)
+                res.push_back(num);
+
+        return res;
+    }
+
+    int quickSelect(vector<int> &unique, int start, int end, int k) {
+        if (start == end) return cnts[unique[start]];
+
+        // partition
+        int i = start, j = end;
+        int mid = (start + end) / 2;
+        int pivot = cnts[unique[mid]];
+
+        while (i <= j) {
+            while (i <= j && cnts[unique[i]] < pivot)
+                i++;
+
+            while (i <= j && cnts[unique[j]] > pivot)
+                j--;
+
+            if (i <= j)
+                swap(unique[i++], unique[j--]);
+        }
+
+        if (start + k - 1 <= j)
+            return quickSelect(unique, start, j, k);
+
+        if (start + k - 1 >= i)
+            return quickSelect(unique, i, end, k - (i - start));
+
+        return cnts[unique[j + 1]];
+    }
+};
+
+/*
+ * soultion 4: quick select，比解法2和解法3的快选版本更优， optimal
+ * time: 平均为O(n)，最差为O(n^2)，当数组元素全部一样或者全递增或者全递减的情况，是最坏情况。
+ * space: O(n)
+ *
+ * */
+class Solution {
+public:
+    unordered_map<int, int> cnts;
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        for (auto &num : nums) // O(n)
+            cnts[num]++;
+
+        vector<int> unique;
+        for (auto &[num, cnt] : cnts) // O(L), the length of unique element
+            unique.push_back(num);
+
+        int n = unique.size();
+        auto k_idx = quickSelect(unique, 0, n - 1, n - (k - 1)); // O(n)
+
+        vector<int> res (unique.begin() + k_idx, unique.end());
+
+        return res;
+    }
+
+    int quickSelect(vector<int> &unique, int start, int end, int k) {
+        if (start == end) return start;
+
+        // partition
+        int i = start, j = end;
+        int mid = (start + end) / 2;
+        int pivot = cnts[unique[mid]];
+
+        while (i <= j) {
+            while (i <= j && cnts[unique[i]] < pivot)
+                i++;
+
+            while (i <= j && cnts[unique[j]] > pivot)
+                j--;
+
+            if (i <= j)
+                swap(unique[i++], unique[j--]);
+        }
+
+        if (start + k - 1 <= j)
+            return quickSelect(unique, start, j, k);
+
+        if (start + k - 1 >= i)
+            return quickSelect(unique, i, end, k - (i - start));
+
+        return j + 1;
+    }
+};
+
+/*
+ * solution 5: bucket sort, 在java中因为可以用链表的下标，所以是最优解，在C++中链表无法用下标，所以比较慢
+ * time: O(nk)
+ * space: O(n)
+ * */
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        vector<vector<int>> bucket (nums.size() + 1);
+        unordered_map<int, int> numCnt;
+        for (auto & num : nums) numCnt[num]++;
+        for (auto &[num, cnt] : numCnt) {
+            bucket[cnt].push_back(num);
+        }
+
+        vector<int> res;
+        for (size_t i = nums.size(); i >= 0; i--) {
+            for (size_t j = 0; j < bucket[i].size(); j++) {
+                res.push_back(bucket[i][j]);
+                if (res.size() == k) return res;
+            }
+        }
+        return res;
+    }
+};
 //leetcode submit region end(Prohibit modification and deletion)

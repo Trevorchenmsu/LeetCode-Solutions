@@ -65,7 +65,7 @@ public:
 
             if (flag) continue;
 
-            for (int i = 0; i < cur.size(); i++) { // O(N)
+            for (int i = 0; i < cur.size(); i++) { // O(L^2)
                 if (isalpha(cur[i])) continue;
                 string neighbor = cur.substr(0, i) + cur.substr(i + 1);
 

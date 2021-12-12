@@ -75,7 +75,7 @@
  */
 
 /*
- * solution: tree preorder traversal
+ * solution: tree inorder traversal
  * time: O(h) for nex(), O(1) for hasNext()
  * space: O(h) for stack storage
  * */
