@@ -179,4 +179,57 @@ public:
         return dp_visited[n - 1] - 1;
     }
 };
+
+/*
+ * solution 3: 双向BFS，TLE
+ * time: O(n)？
+ * space: O(n)
+ * */
+class Solution {
+public:
+    int minJumps(vector<int>& arr) {
+        int n = arr.size();
+        if (n <= 1) return 0;
+
+        unordered_map<int, vector<int>> val2idx;
+        for (int i = 0; i < n; i++) val2idx[arr[i]].push_back(i);
+
+        vector<int> visited(n);
+        visited[0] = visited[n - 1] = 1;
+
+        unordered_set<int> head, tail;
+        head.insert(0);
+        tail.insert(n - 1);
+
+        int step = 0;
+        while (!head.empty()) {
+            if (head.size() > tail.size()) {
+                unordered_set<int> temp = head;
+                head = tail;
+                tail = temp;
+            }
+
+            unordered_set<int> next;
+            for (auto &cur : head) {
+                // 考虑等值任意跳的情况是否与tail相交
+                for (auto &idx : val2idx[arr[cur]]) {
+                    if (tail.count(idx)) return step + 1;
+                    if (visited[idx] == 0) next.insert(idx);
+                }
+                val2idx.erase(arr[cur]);
+
+                // 考虑左右跳的情况是否与tail相交
+                if (tail.count(cur + 1) || tail.count(cur - 1))
+                    return step + 1;
+                // 左右跳没有与tail相交，所以加入next
+                int x = cur + 1, y = cur - 1;
+                if (x < n && visited[x] == 0) next.insert(x);
+                if (y >= 0 && visited[y] == 0) next.insert(y);
+            }
+            step++;
+            head = next;
+        }
+        return -1;
+    }
+};
 //leetcode submit region end(Prohibit modification and deletion)

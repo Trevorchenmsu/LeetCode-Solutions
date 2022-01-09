@@ -74,13 +74,47 @@
  * };
  */
 
+
 /*
- * solution: tree inorder traversal
- * time: O(h) for nex(), O(1) for hasNext()
+ * solution 1: tree inorder traversal
+ * time: O(1) for next() and hasNext()
+ * space: O(n) for queue storage
+ * */
+class BSTIterator {
+public:
+    queue<int> q;
+    BSTIterator(TreeNode* root) {
+        inorder(root, q);
+    }
+
+    int next() {
+        int res = q.front(); q.pop();
+        return res;
+    }
+
+    bool hasNext() {
+        return !q.empty();
+    }
+
+    void inorder(TreeNode* root, queue<int> &q) {
+        if (root == NULL) return;
+        inorder(root->left, q);
+        q.push(root->val);
+        inorder(root->right, q);
+    }
+};
+
+
+/*
+ * solution 2: tree inorder traversal
+ * time: worst O(h) for next(), average O(1) for next(), O(1) for hasNext()
  * space: O(h) for stack storage
  * */
 class BSTIterator {
 public:
+    TreeNode* root;
+    stack<TreeNode*> st;
+
     BSTIterator(TreeNode* root) {
         this->root = root;
     }
@@ -92,20 +126,44 @@ public:
         }
 
         TreeNode* cur = st.top(); st.pop();
-        int res = cur->val;
         root = cur->right;
-        return res;
+        return cur->val;
 
     }
 
     bool hasNext() {
         return (root || !st.empty());
     }
+};
 
-
-private:
-    TreeNode* root;
+/*
+ * solution 3: tree inorder traversal, optimal
+ * time: worst O(h) for next(), average O(1) for next(), O(1) for hasNext()
+ * space: O(h) for stack storage
+ * */
+class BSTIterator {
+public:
     stack<TreeNode*> st;
+    BSTIterator(TreeNode* root) {
+        pushAllLeft(root);
+    }
+
+    int next() {
+        TreeNode* node = st.top(); st.pop();
+        pushAllLeft(node->right);
+        return node->val;
+    }
+
+    bool hasNext() {
+        return !st.empty();
+    }
+
+    void pushAllLeft(TreeNode* root) {
+        while (root) {
+            st.push(root);
+            root = root->left;
+        }
+    }
 };
 
 

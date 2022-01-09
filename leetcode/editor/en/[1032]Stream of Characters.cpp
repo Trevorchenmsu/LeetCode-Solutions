@@ -177,6 +177,11 @@ public:
 };
 
 
+/*
+ * solution 3: Trie, pass
+ * time: O(n)
+ * space: O(n)
+ * */
 
 class TrieNode{
 public:
@@ -190,13 +195,6 @@ public:
     }
 };
 
-
-
-/*
- * solution 3: Trie, pass
- * time: O(n)
- * space: O(n)
- * */
 class Trie{
 public:
     TrieNode* root;

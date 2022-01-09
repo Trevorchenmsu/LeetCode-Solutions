@@ -55,15 +55,21 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> Map;
+        vector<int> res = {-1, -1};
+        unordered_map<int, int> num_map;
 
         for (int i = 0; i < nums.size(); i++) {
-            if (Map.count(target - nums[i]))
-                return vector<int> ({i, Map[target - nums[i]]});
-            Map[nums[i]] = i;
+            auto it = num_map.find(target - nums[i]);
+            if (it != num_map.end()) {
+                res[0] = num_map[target - nums[i]];
+                res[1] = i;
+                return res;
+            }
+
+            num_map[nums[i]] = i;
         }
 
-        return vector<int> ({-1, -1});
+        return res;
     }
 };
 

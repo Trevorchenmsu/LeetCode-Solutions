@@ -91,4 +91,26 @@ public:
         return res;
     }
 };
+
+/*
+ * solution 3: dp，跟LIS思路差不多
+ * time: O(n^2)
+ * space: O(n)
+ * */
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dp(n, INT_MAX); // dp[i]表示到达i时的最短跳数
+        dp[0] = 0;
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[j] + j >= i) {
+                    dp[i] = min(dp[i], dp[j] + 1);
+                }
+            }
+        }
+        return dp[n - 1];
+    }
+};
 //leetcode submit region end(Prohibit modification and deletion)

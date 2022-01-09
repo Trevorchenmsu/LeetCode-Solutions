@@ -36,6 +36,39 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// backtrack, O(2^n), TLE
+
+/*
+ * solution 0: backtrack + memo
+ * time: O(n^2)，对每个元素，我们要查找后面有效的next nums[i]，最多只能到n个，走过的路会被memo记住，不会重复走。
+ * space: O(n)
+ * */
+class Solution {
+public:
+    vector<int> memo;
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+        memo = vector<int> (n);
+        memo[n - 1] = 1;
+        return canJumpFromPos(0, nums) == 1;
+    }
+
+    int canJumpFromPos(int pos, vector<int> &nums) {
+        if (memo[pos] != 0)
+            return memo[pos];
+        int n = nums.size();
+        int farthest = min(pos + nums[pos], n - 1);
+        for (int next = pos + 1; next <= farthest; next++) {
+            if (canJumpFromPos(next, nums) == 1) {
+                memo[pos] = 1;
+                return memo[pos];
+            }
+        }
+        memo[pos] = -1;
+        return memo[pos];
+    }
+};
+
 /*
  * solution 1: top down dp, TLE
  * time: O(n^2)

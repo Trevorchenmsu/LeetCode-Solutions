@@ -110,7 +110,7 @@ public:
         vector<string> res;
         if (s.empty()) return res;
 
-        //先求出不平衡的左右括号各有多少个，后面dfs逐渐一个个消除看
+        //先求出不平衡的左右括号各有多少个，后面dfs逐渐一个个消除
         int numOfOpen = 0, numOfClose = 0;
         for (auto &ch : s) { //O(n)
             numOfOpen += (ch == '(');

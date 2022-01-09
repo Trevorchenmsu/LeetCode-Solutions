@@ -98,10 +98,6 @@ public:
 class Solution {
 public:
     int maxResult(vector<int>& nums, int k) {
-        if (nums.empty() || nums.size() == 0) {
-            return 0;
-        }
-
         deque<int> dq;
         dq.push_back(0);
 
@@ -135,24 +131,50 @@ public:
 class Solution {
 public:
     int maxResult(vector<int>& nums, int k) {
-        if (nums.empty() || nums.size() == 0) {
-            return 0;
-        }
-
         int n = nums.size();
         priority_queue<pair<int, int>> pq;
         pq.push({nums[0], 0});
 
         for (int i = 1; i < n; i++) {
+            // 这一步保证在当前元素的滑动范围内
             while (!pq.empty() && i - pq.top().second > k) {
                 pq.pop();
             }
 
+            // 为什么这一步可以一直更新nums[i]？堆顶元素的大小取决于我们加入的新元素
+            // 如果nums[i]本身小于0，那么更新后的nums[i]肯定更小，所以堆顶还是保留之前的元素以及角标
+            // 如果nums[i]大于0，则会替换新的堆顶元素，同时更新对应的i
             nums[i] = nums[i] + nums[pq.top().second];
             pq.push({nums[i], i});
         }
         return nums[n - 1];
     }
 };
+
+/*
+ * solution 4: sliding window + max heap, slower than solution 3
+ * time: O(nlogn)
+ * space: (n)
+ * */
+class Solution {
+public:
+    int maxResult(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<int> score(n);
+        priority_queue<vector<int>> maxHeap;
+        score[0] = nums[0];
+        maxHeap.push({nums[0], 0});
+
+        for (int i = 1; i < n; i++) {
+            while (i - maxHeap.top()[1] > k)
+                maxHeap.pop();
+            score[i] = nums[i] + maxHeap.top()[0];
+            maxHeap.push({score[i], i});
+        }
+
+        return score[n - 1];
+    }
+};
+
 
 //leetcode submit region end(Prohibit modification and deletion)

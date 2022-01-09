@@ -73,41 +73,63 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
  * solution 1: dp + sort
- * time: O(max(nlogn,n*d))
+ * time: O(max(nlogn, nd))
  * space: O(n)
  * */
 class Solution {
 public:
     int maxJumps(vector<int>& arr, int d) {
-        int n = arr.size();
+        int n = arr.size(), res = 1;
         vector<int> dp(n, 1);
-
         vector<pair<int, int>> p;
 
         for (int i = 0; i < n; i++)
             p.push_back({arr[i], i});
-
-        // descending order
-        sort(p.begin(), p.end());
-        reverse(p.begin(), p.end());
+        sort(p.rbegin(), p.rend());
 
         for (auto [height, idx] : p) {
-            for (int i = idx + 1; i <= min(n - 1, idx + d); i++) {
-                if (arr[i] >= arr[idx]) break;
+            for (int i = idx + 1; i <= min(n - 1, idx + d) && arr[i] < arr[idx]; i++) {
                 dp[i] = max(dp[i], dp[idx] + 1);
+                res = max(res, dp[i]);
             }
 
-            for (int i = idx - 1; i >= max(0, idx - d); i--) {
-                if (arr[i] >= arr[idx]) break;
+            for (int i = idx - 1; i >= max(0, idx - d) &&  arr[i] < arr[idx]; i--) {
                 dp[i] = max(dp[i], dp[idx] + 1);
+                res = max(res, dp[i]);
             }
         }
-
-        int res = 0;
-        for (int i = 0; i < n; i++)
-            res = max(res, dp[i]);
-
         return res;
     }
 };
+
+/*
+ * solution 2: dfs + memo
+ * time: O(n*d))
+ * space: O(n)
+ * */
+class Solution {
+public:
+    int maxJumps(vector<int>& arr, int d) {
+        int n = arr.size(), res = 1;
+        vector<int> memo(n);
+        for (int i = 0; i < n; i++)
+            res = max(res, dfs(arr, memo, d, i, n));
+        return res;
+    }
+
+    int dfs(vector<int> &arr, vector<int> &memo, int d, int idx, int n) {
+        if (memo[idx]) return memo[idx];
+
+        int res = 1;
+        for (int i = idx + 1; i <= min(idx + d, n - 1) && arr[i] < arr[idx]; i++)
+            res = max(res, 1 + dfs(arr, memo, d, i, n));
+
+        for (int i = idx - 1; i >= max(idx - d, 0) && arr[i] < arr[idx]; i--)
+            res = max(res, 1 + dfs(arr, memo, d, i, n));
+
+        return memo[idx] = res;
+    }
+};
+
+
 //leetcode submit region end(Prohibit modification and deletion)

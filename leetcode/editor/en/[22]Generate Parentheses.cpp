@@ -22,8 +22,8 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
  * solution 1: backtrack
- * time: O(4^n/sqrt(n))
- * space: O(4^n/sqrt(n))
+ * time: O(2n*2^2n)，除非用卡特兰数公式计算出确实的复杂度，一般面试情况下很难给出准确的回溯时间复杂度，用这个近似的即可，近似于求全部子集的情况，忽略无效及重复的情况。
+ * space: O(2n*2^2n)
  *
  * */
 class Solution {
@@ -56,6 +56,75 @@ public:
             }
         }
 
+    }
+};
+
+/*
+ * solution 2: backtrack，这个解法path没有采用引用作为参数输入，所以占据更多空间，时间差不多。好处是可以把path的变化直接在语句中变化
+ * time: O(4^n/sqrt(n))
+ * space: O(4^n/sqrt(n))
+ *
+ * */
+
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        string path = "";
+        buildParenthesis(res, path, n, 0, 0);
+        return res;
+    }
+
+    void buildParenthesis(vector<string> &res, string path, int n, int cnt_left, int cnt_right) {
+        if (path.size() == n * 2) {
+            res.push_back(path);
+            return;
+        }
+
+        if (cnt_right > cnt_left) return;
+
+        if (cnt_left < n)
+            buildParenthesis(res, path + "(", n, cnt_left + 1, cnt_right);
+
+        if (cnt_right < n)
+            buildParenthesis(res, path + ")", n, cnt_left, cnt_right + 1);
+    }
+};
+
+/*
+ * solution 3: backtrack， 这个解法path采用引用作为参数输入，所以占据更少空间，时间差不多。稍微繁琐一点就是得采用标准回溯模式，即先加后删除
+ * time: O(2n*2^2n)
+ * space: O(2n*2^2n)
+ *
+ * */
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        string path = "";
+        buildParenthesis(res, path, n, 0, 0);
+        return res;
+    }
+
+    void buildParenthesis(vector<string> &res, string &path, int n, int cnt_left, int cnt_right) {
+        if (path.size() == n * 2) {
+            res.push_back(path);
+            return;
+        }
+
+        if (cnt_right > cnt_left) return;
+
+        if (cnt_left < n) {
+            path.push_back('(');
+            buildParenthesis(res, path, n, cnt_left + 1, cnt_right);
+            path.pop_back();
+        }
+
+        if (cnt_right < n) {
+            path.push_back(')');
+            buildParenthesis(res, path, n, cnt_left, cnt_right + 1);
+            path.pop_back();
+        }
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)

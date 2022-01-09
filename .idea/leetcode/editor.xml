@@ -203,6 +203,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1151]Minimum Swaps to Group All 1's Together.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1151]Minimum Swaps to Group All 1's Together.cpp" />
+              <option name="questionId" value="1107" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1163]Last Substring in Lexicographical Order.cpp">
           <value>
             <LeetcodeEditor>
@@ -723,6 +731,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1614]Maximum Nesting Depth of the Parentheses.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1614]Maximum Nesting Depth of the Parentheses.cpp" />
+              <option name="questionId" value="1737" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[162]Find Peak Element.cpp">
           <value>
             <LeetcodeEditor>
@@ -907,6 +923,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1871]Jump Game VII.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1871]Jump Game VII.cpp" />
+              <option name="questionId" value="2001" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[189]Rotate Array.cpp">
           <value>
             <LeetcodeEditor>
@@ -1000,6 +1024,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[212]Word Search II.cpp" />
               <option name="questionId" value="212" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[2134]Minimum Swaps to Group All 1's Together II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[2134]Minimum Swaps to Group All 1's Together II.cpp" />
+              <option name="questionId" value="2255" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1619,6 +1651,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[403]Frog Jump.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[403]Frog Jump.cpp" />
+              <option name="questionId" value="403" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[410]Split Array Largest Sum.cpp">
           <value>
             <LeetcodeEditor>
@@ -2016,6 +2056,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[63]Unique Paths II.cpp" />
               <option name="questionId" value="63" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[653]Two Sum IV - Input is a BST.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[653]Two Sum IV - Input is a BST.cpp" />
+              <option name="questionId" value="653" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -2480,6 +2528,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[91]Decode Ways.cpp" />
               <option name="questionId" value="91" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[921]Minimum Add to Make Parentheses Valid.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[921]Minimum Add to Make Parentheses Valid.cpp" />
+              <option name="questionId" value="957" />
             </LeetcodeEditor>
           </value>
         </entry>

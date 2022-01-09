@@ -48,46 +48,25 @@
  * space: O(n)
  * */
 class TwoSum {
-private:
-    unordered_map<int, int> cnt_map;
-
 public:
-    /** Initialize your data structure here. */
+    unordered_map<int, int> num_cnt;
+
     TwoSum() {
-        
+
     }
-    
-    /** Add the number to an internal data structure.. */
+
     void add(int number) {
-        cnt_map[number]++;
+        num_cnt[number]++;
     }
-    
-    /** Find if there exists any pair of numbers which sum is equal to the value. */
+
     bool find(int value) {
-        for (auto &[val, cnt] : cnt_map) {
-            if ((long) value - (long) val < INT_MIN)
-                return false;
-            if (cnt_map.count(value - val)) {
-                if (value - val != val)
-                    return true;
-                else {
-                    if (cnt == 1)
-                        continue;
-                    else
-                        return true;
-                }
-            }
+        for (auto &nc : num_cnt) {
+            long diff = (long) value - (long) nc.first;
+            auto it = num_cnt.find(diff);
+            if (diff != nc.first && it != num_cnt.end()) return true;
+            if (diff == nc.first && nc.second > 1) return true;
         }
-
         return false;
-
     }
 };
-
-/**
- * Your TwoSum object will be instantiated and called as such:
- * TwoSum* obj = new TwoSum();
- * obj->add(number);
- * bool param_2 = obj->find(value);
- */
 //leetcode submit region end(Prohibit modification and deletion)

@@ -39,7 +39,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution: divide and conquer
+ * solution 1: divide and conquer
  * time: O(C_n)，具体为卡特兰数， Catalan number
  * space: O(n)
  *
@@ -75,7 +75,7 @@ public:
 
 
 /*
- * solution: divide and conquer, another format
+ * solution 2: divide and conquer, another format
  * time: O(C_n)，具体为卡特兰数
  * space: O(n)
  *
@@ -116,6 +116,43 @@ public:
             }
 
         }
+
+        return res;
+    }
+};
+
+
+/*
+ * solution 3: divide and conquer, another format
+ * time: O(C_n)，具体为卡特兰数
+ * space: O(n)
+ *
+ * */
+class Solution {
+public:
+    vector<int> diffWaysToCompute(string expression) {
+        vector<int> res, nums1, nums2;
+        int val = 0;
+
+        for (int i = 0; i < expression.size(); i++) {
+            if (isdigit(expression[i])) {
+                val = val * 10 + (expression[i] - '0');
+            }
+            else {
+                nums1 = diffWaysToCompute(expression.substr(0, i));
+                nums2 = diffWaysToCompute(expression.substr(i + 1));
+                for (auto &n1 : nums1) {
+                    for (auto &n2 : nums2) {
+                        if (expression[i] == '+') res.push_back(n1 + n2);
+                        if (expression[i] == '-') res.push_back(n1 - n2);
+                        if (expression[i] == '*') res.push_back(n1 * n2);
+                    }
+                }
+                val = 0;
+            }
+        }
+
+        if (res.empty()) res.push_back(val);
 
         return res;
     }

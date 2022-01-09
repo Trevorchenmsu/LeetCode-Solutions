@@ -58,7 +58,47 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution: stack
+ * solution 1: BFS, TLE
+ * time: O(n!)
+ * space: O(n!)
+ * */
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        queue<string> q;
+        unordered_set<string> visited;
+        q.push(s);
+        visited.insert(s);
+
+        while(!q.empty()) {
+            string cur = q.front(); q.pop();
+            if (isValid(cur)) return cur;
+            for (int i = 0; i < cur.size(); i++) {
+                string new_str = cur.substr(0, i) + cur.substr(i + 1);
+                if (visited.find(new_str) != visited.end()) continue;
+                q.push(new_str);
+                visited.insert(new_str);
+            }
+        }
+
+        return "";
+    }
+
+    bool isValid(string &s) {
+        int cnt = 0;
+        for (auto &ch : s) {
+            if (ch == '(') cnt++;
+            else if (ch == ')') cnt--;
+
+            if (cnt < 0) return false;
+        }
+
+        return cnt == 0;
+    }
+};
+
+/*
+ * solution 2: stack
  * time: O(n)
  * space: O(n)
  * */
@@ -89,6 +129,120 @@ public:
         for (auto &ch : s)
             if (ch != ' ')
                 res.push_back(ch);
+
+        return res;
+    }
+};
+
+/*
+ * solution 3: stack, same as solution 2
+ * time: O(n)
+ * space: O(n)
+ * */
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        if (s.empty() || s.size() == 0) return "";
+
+        stack<int> st;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '(') st.push(i);
+            if (s[i] == ')') {
+                if (st.empty() || s[st.top()] != '(') st.push(i);
+                else st.pop();
+            }
+        }
+
+        while (!st.empty()) {
+            s[st.top()] = '+';
+            st.pop();
+        }
+
+        string res = "";
+        for (auto &ch : s) {
+            if (ch != '+') res.push_back(ch);
+
+        }
+
+        return res;
+    }
+};
+
+/*
+ * solution 4: two passes, optimal
+ * time: O(n)
+ * space: O(1)
+ * */
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        // pass 1: 从左往右删除所有无效')'
+        string leftToRight = "";
+        int balance = 0;
+        for (int i = 0; i < s.size(); i++) {
+            char c = s[i];
+            if (c == '(') balance++;
+            if (c == ')') {
+                if (balance == 0) continue;
+                balance--;
+            }
+            leftToRight.push_back(c);
+        }
+
+        // pass 2: 从右往左删除所有无效'('
+        string res = "";
+        balance = 0;
+        for (int i = leftToRight.size() - 1; i >= 0; i--) {
+            char c = leftToRight[i];
+            if (c == ')') balance++;
+            if (c == '(') {
+                if (balance == 0) continue;
+                balance--;
+            }
+            res.push_back(c);
+        }
+
+        reverse(res.begin(), res.end());
+
+        return res;
+    }
+};
+
+/*
+ * solution 5: two passes, optimal
+ * time: O(n)
+ * space: O(1)
+ * */
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        // pass 1: 从右往左删除所有无效'('
+        string str = "";
+        int balance = 0;
+        for (int i = s.size() - 1; i >= 0; i--) {
+            char c = s[i];
+            if (c == ')') balance++;
+            if (c == '(') {
+                if (balance == 0) continue;
+                balance--;
+            }
+            str.push_back(c);
+        }
+
+        reverse(str.begin(), str.end());
+
+        // pass 2: 从左往右删除所有无效')'
+        string res = "";
+        balance = 0;
+        for (int i = 0; i < str.size(); i++) {
+            char c = str[i];
+            if (c == '(') balance++;
+            if (c == ')') {
+                if (balance == 0) continue;
+                balance--;
+            }
+            res.push_back(c);
+        }
 
         return res;
     }
