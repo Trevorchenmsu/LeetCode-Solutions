@@ -37,41 +37,27 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> res;
         if (nums.size() < 3) return res;
+        sort(nums.begin(), nums.end());
 
-        sort(nums.begin(), nums.end()); // O(nlogn)
-
-        for (int i = 0; i < nums.size(); i++) { // O(n^2)
-            if (nums[0] > 0)
-                break;
-
-            if (i > 0 && nums[i] == nums[i - 1])
-                continue;
-
-            int target = -nums[i];
-            int left = i + 1, right = nums.size() - 1;
-
-            twoSum(nums, left, right, target, res);
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[0] > 0) break;
+            if (i - 1 >= 0 && nums[i] == nums[i - 1]) continue;
+            twoSum(i + 1, nums.size() - 1, -nums[i], nums, res);
         }
 
         return res;
     }
 
-private:
-    void twoSum(vector<int> &nums, int left, int right, int target, vector<vector<int>> &res) {
+    void twoSum(int left, int right, int target, vector<int> &nums, vector<vector<int>> &res) {
         while (left < right) {
             int sum = nums[left] + nums[right];
-
             if (sum == target) {
-                res.push_back({nums[left++], nums[right--], -target});
-                while (left < right && nums[left] == nums[left - 1])
-                    left++;
-                while (left < right && nums[right] == nums[right + 1])
-                    right--;
+                res.push_back({-target, nums[left++], nums[right--]});
+                while (left < right && nums[left] == nums[left - 1]) left++;
+                while (left < right && nums[right] == nums[right + 1]) right--;
             }
-            else if (sum > target)
-                right--;
-            else
-                left++;
+            else if (sum < target) left++;
+            else right--;
         }
     }
 };

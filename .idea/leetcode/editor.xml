@@ -35,6 +35,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1010]Pairs of Songs With Total Durations Divisible by 60.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1010]Pairs of Songs With Total Durations Divisible by 60.cpp" />
+              <option name="questionId" value="1055" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1011]Capacity To Ship Packages Within D Days.cpp">
           <value>
             <LeetcodeEditor>
@@ -827,6 +835,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[16]3Sum Closest.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[16]3Sum Closest.cpp" />
+              <option name="questionId" value="16" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[170]Two Sum III - Data structure design.cpp">
           <value>
             <LeetcodeEditor>
@@ -848,6 +864,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[173]Binary Search Tree Iterator.cpp" />
               <option name="questionId" value="173" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[1762]Buildings With an Ocean View.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1762]Buildings With an Ocean View.cpp" />
+              <option name="questionId" value="1909" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1043,6 +1067,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[2171]Removing Minimum Number of Magic Beans.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[2171]Removing Minimum Number of Magic Beans.cpp" />
+              <option name="questionId" value="2290" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[218]The Skyline Problem.cpp">
           <value>
             <LeetcodeEditor>
@@ -1208,6 +1240,22 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[257]Binary Tree Paths.cpp" />
               <option name="questionId" value="257" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[259]3Sum Smaller.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[259]3Sum Smaller.cpp" />
+              <option name="questionId" value="259" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[260]Single Number III.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[260]Single Number III.cpp" />
+              <option name="questionId" value="260" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1464,6 +1512,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[338]Counting Bits.cpp" />
               <option name="questionId" value="338" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[339]Nested List Weight Sum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[339]Nested List Weight Sum.cpp" />
+              <option name="questionId" value="339" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -2536,6 +2592,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[921]Minimum Add to Make Parentheses Valid.cpp" />
               <option name="questionId" value="957" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[923]3Sum With Multiplicity.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[923]3Sum With Multiplicity.cpp" />
+              <option name="questionId" value="959" />
             </LeetcodeEditor>
           </value>
         </entry>

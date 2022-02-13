@@ -52,16 +52,16 @@ class Solution {
 public:
     int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
         unordered_map<int, int> cnt;
-        int res = 0;
+        int res = 0, n = nums1.size();
 
-        for (int i = 0; i < nums1.size(); i++) {
-            for (int j = 0; j < nums2.size(); j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 cnt[nums1[i] + nums2[j]]++;
             }
         }
 
-        for (int i = 0; i < nums3.size(); i++) {
-            for (int j = 0; j < nums4.size(); j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 res += cnt[-nums3[i] - nums4[j]];
             }
         }
