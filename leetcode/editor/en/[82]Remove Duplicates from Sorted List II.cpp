@@ -44,7 +44,7 @@
  /*
   * solution 1: iteration + hash table
   * time: O(n)
-  * space: O(1)
+  * space: O(n)
   * */
 class Solution {
 public:
@@ -88,31 +88,55 @@ public:
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        if (head == NULL) {
-            return NULL;
-        }
+        if (!head) return head;
 
-        ListNode* prev = new ListNode(-1);
-        ListNode* dummy = prev;
+        ListNode* dummy = new ListNode();
+        ListNode* pre = dummy;
         ListNode* cur = head;
 
-        while (cur) {
-            if (cur->next && cur->val == cur->next->val) {
-                int sameVal = cur->val;
-                while(cur && cur->val == sameVal) {
+        while (cur)
+        {
+            if (cur->next && cur->val == cur->next->val)
+            {
+                int same_val = cur->val;
+                while (cur && cur->val == same_val)
+                {
                     cur = cur->next;
                 }
             }
-            else {
-                prev->next = cur;
-                prev = prev->next;
+            else
+            {
+                pre->next = cur;
+                pre = pre->next;
                 cur = cur->next;
             }
         }
 
-        prev->next = NULL;
+        pre->next = nullptr;
 
         return dummy->next;
     }
 };
+// 考点：(1)循环删除重复节点；（2）多节点指针操作
+
+
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head: return head
+
+        dummy = prev = ListNode()
+        cur = head
+
+        while cur:
+            if cur.next and cur.val == cur.next.val:
+                val = cur.val
+                while cur and cur.val == val: cur = cur.next
+            else:
+                prev.next = cur
+                prev = prev.next
+                cur = cur.next
+
+        prev.next = None
+
+        return dummy.next
 //leetcode submit region end(Prohibit modification and deletion)

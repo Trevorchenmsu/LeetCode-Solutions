@@ -62,72 +62,105 @@
  */
 
 /*
- * solution: merge sort + divide and conquer
- * time: O(nklogk), k is the number of lists. divide and conquer will take O(logk).
- *      merge k lists will take O(nk), n is the maximum length of the list.
+ * solution 1: merge sort + divide and conquer
+ * time: O(Nlogk), k is the number of lists. N is the total number of nodes in all the lists
  * space: O(1), merge list in-place, we don't generate new nodes. O(logk) for recursion stack space
  *
  * */
 
 class Solution {
 public:
-    /**
-     * @param lists: a list of ListNode
-     * @return: The head of one sorted list.
-     */
-    ListNode *mergeKLists(vector<ListNode *> &lists) {
-        if (lists.empty()) {
-            return NULL;
-        }
-
-        return mergeList(lists, 0, lists.size() - 1);
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if (lists.empty() || lists.size() == 0) return nullptr;
+        return mergeKL(0, lists.size() - 1, lists);
     }
 
-    ListNode* mergeList (vector<ListNode *> &lists, int start, int end) {
-        if (start == end) {
-            return lists[start];
-        }
+    ListNode* mergeKL(int start, int end, vector<ListNode*>& lists) {
+        if (start == end) return lists[start];
 
         int mid = start + (end - start) / 2;
-        ListNode* left = mergeList(lists, start, mid);
-        ListNode* right = mergeList(lists, mid + 1, end);
 
-        ListNode* res = mergeTwoList(left, right);
+        ListNode* left = mergeKL(start, mid, lists);
+        ListNode* right = mergeKL(mid + 1, end, lists);
 
-        return res;
+        return mergeTwoList(left, right);
     }
 
-    ListNode* mergeTwoList(ListNode* L1, ListNode* L2) {
-        ListNode* L3 = new ListNode();
-        ListNode* cur = L3;
-        while (L1 != NULL && L2 != NULL) {
-            if (L1->val >= L2->val) {
-                cur->next = L2;
-                L2 = L2->next;
+
+    ListNode* mergeTwoList(ListNode* l1, ListNode* l2) {
+        ListNode* l3 = new ListNode();
+        ListNode* cur = l3;
+
+        while (l1 && l2) {
+            if (l1->val <= l2->val) {
+                cur->next = l1;
+                l1 = l1->next;
             }
             else {
-                cur->next = L1;
-                L1 = L1->next;
+                cur->next = l2;
+                l2 = l2->next;
             }
             cur = cur->next;
         }
 
-        if (L1 != NULL) {
-            cur->next = L1;
+        if (l1) {
+            cur->next = l1;
         }
 
-        if (L2 != NULL) {
-            cur->next = L2;
+        if (l2) {
+            cur->next = l2;
         }
 
-        return L3->next;
+        return l3->next;
     }
-
 };
+
+
+/*
+ * solution 1: merge sort + divide and conquer, Python解法
+ * time: O(Nlogk), k is the number of lists. N is the total number of nodes in all the lists
+ * space: O(1), merge list in-place, we don't generate new nodes. O(logk) for recursion stack space
+ *
+ * */
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+            if lists is None or len(lists) == 0: return None
+
+            def mergeKL(start, end, lists):
+                if start == end: return lists[start]
+
+                mid = start + (end - start) // 2
+                left = mergeKL(start, mid, lists)
+                right = mergeKL(mid + 1, end, lists)
+
+                return mergeTwoList(left, right)
+
+
+            def mergeTwoList(l1, l2):
+                l3 = cur = ListNode()
+
+                while l1 and l2:
+                    if l1.val <= l2.val:
+                        cur.next = l1
+                        l1 = l1.next
+                    else:
+                        cur.next = l2
+                        l2 = l2.next
+                    cur = cur.next
+
+
+                if l1: cur.next = l1
+                if l2: cur.next = l2
+
+                return l3.next
+
+
+            return mergeKL(0, len(lists) - 1, lists)
+
 
 /*
  * solution 2: mini heap
- * time: O(nklogk), nk is the total number of nodes in all lists
+ * time: O(Nlogk), N is the total number of nodes in all lists
  * space: O(k)
  * */
 
@@ -148,7 +181,7 @@ public:
 
         priority_queue<ListNode*, vector<ListNode*>, cmp> minPQ;
 
-        for (auto &list : lists) { //O(klogk)
+        for (auto &list : lists) { //O(nlogk), n is the number of lists
             if (list != NULL) {
                 minPQ.push(list);
             }
@@ -173,4 +206,30 @@ public:
     }
 };
 
+/*
+ * solution 2: mini heap，python解法
+ * time: O(Nlogk), N is the total number of nodes in all lists
+ * space: O(k)
+ * */
+class Solution:
+   def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if lists is None or len(lists) == 0: return None
+
+        # 这里的i是必要的，因为当val相同时，需要考虑优先添加哪个idx，否则下一个比较就是节点的比较，不合法
+        min_heap = [(l.val, i, l) for i, l in enumerate(lists) if l]
+        heapify(min_heap)
+
+        l3 = cur = ListNode()
+
+        while len(min_heap) > 0:
+            val, idx, node = min_heap[0]
+            heapq.heappop(min_heap)
+
+            cur.next = node
+            cur = cur.next
+
+            if node.next:
+            heapq.heappush(min_heap, (cur.next.val, idx, cur.next))
+
+        return l3.next
 //leetcode submit region end(Prohibit modification and deletion)

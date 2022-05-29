@@ -49,7 +49,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
  * solution 1: Dijkstra (BFS + min heap)
- * time: O(VlogV + E)
+ * time: O(ElogV + E)
  * space: O(V)
  * */
 class Solution {
@@ -89,7 +89,7 @@ public:
 
 /*
  * solution 2: Dijkstra (BFS + min heap)，加个visited数组，实际没优化多少
- * time: O(VlogV + E)
+ * time: O(ElogV + E)
  * space: O(V)
  * */
 class Solution {

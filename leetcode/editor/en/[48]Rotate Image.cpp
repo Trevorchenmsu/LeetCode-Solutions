@@ -54,35 +54,55 @@
  * */
 
 /*
- * solution: matrix manipulation
+ * solution: matrix manipulation，先转置，再从左到右，两端逐渐交换列
  * time: O(n^2)
  * space: O(1)
  * */
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
-        int len = matrix.size();
-        transpose(matrix, len); // 转置
-        swapCol(matrix, len); // 左列与右列交换，逐渐往中间靠拢
+        if (matrix.empty() || matrix.size() == 0 || matrix[0].empty() || matrix[0].size() == 0)
+        {
+            return;
+        }
+
+        int n = matrix.size();
+        transpose(matrix, n);
+        swapColumn(matrix, n);
     }
 
-    void transpose(vector<vector<int>>& matrix, int rows)
-    {
-        for (int i = 0; i < rows; i++) {
-            for (int j = i + 1; j < rows; j++) {
-                swap(matrix[i][j], matrix[j][i]);
+    void transpose(vector<vector<int>> &mat, int n) {
+        for (int i = 0; i < n; ++i)
+        {
+            for (int j = i + 1; j < n; ++j)
+            {
+                swap(mat[i][j], mat[j][i]);
             }
         }
     }
 
-    void swapCol(vector<vector<int>>& matrix, int rows) {
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < rows / 2; ++j) {
-                swap(matrix[i][j], matrix[i][rows - 1 - j]);
+    void swapColumn(vector<vector<int>> &mat, int n) {
+        for (int row = 0; row < n; ++row)
+        {
+            for (int col = 0; col < n / 2; ++col)
+            {
+                swap(mat[row][col], mat[row][n - 1 - col]);
             }
         }
     }
-
 };
+
+// python解法，先从上到下flip，然后再转置
+class Solution:
+    def rotate(self, A: List[List[int]]) -> None:
+
+        if A is None or A[0] is None: return
+
+        A.reverse()
+        for i in range(len(A)):
+            for j in range(i):
+                A[i][j], A[j][i] = A[j][i], A[i][j]
+
+
 
 //leetcode submit region end(Prohibit modification and deletion)

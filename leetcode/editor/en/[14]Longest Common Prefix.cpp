@@ -97,4 +97,39 @@ public:
         return res == 0 ? "" : strs[0].substr(0, res);
     }
 };
+
+
+/*
+ * solution 3: brute force
+ * time: O(n*L)
+ * space: O(1)
+ * */
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        int len = 300;
+        for (auto &str : strs)
+        {
+            int size = str.size();
+            len = min(size, len);
+        }
+
+        string res = "";
+        for (int i = 0; i < len; ++i)
+        {
+            bool flag = true;
+            char c = strs[0][i];
+            for (auto &str : strs)
+            {
+                if (str[i] == c) continue;
+                flag = false;
+                break;
+            }
+            if (flag) res.push_back(c);
+            else break;
+        }
+
+        return res;
+    }
+};
 //leetcode submit region end(Prohibit modification and deletion)

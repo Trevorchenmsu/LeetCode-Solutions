@@ -88,24 +88,40 @@
 class Solution {
 public:
     int romanToInt(string s) {
-        if (s.empty() || s.size() == 0) {
-            return -1;
-        }
+        unordered_map<char, int> roman_to_int = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
 
-        unordered_map<char, int> rtoi = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
-                                         {'C', 100}, {'D', 500}, {'M', 1000}};
 
-        int res = rtoi[s[0]];
-        for (int i = 1; i < s.size(); i++) {
-            if (rtoi[s[i]] > rtoi[s[i - 1]]) {
-                res += rtoi[s[i]] - 2 * rtoi[s[i - 1]];
+        int n = s.size();
+        int res = 0;
+        for (int i = 0; i < n; ++i)
+        {
+            if (i + 1 < n && roman_to_int[s[i]] < roman_to_int[s[i + 1]])
+            {
+                res += roman_to_int[s[i + 1]] - roman_to_int[s[i]];
+                ++i;
             }
-            else {
-                res += rtoi[s[i]];
+            else
+            {
+                res += roman_to_int[s[i]];
             }
         }
 
         return res;
     }
 };
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        rtoi = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000}
+        n, res, i = len(s), 0, 0
+
+        while i < n:
+            if i + 1 < n and rtoi[s[i]] < rtoi[s[i+1]]:
+                res += (rtoi[s[i+1]] - rtoi[s[i]])
+                i += 1
+            else:
+             res += rtoi[s[i]]
+            i += 1
+
+        return res
 //leetcode submit region end(Prohibit modification and deletion)

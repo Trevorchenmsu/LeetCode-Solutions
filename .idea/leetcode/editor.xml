@@ -499,6 +499,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[141]Linked List Cycle.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[141]Linked List Cycle.cpp" />
+              <option name="questionId" value="141" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1428]Leftmost Column with at Least a One.cpp">
           <value>
             <LeetcodeEditor>
@@ -720,6 +728,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1608]Special Array With X Elements Greater Than or Equal X.cpp" />
               <option name="questionId" value="1730" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[160]Intersection of Two Linked Lists.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[160]Intersection of Two Linked Lists.cpp" />
+              <option name="questionId" value="160" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1019,6 +1035,22 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[200]Number of Islands.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[200]Number of Islands.cpp" />
+              <option name="questionId" value="200" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[206]Reverse Linked List.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[206]Reverse Linked List.cpp" />
+              <option name="questionId" value="206" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[207]Course Schedule.cpp">
           <value>
             <LeetcodeEditor>
@@ -1256,6 +1288,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[260]Single Number III.cpp" />
               <option name="questionId" value="260" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[269]Alien Dictionary.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[269]Alien Dictionary.cpp" />
+              <option name="questionId" value="269" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1787,6 +1827,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[442]Find All Duplicates in an Array.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[442]Find All Duplicates in an Array.cpp" />
+              <option name="questionId" value="442" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[443]String Compression.cpp">
           <value>
             <LeetcodeEditor>
@@ -1939,6 +1987,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[505]The Maze II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[505]The Maze II.cpp" />
+              <option name="questionId" value="505" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[50]Pow(x, n).cpp">
           <value>
             <LeetcodeEditor>
@@ -2072,6 +2128,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[593]Valid Square.cpp" />
               <option name="questionId" value="593" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[59]Spiral Matrix II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[59]Spiral Matrix II.cpp" />
+              <option name="questionId" value="59" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -2216,6 +2280,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[69]Sqrt(x).cpp" />
               <option name="questionId" value="69" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[6]Zigzag Conversion.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[6]Zigzag Conversion.cpp" />
+              <option name="questionId" value="6" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -2600,6 +2672,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[923]3Sum With Multiplicity.cpp" />
               <option name="questionId" value="959" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[92]Reverse Linked List II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[92]Reverse Linked List II.cpp" />
+              <option name="questionId" value="92" />
             </LeetcodeEditor>
           </value>
         </entry>

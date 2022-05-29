@@ -119,4 +119,92 @@ private:
         return cnt;
     }
 };
+
+
+class Solution {
+public:
+    /*
+    1. 1->0 if nb<2
+    2. 1->1 if nb=2,3
+    3. 1->0 if nb>3
+    4. 0->1 if nb=3
+
+    0->1, use 2
+    1->0, use 3
+
+    check 2, turn to 1
+    check 3, turn 0
+    */
+    void gameOfLife(vector<vector<int>>& board) {
+        int m = board.size(), n = board[0].size();
+        vector<vector<int>> dirs = {{1, 0}, {0, 1}, {-1, 0}, {0, -1},
+                                    {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};
+
+        int cnt = 0;
+        for (int i = 0; i < m; ++i)
+        {
+            for (int j = 0; j < n; ++j)
+            {
+                cnt = countLive(board, dirs, i, j, m, n);
+                if ((cnt < 2 || cnt > 3) && board[i][j] == 1) board[i][j] = 2;
+                if (cnt == 3 && board[i][j] == 0) board[i][j] = 3;
+            }
+        }
+
+        for (int i = 0; i < m; ++i)
+        {
+            for (int j = 0; j < n; ++j)
+            {
+                if (board[i][j] == 2) board[i][j] = 0;
+                if (board[i][j] == 3) board[i][j] = 1;
+            }
+        }
+    }
+
+    int countLive(vector<vector<int>>& board, vector<vector<int>>& dirs, int i, int j, int m, int n){
+        int cnt = 0;
+        for (auto dir : dirs)
+        {
+            int x = i + dir[0], y = j + dir[1];
+            if (x < 0 || x >= m || y < 0 || y >= n) continue;
+            if (board[x][y] == 1 || board[x][y] == 2) {
+                ++cnt;
+            }
+
+        }
+
+        return cnt;
+    }
+};
+
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        m, n = len(board), len(board[0])
+        dirs = [[1, 0], [0, 1], [-1, 0], [0, -1], [-1, -1], [1, 1], [-1, 1], [1, -1]]
+
+        def countLive(i, j):
+            cnt = 0
+            for dir in dirs:
+                x, y = i + dir[0], j + dir[1]
+                if x < 0 or x >= m or y < 0 or y >= n:
+                    continue
+                if board[x][y] == 1 or board[x][y] == 2:
+                    cnt += 1
+            return cnt
+
+        cnt = 0
+        for i in range(m):
+            for j in range(n):
+                cnt = countLive(i, j)
+                if (cnt < 2 or cnt > 3) and board[i][j] == 1:
+                    board[i][j] = 2
+                if cnt == 3 and board[i][j] == 0: board[i][j] = 3
+
+        for i in range(m):
+            for j in range(n):
+                board[i][j] %= 2
+
 //leetcode submit region end(Prohibit modification and deletion)

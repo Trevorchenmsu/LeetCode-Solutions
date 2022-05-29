@@ -107,6 +107,61 @@ private:
 
 
 /*
+ * solution 1: single linked list + hash table，另一种写法
+ * time: O(1)
+ * space: O(n)
+ * */
+
+class LRUCache {
+public:
+    int cap_;
+    unordered_map<int, int> key_to_val;
+    unordered_map<int, list<int>::iterator> keys_iter;
+    list<int> keys_list;
+
+    LRUCache(int capacity) {
+        cap_ = capacity;
+    }
+
+    int get(int key) {
+        auto it = key_to_val.find(key);
+        if (it == key_to_val.end()) return -1;
+
+        // update the position
+        keys_list.erase(keys_iter[key]);
+        keys_list.push_back(key);
+        auto iter = --keys_list.end();
+        keys_iter[key] = iter;
+
+        return key_to_val[key];
+    }
+
+    void put(int key, int value) {
+        if (get(key) != -1) {
+            key_to_val[key] = value;
+        }
+        else {
+            if (cap_ == 0) {
+                int key_del = *keys_list.begin();
+                keys_list.erase(keys_list.begin());
+                key_to_val.erase(key_del);
+                keys_iter.erase(key_del);
+                ++cap_;
+            }
+
+            keys_list.push_back(key);
+            key_to_val[key] = value;
+            keys_iter[key] = --keys_list.end();
+
+            --cap_;
+        }
+    }
+};
+
+
+
+
+/*
  * solution 2: double linked list + hash table
  * time: O(1)
  * space: O(n)
@@ -202,4 +257,79 @@ private:
  * int param_1 = obj->get(key);
  * obj->put(key,value);
  */
+
+
+
+
+
+/*
+ * python 解法
+ * solution: 双向链表+哈希表
+ * time: O(1)
+ * space: O(n)
+ * */
+
+
+class Node:
+        def __init__(self, k, v):
+self.key = k
+self.val = v
+self.prev = None
+self.next = None
+
+class LRUCache:
+
+        def __init__(self, capacity: int):
+self.cap = capacity
+self.dict = dict() # key-nodes dictionary
+self.head = Node(0, 0)
+self.tail = Node(0, 0)
+self.head.next = self.tail
+self.tail.prev = self.head
+
+
+def get(self, key: int) -> int:
+if key not in self.dict: return -1
+
+node = self.dict[key]
+self.remove_from_dict(node)
+self.add_to_dict(node)
+
+return node.val
+
+
+
+        def put(self, key: int, value: int) -> None:
+if key in self.dict: # 只要存在就删除，要替换的话后面重新新建node替换，反正要插到末端
+        self.remove_from_dict(self.dict[key])
+
+node = Node(key, value)
+self.add_to_dict(node)
+self.dict[key] = node
+if len(self.dict) > self.cap:
+node = self.head.next # 因为head是dummy node，第二个才是真正的head
+        self.remove_from_dict(node)
+del self.dict[node.key]
+
+
+def remove_from_dict(self, node: Node):
+prev_node = node.prev
+next_node = node.next
+prev_node.next = next_node
+next_node.prev = prev_node
+
+
+def add_to_dict(self, node: Node):
+prev_node = self.tail.prev # 因为tail是dummy node
+prev_node.next = node
+node.prev = prev_node
+self.tail.prev = node
+node.next = self.tail
+
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
 //leetcode submit region end(Prohibit modification and deletion)

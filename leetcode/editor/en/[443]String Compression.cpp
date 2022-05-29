@@ -69,6 +69,48 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+/*
+ * solution 0: two pointers, optimal
+ * time: O(n)
+ * space: O(1)
+ * */
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int left = 0, right = 0;
+        int len = chars.size();
+
+        while (right < len)
+        {
+            chars[left] = chars[right]; //不需要另外一个idx指针来标志替换的位置，直接用left即可
+            int count = 1;
+
+            // 计数且指针前进
+            while (right + 1 < len && chars[right] == chars[right + 1])
+            {
+                ++right;
+                ++count;
+            }
+
+            //直接添加字符串
+            if (count > 1) {
+                for (auto c : to_string(count))
+                {
+                    chars[left + 1] = c;
+                    ++left;
+                }
+            }
+
+            right++;
+            left++;
+        }
+
+        return left;
+    }
+};
+
+
 /*
  * solution 1: two pointers
  * time: O(n)
@@ -81,7 +123,7 @@ public:
         string res = "";
         int left = 0, right = 0;
 
-        for (; right <= chars.size(); right++) { // O(n)
+        for (; right <= chars.size(); right++) { // O(n)，注意这里边界的等号。如果没有等号，当right超过边界后，就直接跳出不填充字符了
             if (right < chars.size() && chars[right] == chars[left]) {
                 continue;
             }
@@ -153,4 +195,81 @@ public:
 
     }
 };
+
+
+/*
+ * solution 3: two pointers
+ * time: O(n)
+ * space: O(1)
+ * */
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int cnt = 0, left = 0, idx = 0;
+        int len = chars.size();
+
+        for (int right = 0; right <= len; ++right)
+        {
+            if (right < len && chars[left] == chars[right]) {
+                continue;
+            }
+
+            int num = right - left;
+            if (num <= 1)
+            {
+                ++cnt;
+                chars[idx++] = chars[left];
+            }
+
+            else if(num <= 9)
+            {
+                cnt += 2;
+                chars[idx++] = chars[left];
+                chars[idx++] = num + '0';
+            }
+
+            else if (num > 9)
+            {
+                string str = to_string(num);
+                ++cnt;
+                chars[idx++] = chars[left];
+                for (auto c : str)
+                {
+                    chars[idx++] = c;
+                    ++cnt;
+                }
+            }
+
+            left = right;
+        }
+
+        return cnt;
+    }
+};
+
+
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        left, right = 0, 0
+
+        while right < len(chars):
+
+            chars[left] = chars[right]
+            count = 1
+
+            while right + 1 < len(chars) and chars[right] == chars[right + 1]:
+                right += 1
+                count += 1
+
+            if count > 1:
+                for c in str(count):
+                    chars[left + 1] = c
+                    left += 1
+
+            left += 1
+            right += 1
+
+        return left
+
+
 //leetcode submit region end(Prohibit modification and deletion)

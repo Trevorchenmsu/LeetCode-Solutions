@@ -37,6 +37,49 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> res;
+        if (matrix.empty() || matrix.size() == 0 || matrix[0].empty() || matrix[0].size() == 0)
+        {
+            return res;
+        }
+
+        int m = matrix.size(), n = matrix[0].size();
+        int top = 0, bottom = m - 1, left = 0, right = n - 1;
+
+        while (top <= bottom || left <= right) {
+            for (int i = left; i <= right && top <= bottom; ++i)
+            {
+                res.push_back(matrix[top][i]);
+            }
+            ++top;
+
+            for (int i = top; i <= bottom && left <= right; ++i)
+            {
+                res.push_back(matrix[i][right]);
+            }
+            --right;
+
+            for (int i = right; i >= left && top <= bottom; --i)
+            {
+                res.push_back(matrix[bottom][i]);
+            }
+            --bottom;
+
+            for (int i = bottom; i >= top && left <= right; --i)
+            {
+                res.push_back(matrix[i][left]);
+            }
+            ++left;
+        }
+
+        return res;
+    }
+};
+
+// 另一种写法
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
         int m = matrix.size(), n = matrix[0].size();
         vector<int> res;
 

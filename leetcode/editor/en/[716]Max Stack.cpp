@@ -112,6 +112,50 @@ public:
 
 
 /*
+ * Solution 1: two stacks, python 解法
+ * time: O(n)
+ * space: O(n)
+ * */
+class MaxStack:
+    def __init__(self):
+        self.st = []
+        self.maxSt = []
+        self.buffer = []
+
+
+    def push(self, x: int) -> None:
+        self.st.append(x)
+        if len(self.maxSt) == 0 or x > self.maxSt[-1]:
+            self.maxSt.append(x)
+        else:
+            self.maxSt.append(self.maxSt[-1])
+
+    def pop(self) -> int:
+        val = self.st[-1]
+        self.st.pop()
+        self.maxSt.pop()
+        return val
+
+
+    def top(self) -> int:
+        return self.st[-1]
+
+    def peekMax(self) -> int:
+        return self.maxSt[-1]
+
+    def popMax(self) -> int:
+        val = self.maxSt[-1]
+
+        while self.st[-1] != val:
+            self.buffer.append(self.pop())
+
+        self.pop()
+        while len(self.buffer) > 0:
+            self.push(self.buffer[-1])
+            self.buffer.pop()
+
+        return val
+/*
  * Solution 2: list + treemap, follow up
  * time: O(logN)
  * space: O(N)

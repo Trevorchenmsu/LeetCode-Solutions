@@ -62,48 +62,47 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if (l1 == nullptr && l2 == nullptr) return nullptr;
+        if (l1 == nullptr) return l2;
+        if (l2 == nullptr) return l1;
+
         ListNode* dummy = new ListNode();
-        ListNode* prev = dummy;
+        ListNode* cur = dummy;
 
         int sum = 0;
-        while (l1 != NULL && l2 != NULL) {
+        while (l1 && l2) {
             sum += l1->val + l2->val;
             ListNode* node = new ListNode(sum % 10);
-            sum /= 10;
-
-            prev->next = node;
-            prev = prev->next;
+            cur->next = node;
+            cur = cur->next;
             l1 = l1->next;
             l2 = l2->next;
+            sum /= 10;
         }
 
-        while (l1 != NULL) {
+        while(l1) {
             sum += l1->val;
             ListNode* node = new ListNode(sum % 10);
-            sum /= 10;
-
-            prev->next = node;
-            prev = prev->next;
+            cur->next = node;
+            cur = cur->next;
             l1 = l1->next;
+            sum /= 10;
         }
 
-        while (l2 != NULL) {
+        while(l2) {
             sum += l2->val;
             ListNode* node = new ListNode(sum % 10);
-            sum /= 10;
-
-            prev->next = node;
-            prev = prev->next;
+            cur->next = node;
+            cur = cur->next;
             l2 = l2->next;
+            sum /= 10;
         }
 
-        if (sum == 1) {
-            ListNode* node = new ListNode(sum % 10);
-            prev->next = node;
-            prev = prev->next;
+        if (sum != 0) {
+            ListNode* node = new ListNode(sum);
+            cur->next = node;
+            cur = cur->next;
         }
-
-        prev->next = NULL;
 
         return dummy->next;
     }
@@ -120,7 +119,6 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         ListNode* dummy = new ListNode(0);
-        cout << dummy->next;
         ListNode *cur = dummy, *p1 = l1, *p2 = l2;
         int sum = 0;
 
@@ -146,4 +144,43 @@ public:
 
     }
 };
+
+
+
+/*
+ * python 解法
+ * solution: linked list iteration，更优解法
+ * time: O(n)
+ * space: O(n)
+ * */
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+        def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+            carry = 0
+            l3 = cur = ListNode(0)
+
+            while l1 or l2 or carry:
+                val1 = val2 = 0
+
+                if l1:
+                    val1 = l1.val
+                    l1 = l1.next
+
+                if l2:
+                    val2 = l2.val
+                    l2 = l2.next
+
+                carry, val = divmod(val1 + val2 + carry, 10)
+
+                cur.next = ListNode(val)
+                cur = cur.next
+
+            return l3.next
+
 //leetcode submit region end(Prohibit modification and deletion)

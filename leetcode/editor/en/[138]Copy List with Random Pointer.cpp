@@ -110,34 +110,62 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-        if (head == NULL) {
-            return head;
-        }
+        if (!head) return head;
 
-        unordered_map<Node*, Node*> old2new;
+        unordered_map<Node*, Node*> old_to_new;
+
         Node* cur = head;
+
         while (cur) {
             Node* node = new Node(cur->val);
-            old2new[cur] = node;
+            old_to_new[cur] = node;
             cur = cur->next;
         }
 
         cur = head;
+
         while (cur) {
-            if (cur->next != NULL) {
-                old2new[cur]->next = old2new[cur->next];
-            }
-
-            if (cur->random != NULL) {
-                old2new[cur]->random = old2new[cur->random];
-            }
-
+            old_to_new[cur]->next = old_to_new[cur->next];
+            old_to_new[cur]->random = old_to_new[cur->random];
             cur = cur->next;
         }
 
-        return old2new[head];
+        return old_to_new[head];
     }
 };
+
+/*
+ * solution 1: iteration + hash table， python解法
+ * time: O(n)
+ * space: O(n)
+ * */
+
+class Solution:
+        def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+            if not head: return head
+
+                    old_to_new = dict()
+
+            cur = head
+
+            while cur:
+                node = Node(cur.val)
+                old_to_new[cur] = node
+                cur = cur.next
+
+            cur = head
+
+            while cur:
+                if cur.next:
+                    old_to_new[cur].next = old_to_new[cur.next]
+
+                if cur.random:
+                    old_to_new[cur].random = old_to_new[cur.random]
+
+                cur = cur.next
+
+            return old_to_new[head]
+
 
 /*
  * solution 2: recursion + hash table
@@ -179,7 +207,7 @@ public:
 /*
  * solution 3: iteration + constant space, optimal
  * time: O(n)
- * space: O(1)
+ * space: O(n)
  * */
 
 class Solution {

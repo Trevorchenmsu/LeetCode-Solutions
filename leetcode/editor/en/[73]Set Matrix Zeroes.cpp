@@ -42,62 +42,87 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution: matrix manipulation
+ * solution: matrix manipulation, python解法同理
  * time: O(mn)
  * space: O(1)
  * */
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
+        if (matrix.empty() || matrix.size() == 0 || matrix[0].empty() || matrix[0].size() == 0)
+        {
+            return;
+        }
+
         int m = matrix.size(), n = matrix[0].size();
-        // 这两个flag主要用来确定初始矩阵中第一行和第一列是否有0
-        bool rowFlag = false, colFlag = false;
+        /*
+        flag用来标识第一行或第一列是否存在0。这一步要优先做，因为接下来的矩阵元素中如果有0，
+        就要把第一行和第一列对应的元素置为0，如果后面再做这个操作找flag的话，就会有false positive。
+        非第一行第一列元素为0时为什么要把第一行和第一列的置为0？目的是用这些0为标杆。元素本身在改行/列的具体
+        位置不重要，因为这一整行/列都会被置为0，所以只要我们只要该位置的领头羊是0，那么遍历的时候就可以把整列/行
+        都置为0，这也就是为什么我们要把第一行/列的元素置为0，目的就是找出领头羊。
+        */
 
-        // 检测第一列是否有0
-        for (int i = 0; i < m; i++) {
-            if (matrix[i][0] == 0) {
-                colFlag = true;
+        bool row_flag = false, col_flag = false;
+        // 查找第一行是否存在0
+        for (int i = 0; i < n; ++i)
+        {
+            if (matrix[0][i] == 0)
+            {
+                row_flag = true;
                 break;
             }
         }
 
-        // 检测第一行是否有0
-        for (int j = 0; j < n; j++) {
-            if (matrix[0][j] == 0) {
-                rowFlag = true;
+        // 查找第一列是否存在0
+        for (int i = 0; i < m; ++i)
+        {
+            if (matrix[i][0] == 0)
+            {
+                col_flag = true;
                 break;
             }
         }
 
-        // 这里只能先把i，j位置对应的第一行和第一列的元素置为0，而不能把整个十字交叉的元素马上置为0，否则
-        // 会在后面遍历的时候把原来不是0的元素当作是0，然后将更多的元素置为0
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                if (matrix[i][j] == 0) {
-                    matrix[i][0] = 0;
+        // 用第一行/列竖标杆
+        for (int i = 1; i < m; ++i)
+        {
+            for (int j = 1; j < n; ++j)
+            {
+                if (matrix[i][j] == 0)
+                {
                     matrix[0][j] = 0;
+                    matrix[i][0] = 0;
                 }
             }
         }
 
-        // 现在才是正式替换0的时刻：只有被第一行/列0元素对上的元素才会被置为0
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+        // 以第一行/列的0为标杆，填充内部满足为0的条件
+        for (int i = 1; i < m; ++i)
+        {
+            for (int j = 1; j < n; ++j)
+            {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0)
+                {
                     matrix[i][j] = 0;
                 }
             }
         }
 
-        // 第一行/第一列的元素必须最后才修改，否则会在遍历的时候影响结果，因为会先产生0覆盖其它元素。
-        if (rowFlag) {
-            for (int i = 0; i < n; ++i){
+        // 填充第一行
+        if (row_flag)
+        {
+            for (int i = 0; i < n; ++i)
+            {
                 matrix[0][i] = 0;
             }
         }
 
-        if (colFlag) {
-            for (int i = 0; i < m; ++i) {
+        // 填充第一列
+        if (col_flag)
+        {
+            for (int i = 0; i < m; ++i)
+            {
                 matrix[i][0] = 0;
             }
         }
