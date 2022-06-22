@@ -60,28 +60,48 @@ public:
  * time: O(n)
  * space: O(n)
  * */
+//为什么前缀和优于滑窗？滑窗虽然是右指针逐渐扩大可以考虑更大的和，但是当左指针逐渐往前移动时，会
+//重复计算前面已经算过的和，而这个和在通过前缀和的差值就可以得到，因此没有重复计算。
 
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        int res = 0, sum = 0, n = nums.size();
+        int sum = 0, res = 0;
         // 初始化(0,1)是必要的，否则找到第一个sum-k的数时，频率不会是1开始
-        unordered_map<int, int> sum2freq{{0, 1}};
+        unordered_map<int, int> sum_freq{{0, 1}};
 
-        for (int i = 0; i < n; i++) {
-            sum += nums[i];
-            // 如果还未找到sum-k=0的情况，即子数组和不为K时，因为哈希表初始化都为0，所以res一直加的都是0
-            // 直到找到子数组和等于k的情况，就得到了第一个sum-k=0。因为我们初始化0对应的频率为1，所以这里res会加1
-            // 然后更新哈希表的内容，表示已经出现过的sum的频率加1.
-            res += sum2freq[sum - k];
-            sum2freq[sum]++;
+        if (nums.empty() || nums.size() == 0) return res;
+        /*如何考虑起点不是index=0的子数组的和？由于sum是前缀和（可以保证是连续元素之和，不存在子序列的情况），此处并不考虑子数组的和。
+         *sum小于k时，没有要加入res的情况。因此在哈希表中只是记录当前sum的出现频率，作为备用，因为当sum大于k时，如果sum-k可以在哈希表
+         * 中找到有效值的话，就表明右段就是和为k的子数组。可以这样考虑组合：old_sum + k = new_sum，如果这样组合存在的话，可以保证右端和为k
+         * 的子数组肯定存在。仔细思考其实就是前缀和prefixsum[i]-prefixsum[j]=k的情况，只是用哈希表把前期出现的prefixsum[j]存起来
+         * */
+        // 如果还未找到sum-k=0的情况，即子数组和不为K时，因为哈希表初始化都为0，所以res一直加的都是0
+        // 直到找到子数组和等于k的情况，就得到了第一个sum-k=0。因为我们初始化0对应的频率为1，所以这里res会加1
+        // 然后更新哈希表的内容，表示已经出现过的sum的频率加1.
+        for (auto &num : nums)
+        {
+            sum += num;
+            res += sum_freq[sum - k];
+            ++sum_freq[sum];
         }
 
         return res;
     }
 };
 
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        sum = res = 0
+        sum_freq = defaultdict(int)
+        sum_freq[0] = 1
 
+        for num in nums:
+            sum += num
+            res += sum_freq[sum - k]
+            sum_freq[sum] += 1
+
+        return res
 /*
  * solution 3: hash table + prefix sum， optimal
  * time: O(n)

@@ -79,4 +79,24 @@ public:
 
     }
 };
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        if not head: return head
+
+        dummy = ListNode()
+        fast = slow = dummy
+        dummy.next = head
+
+        while n >= 0:
+            n -= 1
+            fast = fast.next
+
+        while fast:
+            fast = fast.next
+            slow = slow.next
+
+        slow.next = slow.next.next
+
+        return dummy.next
 //leetcode submit region end(Prohibit modification and deletion)

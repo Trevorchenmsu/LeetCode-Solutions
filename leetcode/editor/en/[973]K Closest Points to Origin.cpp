@@ -52,29 +52,46 @@ class Solution {
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
         vector<vector<int>> res;
-        if (points.empty() || points.size() == 0) {
-            return res;
-        }
+        if (points.empty()) return res;
+        priority_queue<vector<int>> max_heap;
+        vector<int> origin = {0, 0};
 
-        priority_queue<vector<double>> pq;
-
-        for (const auto &point : points) {
-            double dist = sqrt(point[0] * point[0] + point[1] * point[1]);
-            pq.push({dist, (double) point[0], (double) point[1]});
-            if (pq.size() > k) {
-                pq.pop();
+        for (auto &point : points)
+        {
+            int dist = getDistance(point, origin);
+            max_heap.push({dist, point[0], point[1]});
+            if (max_heap.size() > k) {
+                max_heap.pop();
             }
         }
 
-        while (!pq.empty()) {
-            auto point = pq.top(); pq.pop();
-            res.push_back({(int) point[1], (int) point[2]});
+        while (!max_heap.empty())
+        {
+            auto p = max_heap.top(); max_heap.pop();
+            res.push_back({p[1], p[2]});
         }
 
         return res;
     }
+
+    int getDistance(vector<int> &p1, vector<int> &p2) {
+        int dx = p1[0] - p2[0];
+        int dy = p1[1] - p2[1];
+        return dx * dx + dy * dy;
+    }
 };
 
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        max_heap = []
+
+        for (x, y) in points:
+            dist = x ** 2 + y ** 2
+            heappush(max_heap, (-dist, x, y))
+            if len(max_heap) > k: heappop(max_heap)
+
+        res = [(x, y) for (dist, x, y) in max_heap]
+        return res
 /*
  * solution 2: quick select
  * time: O(n)
@@ -90,61 +107,78 @@ public:
             return res;
         }
 
-        vector<double> distances;
-        vector<vector<double>> dist2points;
+        vector<vector<int>> distances;
 
         for (const auto &point : points) {
-            double dist = sqrt(point[0] * point[0] + point[1] * point[1]);
-            distances.push_back(dist);
-            dist2points.push_back({dist, (double) point[0], (double) point[1]});
+            int dist = point[0] * point[0] + point[1] * point[1];
+            distances.push_back({dist, point[0], point[1]});
         }
 
-        double dist_k = quickSelect(distances, 0, distances.size() - 1, k);
+        int dist_k = quickSelect(distances, 0, distances.size() - 1, k);
 
-        for (const auto &p : dist2points) {
-            if (p[0] <= dist_k) {
-                res.push_back({(int) p[1], (int) p[2]});
+        for (const auto &d : distances) {
+            if (d[0] <= dist_k) {
+                res.push_back({d[1], d[2]});
             }
         }
 
         return res;
     }
 
-private:
-    double quickSelect(vector<double> &distances, int start, int end, int k) {
-        if (start == end) {
-            return distances[start];
-        }
+    int quickSelect(vector<vector<int>> &distances, int start, int end, int k) {
+        if (start == end) return distances[start][0];
 
         // partition
         int i = start, j = end;
-        int mid = start + (end -start) / 2;
-        double pivot = distances[mid];
-        while (i <= j) {
-            while (i <= j && distances[i] < pivot) {
-                i++;
-            }
+        int mid = start + (end - start) / 2;
+        int pivot = distances[mid][0];
 
-            while (i <= j && distances[j] > pivot) {
-                j--;
-            }
-
-            if (i <= j) {
-                swap(distances[i++], distances[j--]);
-            }
+        while (i <= j)
+        {
+            while (i <= j && distances[i][0] < pivot) ++i;
+            while (i <= j && distances[j][0] > pivot) --j;
+            if (i <= j) swap(distances[i++], distances[j--]);
         }
 
-        if (start + k - 1 <= j) {
-            return quickSelect(distances, start, j, k);
-        }
+        if (start + k - 1 <= j) return quickSelect(distances, start, j, k);
+        if (start + k - 1 >= i) return quickSelect(distances, i, end, k - (i - start));
 
-        if (start + k - 1 >= i) {
-            return quickSelect(distances, i, end, k - (i - start));
-        }
+        return distances[j + 1][0];
 
-        return distances[j + 1];
     }
 };
 
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        distances = []
 
+        for (x, y) in points:
+            dist = x**2 + y**2
+            distances.append((dist, x, y))
+
+        def quickSelect(distances, start, end, k):
+            if start == end: return distances[start][0]
+
+            i, j = start, end
+            mid = start + (end - start) // 2
+            pivot = distances[mid][0]
+
+            while i <= j:
+                while i <= j and distances[i][0] < pivot: i += 1
+                while i <= j and distances[j][0] > pivot: j -= 1
+                if i <= j:
+                    distances[i], distances[j] = distances[j], distances[i]
+                    i += 1
+                    j -= 1
+
+            if start + k - 1 <= j: return quickSelect(distances, start, j, k)
+            if start + k - 1 >= i: return quickSelect(distances, i, end , k - i + start)
+
+            return distances[j + 1][0]
+
+        dist_k = quickSelect(distances, 0, len(distances) - 1, k)
+
+        res = [(x, y) for (dist, x, y) in distances if dist <= dist_k]
+
+        return res
 //leetcode submit region end(Prohibit modification and deletion)

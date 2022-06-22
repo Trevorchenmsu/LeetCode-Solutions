@@ -56,4 +56,14 @@ public:
         return res;
     }
 };
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        ana_dict = defaultdict(list)
+
+        for word in strs:
+            key = tuple(sorted(word))
+            ana_dict[key].append(word)
+
+        return list(ana_dict.values())
 //leetcode submit region end(Prohibit modification and deletion)

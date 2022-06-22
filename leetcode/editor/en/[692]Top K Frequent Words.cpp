@@ -75,6 +75,50 @@ public:
 };
 
 /*
+ * time: O(nlogn)， faster
+ * space: O(n)
+ * */
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        cnts = defaultdict(int)
+
+        for word in words:
+            cnts[word] += 1
+
+        res = sorted(cnts, key=lambda x: (-cnts[x], x)) #先按频率降序排序，再按字符串排序
+
+        return res[:k]
+
+from heapq import heappush, heappop
+class Node:
+    def __init__(self, word, freq):
+        self.word = word
+        self.freq = freq
+
+    def __lt__(self, other):
+        if self.freq == other.freq:
+            return self.word > other.word
+        return self.freq < other.freq
+
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        cnts = defaultdict(int)
+        for word in words: cnts[word] += 1
+
+        min_heap = []
+        for word, freq in cnts.items():
+            node = Node(word, freq)
+            heappush(min_heap, node)
+            if len(min_heap) > k:
+                heappop(min_heap)
+
+        ret = []
+        while min_heap:
+            ret.append(heappop(min_heap).word)
+
+        return ret[::-1]
+
+/*
  * solution : bucket sort + hash table + tree set
  * time: O(nlogk)
  * space: O(n)

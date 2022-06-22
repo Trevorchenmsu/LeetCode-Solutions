@@ -33,68 +33,79 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution 1: dfs + memo
- * time: O(n^2)
+naive思路：
+1.排序
+2.逐一遍历，看看前后两个元素差值是否为1
+3. 滑窗
+卡点：
+（1）如果不排序，想不到其它的方式可以按顺序考虑的情况；
+A: 考虑题目的特点，要找的是连续的元素们，用该元素的加1减1判断是否存在在哈希集中，可以逐渐判定是否
+在元素中存在这个元素。
+（2）当知道用哈希集，想不到如何处理长度的计算，想用计数器的方式，但是前面计数后如果删掉
+了某些元素，会导致后面的计数不正确。
+A:不采用计数器，其实本质是滑窗中求双指针长度的方法，一个左指针一个右指针。它们往两边扩展的方式就是
+不断从哈希集中删除存在的元素
+（3）并查集如何使用？
+*/
+
+/*
+ * solution: haseset
+ * time: O(n)
  * space: O(n)
  * */
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        int res = 0;
+        if (nums.empty() || nums.size() == 0) return res;
+
+        unordered_set<int> num_set;
+
+        for (auto num : nums) num_set.insert(num);
+
+        for (auto num : nums)
+        {
+            int left = num - 1;
+            while (num_set.find(left) != num_set.end())
+            {
+                num_set.erase(left);
+                --left;
+            }
+
+            int right = num + 1;
+            while (num_set.find(right) != num_set.end())
+            {
+                num_set.erase(right);
+                ++right;
+            }
+
+            res = max(res, right - left - 1);
+        }
+        return res;
+    }
+};
+
+
 class Solution:
-        def minimumTotal(self, triangle: List[List[int]]) -> int:
-        return self.divide_conquer(triangle, 0, 0, {})
+    def longestConsecutive(self, nums: List[int]) -> int:
+        res = 0
+        if nums is None: return res
 
-        def divide_conquer(self, triangle, x, y, memo):
-        if x == len(triangle):
-        return 0
+        num_set = set(nums)
 
-        if (x, y) in memo:
-        return memo[(x, y)]
+        for num in nums:
+            left = num - 1
+            while left in num_set:
+                num_set.remove(left)
+                left -= 1
 
-        left = self.divide_conquer(triangle, x + 1, y, memo)
-        right = self.divide_conquer(triangle, x + 1, y + 1, memo)
-        memo[(x, y)] = min(left, right) + triangle[x][y]
+            right = num + 1
+            while right in num_set:
+                num_set.remove(right)
+                right += 1
 
-        return  memo[(x, y)]
+            res = max(res, right - left - 1)
 
-/*
- * solution: dp, 自底向上
- * time: O(n^2)
- * space: O(n^2)
- * */
-
-class Solution:
-    def minimumTotal(self, triangle: List[List[int]]) -> int:
-        n = len(triangle)
-        dp = [[0] * (i + 1) for i in range(n)]
-
-
-        // dp中初始化的位置就是找没有重叠的位置，自底向上的情况是在最底层没有重复位置，所以需要初始化
-        for i in range(n):
-            dp[n - 1][i] = triangle[n - 1][i]
-
-        for i in range(n - 2, -1, -1):
-            for j in range(i + 1):
-                dp[i][j] = min(dp[i + 1][j], dp[i + 1][j + 1]) + triangle[i][j]
-
-        return dp[0][0]
-
-/*
- * solution: dp, 自顶向下
- * time: O(n^2)
- * space: O(n^2)
- * */
-class Solution:
-    def minimumTotal(self, triangle: List[List[int]]) -> int:
-        n = len(triangle)
-        dp = [[0] * (i + 1) for i in range(n)]
-
-        //没有重叠的部分需要初始化
-        dp[0][0] = triangle[0][0]
-        for i in range(1, n):
-            dp[i][0] = dp[i - 1][0] + triangle[i][0]
-            dp[i][i] = dp[i - 1][i - 1] + triangle[i][i]
-
-        for i in range(2, n):
-            for j in range(1, i):
-                dp[i][j] = min(dp[i - 1][j], dp[i - 1][j - 1]) + triangle[i][j]
-
-        return min(dp[n - 1])
+        return res
 //leetcode submit region end(Prohibit modification and deletion)

@@ -170,7 +170,7 @@ public:
 
     struct cmp {
         bool operator() (const ListNode* L1, const ListNode* L2) {
-            return L1->val > L2->val;
+            return L1->val > L2->val; //最小堆，堆顶最小，可以理解为从下到上为降序，所以是大于号，跟vector排序相反
         }
     };
 
@@ -229,7 +229,7 @@ class Solution:
             cur = cur.next
 
             if node.next:
-            heapq.heappush(min_heap, (cur.next.val, idx, cur.next))
+                heapq.heappush(min_heap, (cur.next.val, idx, cur.next))
 
         return l3.next
 //leetcode submit region end(Prohibit modification and deletion)

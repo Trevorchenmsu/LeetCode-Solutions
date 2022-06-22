@@ -58,7 +58,26 @@ public:
     }
 };
 
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        cnts = defaultdict(int)
+        for num in nums:
+        cnts[num] += 1
 
+        min_heap = []
+        heapq.heapify(min_heap)
+
+        for num, cnt in cnts.items():
+                heapq.heappush(min_heap, (cnt, num))
+        if len(min_heap) > k:
+        heapq.heappop(min_heap)
+
+        ret = []
+        while len(min_heap) > 0:
+        ret.append(min_heap[0][1])
+        heapq.heappop(min_heap)
+
+        return ret
 /*
  * soultion 2: quick select
  * time: 平均为O(n)，最差为O(n^2)，当数组元素全部一样或者全递增或者全递减的情况，是最坏情况。
@@ -237,15 +256,19 @@ public:
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        vector<vector<int>> bucket (nums.size() + 1);
+        // 统计频率
         unordered_map<int, int> numCnt;
         for (auto & num : nums) numCnt[num]++;
+
+        // 每个频率为一个桶，桶下面有多个元素均为这个频率，因为频率是放在桶的index，所以已经自动排序了
+        vector<vector<int>> bucket (nums.size() + 1);
         for (auto &[num, cnt] : numCnt) {
             bucket[cnt].push_back(num);
         }
 
         vector<int> res;
         for (size_t i = nums.size(); i >= 0; i--) {
+            // bucket[i].size()这里可以过滤掉桶的idx上没有元素的情况
             for (size_t j = 0; j < bucket[i].size(); j++) {
                 res.push_back(bucket[i][j]);
                 if (res.size() == k) return res;
@@ -254,4 +277,21 @@ public:
         return res;
     }
 };
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        cnts = defaultdict(int)
+        for num in nums: cnts[num] += 1
+
+        bucket = [[] for i in range(len(nums) + 1)]
+        for num, cnt in cnts.items():
+            bucket[cnt].append(num)
+
+        ret = []
+        for i in range(len(nums), 0, -1):
+            for j in range(len(bucket[i])):
+                ret.append(bucket[i][j])
+                if len(ret) == k: return ret
+
+        return ret
 //leetcode submit region end(Prohibit modification and deletion)
