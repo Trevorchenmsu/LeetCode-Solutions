@@ -164,4 +164,40 @@ public:
         return st.empty();
     }
 };
+
+/*
+ * solution 4: stack
+ * time: O(n)
+ * space: O(n)
+ * */
+
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+
+        for (auto i = 0; i < s.size(); ++i)
+        {
+            if (s[i] == ')'){
+                if (st.empty() || st.top() != '(')
+                    return false;
+                st.pop();
+            }
+            else if (s[i] == ']'){
+                if (st.empty() || st.top() != '[')
+                    return false;
+                st.pop();
+            }
+            else if (s[i] == '}')
+            {
+                if (st.empty() || st.top() != '{')
+                    return false;
+                st.pop();
+            }
+            else st.push(s[i]);
+        }
+
+        return st.empty() ? true : false;
+    }
+};
 //leetcode submit region end(Prohibit modification and deletion)

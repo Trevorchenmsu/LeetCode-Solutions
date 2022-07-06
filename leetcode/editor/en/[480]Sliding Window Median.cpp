@@ -197,4 +197,57 @@ public:
         return medians;
     }
 };
+
+class Solution {
+public:
+    vector<double> medianSlidingWindow(vector<int>& nums, int k) {
+        vector<double> medians;
+        if (nums.empty() || nums.size() == 0) return medians;
+
+        multiset<int> small, large;
+
+        for (auto i = 0; i < nums.size(); ++i)
+        {
+            // 因为i>=k，可以保证要删除的元素肯定在两个set之中
+            if (i >= k)
+            {
+                auto it_s = small.find(nums[i - k]);
+                auto it_l = large.find(nums[i - k]);
+                if (it_s != small.end()) small.erase(it_s);
+                else if (it_l != large.end()) large.erase(it_l);
+            }
+
+            if (small.size() <= large.size())
+            {
+                // 第一个条件为初始插入时判定，第二个条件是当当前元素小于large set左边界时插入
+                if (large.empty() || nums[i] < *large.begin())
+                    small.insert(nums[i]);
+                else // 把较小的值从large拿出来放到small里面，把较大值存入large
+                {
+                    small.insert(*large.begin());
+                    large.erase(large.begin());
+                    large.insert(nums[i]);
+                }
+            }
+            else
+            {
+                if (nums[i] >= *small.rbegin()) large.insert(nums[i]);
+                else
+                {
+                    large.insert(*small.rbegin());
+                    small.erase(--small.end());
+                    small.insert(nums[i]);
+                }
+            }
+
+            if (i >= k - 1)
+            {
+                double median = k & 1 ? (double) *small.rbegin() : ((double) *small.rbegin() + *large.begin()) / 2.0;
+                medians.push_back(median);
+            }
+
+        }
+        return medians;
+    }
+};
 //leetcode submit region end(Prohibit modification and deletion)

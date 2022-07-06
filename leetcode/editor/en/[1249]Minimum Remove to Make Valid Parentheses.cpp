@@ -58,47 +58,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution 1: BFS, TLE
- * time: O(n!)
- * space: O(n!)
- * */
-class Solution {
-public:
-    string minRemoveToMakeValid(string s) {
-        queue<string> q;
-        unordered_set<string> visited;
-        q.push(s);
-        visited.insert(s);
-
-        while(!q.empty()) {
-            string cur = q.front(); q.pop();
-            if (isValid(cur)) return cur;
-            for (int i = 0; i < cur.size(); i++) {
-                string new_str = cur.substr(0, i) + cur.substr(i + 1);
-                if (visited.find(new_str) != visited.end()) continue;
-                q.push(new_str);
-                visited.insert(new_str);
-            }
-        }
-
-        return "";
-    }
-
-    bool isValid(string &s) {
-        int cnt = 0;
-        for (auto &ch : s) {
-            if (ch == '(') cnt++;
-            else if (ch == ')') cnt--;
-
-            if (cnt < 0) return false;
-        }
-
-        return cnt == 0;
-    }
-};
-
-/*
- * solution 2: stack
+ * solution 1: stack
  * time: O(n)
  * space: O(n)
  * */
@@ -134,8 +94,29 @@ public:
     }
 };
 
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        stack = []
+
+        for i, c in enumerate(s):
+            if c == '(': stack.append(i)
+            if c == ')':
+                if len(stack) == 0 or s[stack[-1]] != '(':
+                    stack.append(i)
+                else: stack.pop()
+
+        s = list(s)
+        while len(stack) > 0:
+            s[stack[-1]] = '+'
+            stack.pop()
+
+        res = ''
+        for c in s:
+            if c != '+': res += c
+
+        return res
 /*
- * solution 3: stack, same as solution 2
+ * solution 2: stack, same as solution 1
  * time: O(n)
  * space: O(n)
  * */
@@ -169,7 +150,7 @@ public:
 };
 
 /*
- * solution 4: two passes, optimal
+ * solution 3: two passes, optimal
  * time: O(n)
  * space: O(1)
  * */
@@ -183,10 +164,10 @@ public:
             char c = s[i];
             if (c == '(') balance++;
             if (c == ')') {
-                if (balance == 0) continue;
+                if (balance == 0) continue; // 无效的右括号不会被加入。直接跳到下一个
                 balance--;
             }
-            leftToRight.push_back(c);
+            leftToRight.push_back(c); // 所有匹配得上的括号和字母对都会被加上
         }
 
         // pass 2: 从右往左删除所有无效'('
@@ -208,8 +189,34 @@ public:
     }
 };
 
+
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        l_to_r = ''
+        balance = 0
+
+        for c in s:
+            if c == '(': balance += 1
+            elif c == ')':
+                if balance == 0:
+                    continue
+                else: balance -= 1
+            l_to_r += c
+
+        res = ''
+        balance = 0
+
+        for c in l_to_r[::-1]:
+            if c == ')': balance += 1
+            elif c == '(':
+                if balance == 0:
+                    continue
+                else: balance -= 1
+            res += c
+
+        return res[::-1]
 /*
- * solution 5: two passes, optimal
+ * solution 4: two passes, optimal
  * time: O(n)
  * space: O(1)
  * */

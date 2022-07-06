@@ -39,10 +39,146 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+/*
+ * solution 1: stack, iteration
+ * time: O(n)
+ * space: O(n)
+ * */
+
 class Solution {
 public:
     string decodeString(string s) {
-        
+        if (s.empty() || s.size() == 0) return "";
+        stack<char> st;
+        string res = "";
+
+        for (auto i = 0; i < s.size(); ++i)
+        {
+            if (s[i] != ']') st.push(s[i]);
+            else {
+                string temp = "";
+                while (!st.empty() && st.top() != '[')
+                {
+                    temp.push_back(st.top());
+                    st.pop();
+                }
+                st.pop();
+
+                int count = 0, num = 0;
+                while (!st.empty() && isdigit(st.top()))
+                {
+                    num = num + (st.top() - '0') * pow(10, count);
+                    st.pop();
+                    ++count;
+                }
+
+                for (int j = 0; j < num; ++j)
+                {
+                    for (int k = temp.size() - 1; k >= 0; --k)
+                    {
+                        st.push(temp[k]);
+                    }
+                }
+            }
+        }
+
+        while (!st.empty()) {
+            res.push_back(st.top()); st.pop();
+        }
+
+        reverse(res.begin(), res.end());
+
+        return res;
     }
 };
+
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+
+        for ch in s:
+            if ch == ']':
+                temp = ''
+                while len(stack) > 0 and stack[-1] != '[':
+                    temp = stack[-1] + temp
+                    stack.pop()
+                stack.pop()
+
+                cnt, num = 0, 0
+                while len(stack) > 0 and stack[-1].isdigit():
+                    num += int(stack[-1]) * 10 ** cnt
+                    stack.pop()
+                    cnt += 1
+
+                stack.append(temp * num)
+            else: stack.append(ch)
+
+        return ''.join(stack)
+
+
+/*
+ * solution 2: stack, recursion
+ * time: O(n)
+ * space: O(n)
+ * */
+
+class Solution {
+public:
+    string decodeString(string s) {
+        int idx = 0;
+        return decodeRecursive(s, idx);
+    }
+
+    string decodeRecursive(string &s, int &idx) {
+        string res = "";
+
+        while (idx < s.size() && s[idx] != ']')
+        {
+            if (isalpha(s[idx])) res += s[idx++];
+            else
+            {
+                int k = 0;
+                while (idx < s.size() && isdigit(s[idx]))
+                {
+                    k = k * 10 + s[idx++] - '0';
+                }
+
+                ++idx; // skip '['
+
+                string temp_str = decodeRecursive(s, idx);
+
+                ++idx; // skip ']'
+
+                for (int i = 0; i < k; ++i) res += temp_str;
+            }
+        }
+
+        return res;
+    }
+};
+
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        def decodeRecursive(s, idx):
+            res = ''
+            while idx < len(s) and s[idx] != ']':
+                if s[idx].isalpha():
+                    res += s[idx]
+                    idx += 1
+            else:
+                k = 0
+                while idx < len(s) and s[idx].isdigit():
+                    k = k * 10 + int(s[idx])
+                    idx += 1
+
+                idx += 1
+                temp_str, idx = decodeRecursive(s, idx)
+                idx += 1
+                res += temp_str * k
+
+            return res, idx
+
+    return decodeRecursive(s, 0)[0]
 //leetcode submit region end(Prohibit modification and deletion)

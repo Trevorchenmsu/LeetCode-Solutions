@@ -53,16 +53,17 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        if (nums.empty() || nums.size() == 0) {
-            return 0;
-        }
-
-        int n = nums.size(), res = 0;
+        if (nums.empty() || nums.size() == 0) return 0;
+        int n = nums.size();
         vector<int> dp(n, 1);
+        int res = 0;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < i; j++) {
-                if (nums[i] > nums[j]) {
+        for (int i = 0; i < n; ++i)
+        {
+            for (int j = 0; j < i; ++j)
+            {
+                if (nums[j] < nums[i])
+                {
                     dp[i] = max(dp[i], dp[j] + 1);
                 }
             }
@@ -72,32 +73,47 @@ public:
         return res;
     }
 };
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
 
+        n = len(nums)
+        dp = [1] * n
+        res = 0
+
+        for i in range(n):
+            for j in range(0, i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+            res = max(res, dp[i])
+
+    return res
 
 /*
- * solution 2: insertion sort + binary search
+ * solution 2: insertion/patience sort + binary search
  * time: O(nlogn)
  * space: O(n)
  * */
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        if (nums.empty() || nums.size() == 0) {
-            return 0;
-        }
+        vector<int> LIS;
 
-        vector<int> subSeq;
-        for (const auto& num : nums) {
-            auto it = lower_bound(subSeq.begin(), subSeq.end(), num);
-            if (it == subSeq.end()) {
-                subSeq.push_back(num);
+        for (auto &num : nums)
+        {
+            auto it = lower_bound(LIS.begin(), LIS.end(), num);
+            if (it == LIS.end())
+            {
+                LIS.push_back(num);
             }
-            else {
+            else
+            {
                 *it = num;
             }
         }
 
-        return subSeq.size();
+        return LIS.size();
     }
 };
 

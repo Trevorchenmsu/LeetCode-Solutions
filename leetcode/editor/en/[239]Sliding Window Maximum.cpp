@@ -72,26 +72,86 @@ class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         vector<int> res;
+        if (nums.empty() || nums.size() == 0) return res;
         deque<int> dq;
-        int window_size = 0;
 
-        for (int i = 0; i < nums.size(); i++) {
-            while (!dq.empty() && dq.back() < nums[i])
+        for (int i = 0; i < nums.size(); ++i)
+        {
+            while (!dq.empty() && nums[i] > dq.back())
                 dq.pop_back();
-
             dq.push_back(nums[i]);
-            window_size++;
 
-            if (window_size < k) continue;
+            if (i < k - 1) continue;
 
             res.push_back(dq.front());
 
-            if (nums[i - k + 1] == dq.front()) {
+            if (dq.front() == nums[i - k + 1])
                 dq.pop_front();
-            }
         }
 
         return res;
     }
 };
+
+
+//python中用deque库比用list快
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res = []
+        dq = []
+
+        for i in range(len(nums)):
+            while dq and nums[i] > dq[-1]:
+                dq.pop()
+            dq.append(nums[i])
+
+        if i < k - 1: continue
+
+        res.append(dq[0])
+
+        if dq[0] == nums[i - k + 1]:
+            dq.pop(0)
+
+        return res
+
+
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res = []
+        dq = deque([])
+
+    for i in range(len(nums)):
+        while dq and nums[i] > dq[-1]:
+            dq.pop()
+        dq.append(nums[i])
+
+        if i < k - 1: continue
+
+        res.append(dq[0])
+
+        if dq[0] == nums[i - k + 1]:
+            dq.popleft()
+
+    return res
+
+
+
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        dq = deque([])
+        res = []
+
+        for i, n in enumerate(nums):
+            if dq and dq[0] < i - k + 1:
+                dq.popleft()
+
+            while dq and nums[dq[-1]] < n:
+                dq.pop()
+
+            dq.append(i)
+
+            if i >= k - 1:
+                res.append(nums[dq[0]])
+
+        return res
 //leetcode submit region end(Prohibit modification and deletion)

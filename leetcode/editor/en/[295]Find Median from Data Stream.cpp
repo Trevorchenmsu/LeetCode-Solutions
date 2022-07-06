@@ -68,41 +68,55 @@
  * */
 class MedianFinder {
 public:
-    /** initialize your data structure here. */
+    priority_queue<int> small;
+    priority_queue<int, vector<int>, greater<int>> large;
     MedianFinder() {
-        
+
     }
-    
-    void addNum(int num) { // O(logn)
-        PQ_right.push(num);
-        if (PQ_right.size() > PQ_left.size()) {
-            int val = PQ_right.top(); PQ_right.pop();
-            PQ_left.push(val);
+
+    void addNum(int num) {
+        large.push(num);
+        if (large.size() > small.size())
+        {
+            small.push(large.top());
+            large.pop();
         }
 
-        if (PQ_left.top() > PQ_right.top()) {
-            int left_big = PQ_left.top(); PQ_left.pop();
-            int right_small = PQ_right.top(); PQ_right.pop();
-            PQ_left.push(right_small);
-            PQ_right.push(left_big);
-        }
-    }
-    
-    double findMedian() { // O(logn)
-        int left = PQ_left.size(), right = PQ_right.size();
-        if ((left + right) % 2 == 0){
-            return (PQ_left.top() + PQ_right.top()) / 2.0;
-        }
-        else {
-            return (double) PQ_left.top();
+        if (small.top() > large.top())
+        {
+            large.push(small.top());
+            small.pop();
+            small.push(large.top());
+            large.pop();
         }
     }
 
-private:
-    priority_queue<int> PQ_left; // O(n)
-    priority_queue<int, vector<int>, greater<int>> PQ_right;
+    double findMedian() {
+        double res = small.size() == large.size() ? (small.top() + large.top()) / 2.0 : (double) small.top();
+        return res;
+    }
 };
 
+
+class MedianFinder:
+
+    def __init__(self):
+        self.small = []
+        self.large = []
+
+    def addNum(self, num: int) -> None:
+        heapq.heappush(self.large, num)
+        if len(self.large) > len(self.small):
+            heapq.heappush(self.small, -heapq.heappop(self.large))
+
+        if len(self.small) > 0 and len(self.large) > 0 and -self.small[0] > self.large[0]:
+            heapq.heappush(self.large, -heapq.heappop(self.small))
+            heapq.heappush(self.small, -heapq.heappop(self.large))
+
+
+    def findMedian(self) -> float:
+        res = (-self.small[0] + self.large[0]) / 2.0 if len(self.small) == len(self.large) else -self.small[0]
+        return res
 /**
  * Your MedianFinder object will be instantiated and called as such:
  * MedianFinder* obj = new MedianFinder();

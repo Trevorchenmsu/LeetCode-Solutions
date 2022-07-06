@@ -199,11 +199,11 @@ public:
     int popMax() { // O(logN)
         // 从treemap中获取最大元素，因为自动排序，只需要获取最后一个
         int val = (--valToiter.end())->first;
-        // 这里用val获取迭代器的原因是，在链表中最大值不一定是链表尾，所以需要用迭代器的位置进行删除
+        // 这里用val获取迭代器的原因是，在链表中最大值不一定在链表尾，所以需要用迭代器的位置进行删除
         auto iter = valToiter[val].back();
         valueList.erase(iter);
 
-        // 因为删除了一个最大值，所以需要从对应的迭代器数组中删除一个迭代器，如果size0，就删除key
+        // 因为删除了一个最大值，所以需要从对应的迭代器数组中删除一个迭代器，如果size为0，就删除key
         valToiter[val].pop_back();
         if (valToiter[val].size() == 0) {
             valToiter.erase(val);
