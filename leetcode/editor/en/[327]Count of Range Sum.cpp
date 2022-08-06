@@ -90,7 +90,7 @@ private:
             temp[k++] = presum[j++];
 
         for (int i = 0; i < end - start + 1; i++)
-            presum[start + i] = temp[i];
+            presum[start + i] = temp[i]; //注意：这里不能用start++，因为判定条件里面有start，会变化
     }
 };
 

@@ -87,6 +87,8 @@ public:
     }
 
     string get(string key, int timestamp) {
+        auto it  = key2time.find(key);
+        if (it == key2time.end()) return "";
         int t = binarySearch(key2time[key], timestamp);
         return t == -1 ? "" : time2val[t];
     }
@@ -143,6 +145,38 @@ public:
 
 
 };
+
+
+/*
+ * solution 3: hash table + binary search (STL)
+ * time: O(logn)
+ * space: O(n)
+ * */
+class TimeMap {
+    unordered_map<int, string> ts_val;
+    unordered_map<string, vector<int>> key_ts;
+public:
+    TimeMap() {
+
+    }
+
+    void set(string key, string value, int timestamp) {
+        ts_val[timestamp] = value;
+        key_ts[key].push_back(timestamp);
+    }
+
+    string get(string key, int timestamp) {
+        auto iter = upper_bound(key_ts[key].begin(), key_ts[key].end(), timestamp);
+        string res = "";
+        if (iter != key_ts[key].begin())
+        {
+            res = ts_val[*(--iter)];
+        }
+
+        return res;
+    }
+};
+
 
 /**
  * Your TimeMap object will be instantiated and called as such:

@@ -77,70 +77,63 @@
 /*
  * solution: design, hash table, doubly linked list.
  * */
-
-
 class LFUCache {
+    // 每个freq都有它的keys列表，所以key_iter的迭代器也是对应这里的列表，不是所有的key整合成一个大list
+    unordered_map<int, list<int>> freq_keys;
+    unordered_map<int, list<int>::iterator> key_iter;
+    unordered_map<int, int> key_val, key_freq;
+    int cap, min_freq;
 public:
     LFUCache(int capacity) {
         cap = capacity;
-        minFreq = 0;
+        min_freq = 0;
     }
-    
+
     int get(int key) {
-        // key does not exist
-        if (key2value.find(key) == key2value.end())
-            return -1;
+        // key not exist
+        auto it = key_val.find(key);
+        if (it == key_val.end()) return -1;
 
-        // key exists
-        int freq = key2freq[key];
-        freq2keys[freq].erase(key2iter[key]);  // delete key in current freq
-        freq2keys[freq + 1].push_back(key); // add key in freq + 1
-        key2iter[key] = --freq2keys[freq + 1].end();
-        key2freq[key] = freq + 1;
+        // update the frequence and position
+        int freq_del = key_freq[key];
 
-        // in fre2keys, we might delete the one which is minimum frequency
-        // then we have to move minimum frequency to next one, namely plus 1
-        if (freq2keys[minFreq].size() == 0)
-            minFreq++;
+        // 这里没有用到key_list，所以key_iter存的不是它的迭代器，那只能是在特定freq下对应的list的迭代器
+        freq_keys[freq_del].erase(key_iter[key]); //因为调用后频率递增，该key已经不属于这个freq了
+        ++key_freq[key]; // 频率递增
+        freq_keys[key_freq[key]].push_back(key); //当前key被挂在递增后的freq下
+        key_iter[key] = --freq_keys[key_freq[key]].end();
 
-        return key2value[key];
+        // 在freq_keys中，删除的频率可能是最小频率，则需要将最小频率前进一位
+        if (freq_keys[min_freq].size() == 0) ++min_freq;
+
+        return key_val[key];
     }
-    
+
     void put(int key, int value) {
-        // corner case
         if (cap == 0) return;
 
-        // key exists, get() can update the key frequency
-        if (get(key) != -1) {
-            key2value[key] = value;
+        if (get(key) != -1)
+        {
+            key_val[key] = value;
             return;
         }
 
-        // key does not exist. full capacity, delete LFU first
-        if (key2value.size() == cap) {
-            int k = freq2keys[minFreq].front();
+        if (key_val.size() == cap)
+        {
+            int key_del = freq_keys[min_freq].front();
 
-            key2value.erase(k);
-            key2freq.erase(k);
-            key2iter.erase(k);
-
-            freq2keys[minFreq].pop_front();
+            key_val.erase(key_del);
+            key_freq.erase(key_del);
+            key_iter.erase(key_del);
+            freq_keys[min_freq].pop_front();
         }
 
-        // update the containers
-        minFreq = 1;
-        key2value[key] = value;
-        key2freq[key] = minFreq;
-        freq2keys[minFreq].push_back(key);
-        key2iter[key] = --freq2keys[minFreq].end();
+        min_freq = 1; // 因为这里已经保证之前没有这个key，所以它的频率是1
+        key_val[key] = value;
+        key_freq[key] = min_freq;
+        freq_keys[min_freq].push_back(key);
+        key_iter[key] = --freq_keys[min_freq].end();
     }
-
-private:
-    int cap, minFreq;
-    unordered_map<int, int> key2value;
-    unordered_map<int, int> key2freq;
-    unordered_map<int, list<int>> freq2keys;
-    unordered_map<int, list<int>::iterator> key2iter;
 };
 
 /**
@@ -149,4 +142,10 @@ private:
  * int param_1 = obj->get(key);
  * obj->put(key,value);
  */
+
+/*
+题目要求跟LRU基本一致，差别就是满足容量时要删除的元素不同，
+LFU指的是最小使用频率的元素，如果使用频率相同，再删除LRU
+频率要能够自动排序：freq_list?
+*/
 //leetcode submit region end(Prohibit modification and deletion)

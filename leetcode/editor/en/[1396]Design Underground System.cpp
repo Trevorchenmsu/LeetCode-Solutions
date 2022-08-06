@@ -132,36 +132,33 @@
  * space: O(n)
  * */
 class UndergroundSystem {
+    unordered_map<int, pair<string, int>> id_sta_time;
+    unordered_map<string, pair<int, int>> sta_time_cnt;
 public:
     UndergroundSystem() {
+
     }
 
     void checkIn(int id, string stationName, int t) {
-        in[id] = {stationName, t};
+        id_sta_time[id] = {stationName, t};
     }
 
     void checkOut(int id, string stationName, int t) {
-        auto in_info = in[id];
-        string startStation = in_info.first;
-        int start_time = in_info.second;
-
-        string path = startStation + " to" + stationName;
-        int total_time = t - start_time;
-
-        start2end[path].first += total_time;
-        start2end[path].second += 1;
+        string start = id_sta_time[id].first;
+        int time_start = id_sta_time[id].second;
+        int time_total = t - time_start;
+        string path = start + "->" + stationName;
+        sta_time_cnt[path].first += time_total;
+        sta_time_cnt[path].second += 1;
     }
 
     double getAverageTime(string startStation, string endStation) {
-        string path = startStation + " to" + endStation;
-        auto out = start2end[path];
-        double res = (double) out.first / out.second;
+        string path = startStation + "->" + endStation;
+        int time_total = sta_time_cnt[path].first;
+        int cnt = sta_time_cnt[path].second;
+        double res = (double) time_total / cnt;
         return res;
     }
-
-private:
-    unordered_map<int, pair<string, int>> in;
-    unordered_map<string, pair<int, int>> start2end;
 };
 
 /**

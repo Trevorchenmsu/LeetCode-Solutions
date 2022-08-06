@@ -251,6 +251,56 @@ public:
     string word;
     Trie* trie;
 };
+
+
+/*
+ * solution 4: trie, optimal
+ * time: O(L) for query, L is the length of stream; O(n*l) for constructor, n is the number of words and l is the max length of word
+ * space: O(n*l), n*l is the total number of characters stored in the map
+ * */
+class StreamChecker {
+public:
+    struct TrieNode {
+        bool hasWord = false;
+        unordered_map<char, TrieNode*> children;
+    };
+
+    TrieNode* root;
+    string char_stream = "";
+
+    StreamChecker(vector<string>& words) {
+        root = new TrieNode();
+        for (auto word : words) addWord(word);
+    }
+
+    bool query(char letter) {
+        char_stream.push_back(letter);
+        TrieNode* node = root;
+
+        for (int i = char_stream.size() - 1; i >= 0; --i)
+        {
+            auto it = node->children.find(char_stream[i]);
+            if (it == node->children.end()) return false;
+            if (node->children[char_stream[i]]->hasWord)
+                return true;
+            node = node->children[char_stream[i]];
+        }
+        return false;
+    }
+
+    void addWord(string word)
+    {
+        TrieNode* node = root;
+        for (int i = word.size() - 1; i >= 0; --i)
+        {
+            auto it = node->children.find(word[i]);
+            if (it == node->children.end())
+                node->children[word[i]] = new TrieNode();
+            node = node->children[word[i]];
+        }
+        node->hasWord = true;
+    }
+};
 /**
  * Your StreamChecker object will be instantiated and called as such:
  * StreamChecker* obj = new StreamChecker(words);

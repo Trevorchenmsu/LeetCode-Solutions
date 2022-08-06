@@ -91,6 +91,48 @@ public:
     }
 };
 
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        path = ""
+        self.buildParenthesis(res, path, n, 0, 0)
+    return res
+
+    def buildParenthesis(self, res, path, n, left, right):
+        if len(path) == 2 * n:
+            res.append(path)
+            return
+
+        if right > left: return
+
+        if left < n: self.buildParenthesis(res, path + '(', n, left + 1, right)
+        if right < n: self.buildParenthesis(res, path + ')', n, left, right + 1)
+
+
+
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        string path = "(";
+        int left_cnt = 1, right_cnt = 0;
+        createParenthesis(res, path, n, left_cnt, right_cnt);
+        return res;
+    }
+
+    void createParenthesis (vector<string> &res, string path, int n, int left, int right) {
+        if (path.size() == n * 2)
+        {
+            res.push_back(path);
+            return;
+        }
+
+        if (left < n) createParenthesis(res, path + '(', n, left + 1, right);
+        if (right < n && right < left) createParenthesis(res, path + ')', n , left, right + 1);
+    }
+};
+
+
 /*
  * solution 3: backtrack， 这个解法path采用引用作为参数输入，所以占据更少空间，时间差不多。稍微繁琐一点就是得采用标准回溯模式，即先加后删除
  * time: O(2n*2^2n)

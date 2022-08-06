@@ -91,9 +91,9 @@ class DSU {
     vector<int> parents, rank;
 public:
     DSU(int N) {
-        parents = vector<int> (N, 0);
-        rank = vector<int> (N, 1);
-        for (size_t i = 0; i < N; i++) parents[i] = i;
+        parents.resize(N);
+        rank.resize(N, 1);
+        for (int i = 0; i < N; i++) parents[i] = i;
     }
 
     int find(int x) {
@@ -104,17 +104,18 @@ public:
     }
 
     void unionFunc(int x, int y) {
-        int root_x = find(x), root_y = find(y);
-        if (root_x == root_y) return;
-        if (rank[root_x] < rank[root_y]) {
-            parents[root_x] = root_y;
+        int px = find(x);
+        int py = find(y);
+
+        if (rank[px] < rank[py]) {
+            parents[px] = py;
         }
-        else if (rank[root_x] > rank[root_y]) {
-            parents[root_y] = root_x;
+        else if (rank[px] > rank[py]) {
+            parents[py] = px;
         }
         else { // x和y调换也行，反正它们的rank相等
-            parents[root_x] = root_y;
-            rank[root_y]++;
+            parents[px] = py;
+            rank[py]++;
         }
     }
 };
@@ -146,6 +147,42 @@ public:
         else {
             parents[root_y] = root_x;
             size[root_x] += size[root_y];
+        }
+    }
+};
+
+/*
+ * solution 3: union find, size version
+ *
+ * */
+
+class DSU{
+    vector<int> parents, size;
+public:
+    DSU(int N) {
+        parents.resize(N);
+        size.resize(N, 1);
+        for (int i = 0; i < N; i++) parents[i] = i;
+    }
+
+    int find(int x) {
+        if (parents[x] != x) {
+            parents[x] = find(parents[x]);
+        }
+        return parents[x];
+    }
+
+    void union_func(int x, int y) {
+        int px = find(x);
+        int py = find(y);
+        if (px == py) return;
+        if (size[px] <= size[py]) {
+            parents[px] = py;
+            size[py] += size[px];
+        }
+        else {
+            parents[py] = px;
+            size[px] += size[py];
         }
     }
 };

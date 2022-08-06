@@ -51,11 +51,88 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
  * solution: segment tree
- * time: O(logn)
+ * time: O(logn), update和query都是logn，logn为树高
  * space: O(n)
  * */
 
+class SegTreeNode {
+public:
+    SegTreeNode *left, *right;
+    int start, end, info;
+    SegTreeNode(int start_, int end_): start(start_), end(end_), info(0), left(nullptr), right(nullptr) {}
+};
+
 class NumArray {
+    vector<int> nums;
+    SegTreeNode* root;
+
+    void buildTree(SegTreeNode* node, int start, int end) {
+        // 当分割到叶节点时，用数组上对应的值更新改叶节点对应的info
+        if (start == end)
+        {
+            node->info = nums[start];
+            return;
+        }
+
+        // 创建左右子树
+        int mid = (start + end) / 2;
+        if (!node->left)
+        {
+            node->left = new SegTreeNode(start, mid);
+            node->right = new SegTreeNode(mid + 1, end);
+        }
+
+        // 分治法建树
+        buildTree(node->left, start, mid);
+        buildTree(node->right, mid + 1, end);
+        node->info = node->left->info + node->right->info;
+    }
+
+    void updateSingle(SegTreeNode* node, int idx, int val) {
+        // 边界条件
+        if (idx < node->start || idx > node->end) return;
+
+        // 递归出口，当递归到叶节点时
+        if (node->start == node->end)
+        {
+            node->info = val;
+            return;
+        }
+
+        // 左右子树查找idx的位置。因为上面的边界条件一直压缩有效区间，直到叶节点，找到的就是idx
+        updateSingle(node->left, idx, val);
+        updateSingle(node->right, idx, val);
+
+        // 更新父级节点info。不用管更新的是left还是right节点，反正它的值变更了，与它相关的每一层父节点都要更新
+        node->info = node->left->info + node->right->info;
+    }
+
+    int queryRange(SegTreeNode* node, int left, int right) {
+        // 边界条件: 左边表示left和right都在start和end的左边，无效；
+        // 右边表示left和right都在start和end的右边，无效。
+        if (right < node->start || left > node->end) return 0;
+
+        /* 首先start和end并不是指根节点的start和end，而是当前节点的start和end。
+        当指定的left和right能够包含整个start和end时，可以有3种情况：
+        （1）start和left相等，right比end大。此时我们要的就是代表这个start和end的node的info。
+            右半段的值在递归返回后就会去右侧查找另一半的info结果。
+            这个例子中相当于return的queryRange(node->left, left, right)，它结束回来后，又会去
+            queryRange(node->right, left, right)查找另一半
+         (2) left比start宽，right和end相等。相当于左侧已经执行完了，SE属于右侧的queryRange(node->right, left, right)
+         (3) start等于left，right等于end。同理。
+
+        S|_____|E            S|_____|E   S|__________|E
+        L|__________R   L|__________|R   L|__________|R
+        下面的两种情况下SE的区间和根本不能用，它超过了LR的范围，无法代表LR区间，所以不需要考虑。
+        也就是说必须(left, right)和(start, end)有重叠区间才可以使用SE的值，而且还得是LR区间更大或者相等。
+            S|_____|E      S|_____|E
+        L|_____R               L|_____R
+        */
+        if (left <= node->start && right >= node->end) return node->info;
+
+        return queryRange(node->left, left, right) + queryRange(node->right, left, right);
+    }
+
 public:
     NumArray(vector<int>& nums) {
         this->nums = nums;
@@ -70,84 +147,6 @@ public:
     int sumRange(int left, int right) {
         return queryRange(root, left, right);
     }
-
-private:
-    class SegTreeNode {
-    public:
-        SegTreeNode *left, *right;
-        int start, end, info;
-        SegTreeNode (int a, int b) : start(a), end(b), info(0), left(NULL), right(NULL) {}
-    };
-
-    void buildTree(SegTreeNode* node, int start, int end) {
-        //当分割到只剩下一个节点时，此时返回该节点的值，用它作为该节点的info
-        if (start == end) {
-            node->info = nums[start];
-            return;
-        }
-
-        // 创建左右子树
-        int mid = (start + end) / 2;
-        if (node->left == NULL) {
-            node->left = new SegTreeNode(start, mid);
-            node->right = new SegTreeNode(mid + 1, end);
-        }
-
-        // 分治法建树
-        buildTree(node->left, start, mid);
-        buildTree(node->right, mid + 1, end);
-        node->info = node->left->info + node->right->info;
-    }
-
-    void updateSingle(SegTreeNode* node, int idx, int val) {
-        // 边界条件
-        if (idx < node->start || idx > node->end)
-            return;
-
-        // 递归出口，递归到一个节点时
-        if (node->start == node->end) {
-            node->info = val;
-            return;
-        }
-
-        // 左右子树查找这个目标idx
-        // 为什么可以找得到idx？因为上面的边界条件一直压缩有效区间，直到为单节点时，找到的就是idx
-        updateSingle(node->left, idx, val);
-        updateSingle(node->right, idx, val);
-        // 层层往上更新父节点info。我们不用管更新的是left还是right节点，反正它的值变更了，与它相关的每一层父节点都要更新
-        node->info = node->left->info + node->right->info;
-    }
-
-    int queryRange(SegTreeNode* node, int left, int right) {
-        // 边界条件：左侧条件表示left和right都在start和end的左边，无效；
-        //         右侧条件表示left和right都在start和end的右边，无效。
-        if (right < node->start || left > node->end)
-            return 0;
-
-        /* 为什么是下面这种判定条件？首先start和end并不是指根节点的start和end，而是当前节点的start和end
-        当left和right能够包含整个start和end时，可以有3种情况：
-        （1）start和left相等，right比end大。此时我们要的就是代表这个start和end的node的info。
-            但是缺了右半段怎么整？递归返回后就会去到右侧去查找另一半的info结果。
-            这个例子中相当于最终return的queryRange(node->left, left, right)，它结束回到这里后，又会去
-            queryRange(node->right, left, right)
-         (2) left比start大，right和end相等。
-         这个例子相当于左侧已经执行完了，SE属于右侧queryRange(node->right, left, right)
-         (3)start等于left，right等于end。同理。
-
-        S|_____|E            S|_____|E   S|__________|E
-        L|__________R   L|__________|R   L|__________|R
-        为什么不考虑下面的情况？因为在这两种情况下SE的区间和根本不能用，它超过了LR的范围，无法代表LR区间，所以不需要考虑。
-            S|_____|E      S|_____|E
-        L|_____R               L|_____R
-        */
-        if (left <= node->start && right >= node->end)
-            return node->info;
-
-        return queryRange(node->left, left, right) + queryRange(node->right, left, right);
-    }
-
-    vector<int> nums;
-    SegTreeNode* root;
 };
 
 /**

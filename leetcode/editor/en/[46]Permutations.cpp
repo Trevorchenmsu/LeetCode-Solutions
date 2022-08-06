@@ -75,8 +75,7 @@ public:
         if (nums.empty() || nums.size() == 0) {
             return res;
         }
-        vector<int> path;
-        vector<int> visited(nums.size(), 0);
+        vector<int> path, visited(nums.size());
         backtrack(nums, path, res, visited);
 
         return res;

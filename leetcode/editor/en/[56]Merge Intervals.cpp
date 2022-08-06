@@ -63,10 +63,27 @@ public:
     }
 };
 
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key=lambda x : x[0])
+        start, end = intervals[0]
+        res = []
+
+        for itv in intervals:
+            if itv[0] > end:
+                res.append([start, end])
+                start, end = itv
+            else:
+                end = max(end, itv[1])
+
+        res.append([start, end])
+        return res
+
+
 /*
  * solution 2: sweep line
  * time: O(nlogn)
- * space: O(logn)
+ * space: O(n)
  *
  * */
 

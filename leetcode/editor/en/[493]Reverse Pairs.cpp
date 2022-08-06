@@ -49,6 +49,7 @@ private:
         divideConquer(nums, sorted, start, mid, res);
         divideConquer(nums, sorted, mid + 1, end, res);
 
+        // 315的解法是在右侧找满足条件的例子。这里因为方便使用2倍n[j]，所以遍历右边元素，从左侧找n[i]
         for (int j = mid + 1; j <= end ; j++) {
             auto iter = upper_bound(sorted.begin() + start, sorted.begin() + mid + 1, 2 * (long) nums[j]);
             res += sorted.begin() + mid + 1 - iter;

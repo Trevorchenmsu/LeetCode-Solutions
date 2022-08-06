@@ -102,6 +102,36 @@ private:
     unordered_map<int, int> val2idx;
 };
 
+
+
+class RandomizedSet:
+
+    def __init__(self):
+        self.nums = []
+        self.val2idx = {}
+
+    def insert(self, val: int) -> bool:
+        if val in self.val2idx.keys(): return False
+
+        self.val2idx[val] = len(self.nums)
+        self.nums.append(val)
+        return True
+
+    def remove(self, val: int) -> bool:
+        if val not in self.val2idx.keys():
+            return False
+
+        idx = self.val2idx[val]
+        last = self.nums[-1]
+        self.nums[idx] = last
+        self.val2idx[last] = idx
+        del self.val2idx[val]
+        self.nums.pop()
+        return True
+
+
+    def getRandom(self) -> int:
+        return choice(self.nums)
 /**
  * Your RandomizedSet object will be instantiated and called as such:
  * RandomizedSet* obj = new RandomizedSet();

@@ -89,4 +89,45 @@ public:
         return res;
     }
 };
+
+/*
+ * solution: stack, 更加直观易懂
+ * time: O(n)
+ * space:O(n)
+ * */
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        vector<int> res;
+        if (asteroids.empty() || asteroids.size() == 0)
+            return res;
+
+        stack<int> s;
+        for (auto &ast : asteroids)
+        {
+
+            if(ast > 0) s.push(ast);
+            else
+            {
+                while(!s.empty() && abs(ast) > abs(s.top()) && ast * s.top() < 0)
+                    s.pop();
+
+                if(s.empty() || s.top() < 0)
+                    s.push(ast);
+
+                else if(abs(ast) == abs(s.top()))
+                    s.pop();
+            }
+        }
+
+        while (!s.empty())
+        {
+            res.push_back(s.top()); s.pop();
+        }
+
+        reverse(res.begin(), res.end());
+
+        return res;
+    }
+};
 //leetcode submit region end(Prohibit modification and deletion)

@@ -47,9 +47,9 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /*
- * solution 1: union find
+ * solution 1: union find，哈希表去重
  * time: O(mn)
- * space: O(1)
+ * space: O(mn)
  * */
 class DSU{
 public:
@@ -140,7 +140,111 @@ public:
 };
 
 /*
- * solution 2: dfs, TLE
+ * solution 2: union find，哈希集去重，节省遍历次数
+ * time: O(mn)
+ * space: O(mn)
+ * */
+
+class DSU {
+    vector<int> parent, size;
+public:
+    DSU (int N)
+    {
+        parent.resize(N);
+        size.resize(N, 1);
+        for (int i = 0; i < N; ++i) parent[i] = i;
+    }
+
+    int find(int x)
+    {
+        if (parent[x] != x)
+        {
+            parent[x] = find(parent[x]);
+        }
+
+        return parent[x];
+    }
+
+    void union_func(int x, int y)
+    {
+        int px = find(x);
+        int py = find(y);
+        if (px == py) return;
+        if (size[px] <= size[py])
+        {
+            parent[px] = py;
+            size[py] += size[px];
+        }
+        else
+        {
+            parent[py] = px;
+            size[px] += size[py];
+        }
+    }
+
+    int get_size(int node)
+    {
+        return size[find(node)];
+    }
+
+};
+
+class Solution {
+public:
+    int largestIsland(vector<vector<int>>& grid) {
+        int m = grid.size(), n = grid[0].size();
+        int dirs[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        DSU dsu(m * n);
+        int res = 0;
+
+        for (int i = 0; i < m; ++i)
+        {
+            for (int j = 0; j < n; ++j)
+            {
+                if (grid[i][j] == 0) continue;
+                res = max(res, dsu.get_size(dsu.find(i * n + j)));
+                for (auto dir : dirs)
+                {
+                    int nx = i + dir[0];
+                    int ny = j + dir[1];
+                    if (nx < 0 || nx >= m || ny < 0 || ny >= n || grid[nx][ny] == 0)
+                        continue;
+                    int cur = i * n + j;
+                    int neighbor = nx * n + ny;
+                    dsu.union_func(cur, neighbor);
+                }
+            }
+        }
+
+        for (int i = 0; i < m; ++i)
+        {
+            for (int j = 0; j < n; ++j)
+            {
+                if (grid[i][j] == 1) continue;
+                unordered_set<int> visited;
+                int count = 1;
+                for (auto dir : dirs)
+                {
+                    int nx = i + dir[0];
+                    int ny = j + dir[1];
+                    if (nx < 0 || nx >= m || ny < 0 || ny >= n || grid[nx][ny] == 0)
+                        continue;
+                    int parent = dsu.find(nx * n + ny);
+                    auto it = visited.find(parent);
+                    if (it != visited.end()) continue;
+                    count += dsu.get_size(parent);
+                    visited.insert(parent);
+                }
+                res = max(res, count);
+            }
+        }
+
+        return res;
+    }
+};
+
+/*
+ * solution 3: dfs, TLE
  * time: O(mn*mn)
  * space: O(mn)
  * */
