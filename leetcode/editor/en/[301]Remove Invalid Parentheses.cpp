@@ -47,54 +47,50 @@ class Solution {
 public:
     vector<string> removeInvalidParentheses(string s) {
         vector<string> res;
-        if (s.empty()) return res;
+        unordered_set<string> visited;
+        bfs(s, res, visited);
+        return res;
+    }
 
+    void bfs(string &s, vector<string> &res, unordered_set<string> &visited) {
         queue<string> q;
         q.push(s);
-        unordered_set<string> visited;
-        visited.insert(s);
         bool flag = false;
 
-        while (!q.empty()) {
+        while (!q.empty())
+        {
             string cur = q.front(); q.pop();
-
-            if (isValid(cur)) { // O(n)
+            if (isValid(cur))
+            {
                 res.push_back(cur);
                 flag = true;
             }
 
             if (flag) continue;
 
-            for (int i = 0; i < cur.size(); i++) { // O(L^2)
+            for (int i = 0; i < cur.size(); ++i)
+            {
                 if (isalpha(cur[i])) continue;
-                string neighbor = cur.substr(0, i) + cur.substr(i + 1);
-
-                if (visited.count(neighbor))  continue;
-
-                q.push(neighbor);
-                visited.insert(neighbor);
+                string child = cur.substr(0, i) + cur.substr(i + 1);
+                auto it = visited.find(child);
+                if (it != visited.end()) continue;
+                q.push(child);
+                visited.insert(child);
             }
         }
-
-        return res;
     }
 
-
-private:
-    bool isValid(string &s) {
-        int cnt = 0;
-        for (auto &ch : s) {
-            if (ch == '(')
-                cnt++;
-
-            if (ch == ')')
-                cnt--;
-
-            if (cnt < 0)
-                return false;
+    bool isValid(const string &s)
+    {
+        int count = 0;
+        for (auto &ch : s)
+        {
+            if (ch == '(') ++count;
+            if (ch == ')') -- count;
+            if (count < 0) return false;
         }
 
-        return cnt == 0;
+        return count == 0;
     }
 };
 

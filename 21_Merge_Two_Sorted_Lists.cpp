@@ -4,33 +4,49 @@ time: O(m+n)
 space: O(1), because we don't create new nodes to extra space
 */
 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        if (l1 == nullptr) return l2;
-        if (l2 == nullptr) return l1;
-        if (l1 == nullptr && l2 == nullptr) return nullptr;
-        
-        ListNode* dummy = new ListNode(0);
-        ListNode* cur = dummy;
-        
-        while (l1 != nullptr && l2 != nullptr) {
-            if (l1->val < l2->val) {
-                cur->next = l1;
-                l1 = l1->next;
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if (list1 == nullptr)
+            return list2;
+
+        if (list2 == nullptr)
+            return list1;
+
+        if (list1 == nullptr && list2 == nullptr)
+            return nullptr;
+
+        ListNode* list3 = new ListNode(0);
+        ListNode* curr = list3;
+
+        while (list1 && list2) {
+            if (list1->val < list2->val) {
+                curr->next = list1;
+                list1 = list1->next;
             }
             else {
-                cur->next = l2;
-                l2 = l2->next;
+                curr->next = list2;
+                list2 = list2->next;
             }
-            cur = cur->next;
+            curr = curr->next;
         }
-        
-        if (l1 != nullptr) 
-            cur->next = l1;
-        if (l2 != nullptr) 
-            cur->next = l2;
-        
-        return dummy->next;
+
+        if (list1)
+            curr->next = list1;
+
+        if (list2)
+            curr->next = list2;
+
+        return list3->next;
     }
 };

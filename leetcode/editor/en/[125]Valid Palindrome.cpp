@@ -56,4 +56,34 @@ private:
         return isdigit(ch) || isalpha(ch);
     }
 };
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        if (s.empty())
+            return true;
+
+        // 1. upper->lower; 2. only character; 3. even/odd
+        int left = 0, right = s.length() - 1;
+        while (left <= right) {
+            if (!isalpha(s[left]) && !isdigit(s[left])) {
+                left++;
+                continue;
+            }
+
+            if (!isalpha(s[right]) && !isdigit(s[right])) {
+                right--;
+                continue;
+            }
+
+            if (tolower(s[left]) != tolower(s[right]))
+                return false;
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+};
 //leetcode submit region end(Prohibit modification and deletion)

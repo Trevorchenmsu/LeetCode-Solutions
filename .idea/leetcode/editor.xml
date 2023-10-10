@@ -451,6 +451,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[136]Single Number.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[136]Single Number.cpp" />
+              <option name="questionId" value="136" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[1371]Find the Longest Substring Containing Vowels in Even Counts.cpp">
           <value>
             <LeetcodeEditor>
@@ -464,6 +472,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[1375]Bulb Switcher III.cpp" />
               <option name="questionId" value="1491" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[137]Single Number II.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[137]Single Number II.cpp" />
+              <option name="questionId" value="137" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1339,6 +1355,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[242]Valid Anagram.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[242]Valid Anagram.cpp" />
+              <option name="questionId" value="242" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[252]Meeting Rooms.cpp">
           <value>
             <LeetcodeEditor>
@@ -1352,6 +1376,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[253]Meeting Rooms II.cpp" />
               <option name="questionId" value="253" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[254]Factor Combinations.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[254]Factor Combinations.cpp" />
+              <option name="questionId" value="254" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -2896,6 +2928,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[930]Binary Subarrays With Sum.cpp" />
               <option name="questionId" value="966" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[931]Minimum Falling Path Sum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[931]Minimum Falling Path Sum.cpp" />
+              <option name="questionId" value="967" />
             </LeetcodeEditor>
           </value>
         </entry>

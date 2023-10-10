@@ -69,6 +69,46 @@ public:
     }
 };
 
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        invertTreeRecursive(root);
+        return root;
+    }
+
+    void invertTreeRecursive(TreeNode* &root)
+    {
+        if (!root) return;
+
+        invertTreeRecursive(root->left);
+        invertTreeRecursive(root->right);
+        TreeNode* temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+    }
+};
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        return flipLeftRight(root);
+    }
+
+    TreeNode* flipLeftRight(TreeNode* node) {
+        if (node == nullptr)
+            return node;
+
+        TreeNode* tmp;
+        tmp = node->left;
+        node->left = node->right;
+        node->right = tmp;
+
+        node->left = flipLeftRight(node->left);
+        node->right = flipLeftRight(node->right);
+
+        return node;
+    }
+};
 
 /*
  * solution 2: BFS level traversal
@@ -79,29 +119,25 @@ public:
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if (root == NULL) {
+        if (root == nullptr)
             return root;
-        }
 
-        queue<TreeNode*> q;
-        q.push(root);
+        queue<TreeNode*> node_q;
+        node_q.push(root);
 
-        while (!q.empty()) {
-            int len = q.size();
-            while (len--) {
-                TreeNode* cur = q.front(); q.pop();
-                TreeNode* temp = cur->left;
-                cur->left = cur->right;
-                cur->right = temp;
+        while (!node_q.empty()) {
+            TreeNode* cur = node_q.front();
+            node_q.pop();
 
-                if (cur->left != NULL) {
-                    q.push(cur->left);
-                }
+            TreeNode* tmp = cur->left;
+            cur->left = cur->right;
+            cur->right = tmp;
 
-                if (cur->right != NULL) {
-                    q.push(cur->right);
-                }
-            }
+            if (cur->left != nullptr)
+                node_q.push(cur->left);
+
+            if (cur->right != nullptr)
+                node_q.push(cur->right);
         }
 
         return root;
