@@ -44,8 +44,8 @@
 
 /*
  * Solution: DFS
- * time: O(V+E)
- * space: O(V)
+ * time: O(m*n)
+ * space: O(m*n)
  * */
 
 class Solution {
@@ -79,6 +79,45 @@ private:
             if (image[nx][ny] == oldColor)
                 dfs(image, nx, ny, newColor);
         }
+    }
+};
+
+/*
+ * Solution: BFS
+ * time: O(m*n)
+ * space: O(m*n), in the worst case, all the pixels can be saved in the queue
+ * */
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        if (image[sr][sc] == color)
+            return image;
+
+        int raw_color = image[sr][sc];
+        image[sr][sc] = color;
+        int m = image.size(), n = image[0].size();
+        int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        queue<pair<int, int>> q;
+        q.push({sr, sc});
+
+        while (!q.empty()) {
+            auto curr = q.front();
+            q.pop();
+
+            for (auto &dir : dirs) {
+                int x = curr.first + dir[0];
+                int y = curr.second + dir[1];
+                if (x < 0 || x >= m || y < 0 || y >= n)
+                    continue;
+                if (image[x][y] == raw_color) {
+                    image[x][y] = color;
+                    q.push({x, y});
+                }
+            }
+        }
+
+        return image;
     }
 };
 //leetcode submit region end(Prohibit modification and deletion)
